@@ -1,0 +1,17 @@
+{
+  "name": "portfolio-site",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "set CI=true&& set ASTRO_TELEMETRY_DISABLED=1&& astro dev",
+    "build": "set CI=true&& set ASTRO_TELEMETRY_DISABLED=1&& astro build",
+    "preview": "set CI=true&& set ASTRO_TELEMETRY_DISABLED=1&& astro preview",
+    "astro": "set CI=true&& set ASTRO_TELEMETRY_DISABLED=1&& astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.9",
+    "astro": "^7.0.7",
+    "typescript": "^5.9.3"
+  }
+}

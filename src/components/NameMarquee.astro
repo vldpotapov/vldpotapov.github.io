@@ -1,0 +1,15 @@
+---
+const { label = "Vladimir Potapov -" } = Astro.props;
+const repeated = Array.from({ length: 6 }, () => label);
+---
+
+<div class="name-marquee" aria-label={label}>
+  <div class="name-marquee__track">
+    <div class="name-marquee__set">
+      {repeated.map((item) => <span>{item}</span>)}
+    </div>
+    <div class="name-marquee__set" aria-hidden="true">
+      {repeated.map((item) => <span>{item}</span>)}
+    </div>
+  </div>
+</div>

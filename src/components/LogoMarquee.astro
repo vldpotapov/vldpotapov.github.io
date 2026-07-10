@@ -1,0 +1,15 @@
+---
+import { logos } from "../data/site";
+const repeated = [...logos, ...logos];
+---
+
+<section class="logo-marquee" aria-label="Selected clients">
+  <div class="logo-marquee__track">
+    <div class="logo-marquee__set">
+      {repeated.map((logo) => <span>{logo}</span>)}
+    </div>
+    <div class="logo-marquee__set" aria-hidden="true">
+      {repeated.map((logo) => <span>{logo}</span>)}
+    </div>
+  </div>
+</section>

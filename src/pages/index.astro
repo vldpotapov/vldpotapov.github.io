@@ -1,0 +1,104 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import LogoMarquee from "../components/LogoMarquee.astro";
+import NameMarquee from "../components/NameMarquee.astro";
+import PlaceholderImage from "../components/PlaceholderImage.astro";
+import { projects, services } from "../data/site";
+import "../styles/global.css";
+---
+
+<BaseLayout title="Potapov Visual Designer">
+  <Header />
+
+  <main>
+    <section class="hero">
+      <img class="hero__portrait" src="/images/hero/portrait1.png" alt="Vladimir Potapov portrait" />
+      <NameMarquee />
+      <div class="hero__socials">
+        <a href="#"><img src="/icons/social/linkedin.svg" alt="" /><span>LinkedIn</span></a>
+        <a href="#"><img src="/icons/social/dribbble.svg" alt="" /><span>Dribbble</span></a>
+        <a href="#"><img src="/icons/social/behance.svg" alt="" /><span>Behance</span></a>
+        <a href="#"><img src="/icons/social/telegram.svg" alt="" /><span>Telegram</span></a>
+      </div>
+      <p class="hero__role">// Graphic Designer<br />3D Artist</p>
+    </section>
+
+    <section class="intro section" id="intro">
+      <p class="section-label">// Intro</p>
+      <div class="intro__content">
+        <h2>
+          I'm a multidisciplinary designer <span>creating visual systems for brands, products, and marketing</span>
+          —from strategy and branding to 3D visualization and launch.
+        </h2>
+        <p>
+          Over the past decade, I've worked across startups, agencies, and in-house marketing teams, contributing to branding, product design, marketing campaigns, and 3D visualization. Today, I focus on building cohesive visual systems that communicate ideas clearly and stay consistent across every touchpoint.
+        </p>
+        <a class="button" href="#">Download CV</a>
+      </div>
+    </section>
+
+    <section class="services section" id="expertise">
+      <p class="section-label">// Expertise</p>
+      <div class="services__layout" data-service-flip>
+        <div class="service__number-sticky" aria-hidden="true">
+          <span class="service__number service__number--current">01</span>
+          <span class="service__number service__number--next">01</span>
+        </div>
+        <div class="services__list">
+          {
+            services.map((service, index) => {
+              const number = String(index + 1).padStart(2, "0");
+
+              return (
+                <article class="service" data-service-number={number}>
+                  <div class="service__body">
+                    <h2>{service.title}</h2>
+                    <p>{service.intro}</p>
+                    <ul>
+                      {service.items.map((item, itemIndex) => (
+                        <li>
+                          <span>{item}</span>
+                          <span>{String(itemIndex + 1).padStart(2, "0")}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              );
+            })
+          }
+        </div>
+      </div>
+    </section>
+    <section class="projects section" id="projects">
+      <p class="section-label">// Projects</p>
+      <div class="projects__grid">
+        {
+          projects.map((project, index) => (
+            <a class:list={["project-card", { "project-card--reverse": index % 2 === 1 }]} href={project.slug}>
+              <PlaceholderImage class="project-card__image" label="" />
+              <div class="project-card__info">
+                <p>({project.year})</p>
+                <h2>{project.title}</h2>
+                <p>{project.summary}</p>
+                <ul>
+                  {project.tags.map((tag) => (
+                    <li>{tag}</li>
+                  ))}
+                </ul>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+      <a class="button projects__button" href="/projects/motor-skin/">See my projects</a>
+    </section>
+
+    <LogoMarquee />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
