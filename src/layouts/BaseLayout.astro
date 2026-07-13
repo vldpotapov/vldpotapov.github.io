@@ -176,13 +176,15 @@ const {
       if (serviceFlipRoot) {
         const currentNumber = serviceFlipRoot.querySelector(".service__number--current");
         const nextNumber = serviceFlipRoot.querySelector(".service__number--next");
+        const currentNumberUse = currentNumber?.querySelector(".service__number-use");
+        const nextNumberUse = nextNumber?.querySelector(".service__number-use");
         const serviceItems = Array.from(serviceFlipRoot.querySelectorAll(".service[data-service-number]"));
-        let activeNumber = currentNumber?.textContent?.trim() || "01";
+        let activeNumber = currentNumberUse?.getAttribute("href")?.replace("#service-number-", "") || "01";
         let isAnimatingNumber = false;
         let queuedNumber = null;
 
         function flipToServiceNumber(number) {
-          if (!currentNumber || !nextNumber || number === activeNumber) return;
+          if (!currentNumber || !nextNumber || !currentNumberUse || !nextNumberUse || number === activeNumber) return;
 
           if (isAnimatingNumber) {
             queuedNumber = number;
@@ -190,7 +192,7 @@ const {
           }
 
           isAnimatingNumber = true;
-          nextNumber.textContent = number;
+          nextNumberUse.setAttribute("href", `#service-number-${number}`);
           currentNumber.classList.add("is-flip-out");
 
           window.setTimeout(() => {
@@ -198,10 +200,10 @@ const {
           }, 320);
 
           window.setTimeout(() => {
-            currentNumber.textContent = number;
+            currentNumberUse.setAttribute("href", `#service-number-${number}`);
             currentNumber.classList.remove("is-flip-out");
             nextNumber.classList.remove("is-flip-in");
-            nextNumber.textContent = number;
+            nextNumberUse.setAttribute("href", `#service-number-${number}`);
             activeNumber = number;
             isAnimatingNumber = false;
 
@@ -276,6 +278,8 @@ const {
     </script>
   </body>
 </html>
+
+
 
 
 

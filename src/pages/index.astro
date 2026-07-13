@@ -5,6 +5,7 @@ import Footer from "../components/Footer.astro";
 import LogoMarquee from "../components/LogoMarquee.astro";
 import NameMarquee from "../components/NameMarquee.astro";
 import PlaceholderImage from "../components/PlaceholderImage.astro";
+import { serviceNumberSymbols } from "../data/serviceNumbers";
 import { projects, services } from "../data/site";
 import "../styles/global.css";
 ---
@@ -43,8 +44,27 @@ import "../styles/global.css";
       <p class="section-label">// Expertise</p>
       <div class="services__layout" data-service-flip>
         <div class="service__number-sticky" aria-hidden="true">
-          <span class="service__number service__number--current">01</span>
-          <span class="service__number service__number--next">01</span>
+          <svg class="service__number-defs" width="0" height="0" focusable="false">
+            {
+              serviceNumberSymbols.map((symbol) => (
+                <symbol id={`service-number-${symbol.number}`} viewBox="0 -32 1200 764">
+                  {symbol.digits.map((digit) => (
+                    <path class="service__number-path" d={digit.d} transform={`translate(${digit.x} 700) scale(1 -1)`} />
+                  ))}
+                </symbol>
+              ))
+            }
+          </svg>
+          <span class="service__number service__number--current">
+            <svg class="service__number-svg" viewBox="0 -32 1200 764" aria-hidden="true" focusable="false">
+              <use class="service__number-use" href="#service-number-01"></use>
+            </svg>
+          </span>
+          <span class="service__number service__number--next">
+            <svg class="service__number-svg" viewBox="0 -32 1200 764" aria-hidden="true" focusable="false">
+              <use class="service__number-use" href="#service-number-01"></use>
+            </svg>
+          </span>
         </div>
         <div class="services__list">
           {
@@ -78,7 +98,13 @@ import "../styles/global.css";
         {
           projects.map((project, index) => (
             <a class:list={["project-card", { "project-card--reverse": index % 2 === 1 }]} href={project.slug}>
-              <PlaceholderImage class="project-card__image" label="" />
+              <div class="project-card__image">
+                {project.image ? (
+                  <img class="project-card__img" src={project.image} alt={project.imageAlt} loading="lazy" decoding="async" />
+                ) : (
+                  <PlaceholderImage class="project-card__placeholder" label="" />
+                )}
+              </div>
               <div class="project-card__info">
                 <p>({project.year})</p>
                 <h2>{project.title}</h2>
@@ -101,6 +127,14 @@ import "../styles/global.css";
 
   <Footer />
 </BaseLayout>
+
+
+
+
+
+
+
+
 
 
 

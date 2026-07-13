@@ -75,9 +75,11 @@
 
 export const projects = [
   {
-    title: "Branding",
+    title: "Motor Skin",
     year: "2024",
     slug: "/projects/motor-skin/",
+    image: "/images/projects/project-placeholder.png",
+    imageAlt: "Motor Skin project preview",
     summary:
       "Bringing your vision to life quickly and efficiently. A clean visual direction shaped through strategy, identity and execution.",
     tags: ["Brand Strategy and Messaging", "Logo Design", "Visual Identity"],
@@ -86,6 +88,8 @@ export const projects = [
     title: "Branding",
     year: "2024",
     slug: "/projects/motor-skin/",
+    image: "/images/projects/project-placeholder.png",
+    imageAlt: "Branding project preview",
     summary:
       "A placeholder project card for the first portfolio version. Real content and images can be added later.",
     tags: ["Brand Strategy and Messaging", "Logo Design", "Visual Identity"],
@@ -100,13 +104,31 @@ export const moreProjects = Array.from({ length: 6 }, (_, index) => ({
 }));
 
 export const logos = [
-  "ENDOO",
-  "Poggi Play",
-  "NETENT",
-  "TURBO GAMES",
-  "Platipus",
-  "REVOLVER",
-  "SYNDO",
+  { name: "Airgun", src: "/images/logos/airgun.svg" },
+  { name: "Business School", src: "/images/logos/business school.svg" },
+  { name: "Ecookna", src: "/images/logos/ecookna.svg" },
+  { name: "Eurookna", src: "/images/logos/eurookna.svg" },
+  { name: "etykety24.cz", src: "/images/logos/etykety24.svg" },
+  { name: "Mail.ru", src: "/images/logos/mail ru.svg" },
+  { name: "MTS", src: "/images/logos/mts.svg" },
+  { name: "Okna Rosta", src: "/images/logos/okna rosta.svg" },
+  { name: "Palitra Lab", src: "/images/logos/palitra lab.svg" },
+  { name: "Phototech", src: "/images/logos/phototech.svg" },
+  { name: "Poz", src: "/images/logos/poz.svg" },
+  { name: "Rateokon", src: "/images/logos/rateokon.svg" },
+  { name: "Rating Okna", src: "/images/logos/rating okna.svg" },
+  { name: "Slotegrator", src: "/images/logos/slotegrator.svg" },
+  { name: "Sprybyte", src: "/images/logos/sprybyte.svg" },
+  { name: "Starhub", src: "/images/logos/starhub.svg" },
+  { name: "Tele2", src: "/images/logos/tele2.svg" },
+  { name: "Yandex Money", src: "/images/logos/yandex money.png" },
+  { name: "Future", src: "/images/logos/future.svg" },
+  { name: "RLClub", src: "/images/logos/RLClub.svg" },
+  { name: "LicensingAid", src: "/images/logos/licensingAid.svg" },
 ];
 
 export const socialLinks = ["LinkedIn", "Telegram", "Behance"];
+
+
+
+
