@@ -56,6 +56,121 @@ const {
       window.addEventListener("resize", requestHeroParallax);
     </script>
     <script>
+      const introRevealItems = Array.from(document.querySelectorAll("[data-intro-reveal]"));
+      const introReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      let introRevealTicking = false;
+      let introRevealResizeTimer = 0;
+
+      function wrapIntroText(node, accent = false) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          const fragment = document.createDocumentFragment();
+          const parts = node.textContent?.split(/(\s+)/) || [];
+
+          for (const part of parts) {
+            if (!part) continue;
+
+            if (/^\s+$/.test(part)) {
+              fragment.appendChild(document.createTextNode(part));
+              continue;
+            }
+
+            const word = document.createElement("span");
+            word.dataset.introWord = "";
+            if (accent) word.dataset.introAccent = "true";
+            word.textContent = part;
+            fragment.appendChild(word);
+          }
+
+          node.replaceWith(fragment);
+          return;
+        }
+
+        if (node.nodeType !== Node.ELEMENT_NODE) return;
+
+        const isAccent = accent || node.matches("span");
+        Array.from(node.childNodes).forEach((child) => wrapIntroText(child, isAccent));
+      }
+
+      function prepareIntroReveal() {
+        for (const item of introRevealItems) {
+          if (item.dataset.introPrepared === "true") continue;
+          Array.from(item.childNodes).forEach((child) => wrapIntroText(child));
+          item.dataset.introPrepared = "true";
+        }
+      }
+
+      function getIntroLines(item) {
+        const words = Array.from(item.querySelectorAll("[data-intro-word]"));
+        const lines = [];
+
+        for (const word of words) {
+          const top = Math.round(word.offsetTop);
+          let line = lines.find((candidate) => Math.abs(candidate.top - top) <= 2);
+
+          if (!line) {
+            line = { top, words: [] };
+            lines.push(line);
+          }
+
+          line.words.push(word);
+        }
+
+        return lines.sort((a, b) => a.top - b.top);
+      }
+
+      function updateIntroReveal() {
+        if (!introRevealItems.length) {
+          introRevealTicking = false;
+          return;
+        }
+
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+        for (const item of introRevealItems) {
+          const words = Array.from(item.querySelectorAll("[data-intro-word]"));
+
+          if (introReduceMotion.matches) {
+            words.forEach((word) => word.style.setProperty("--word-reveal", "100%"));
+            continue;
+          }
+
+          const rect = item.getBoundingClientRect();
+          const start = viewportHeight * 0.8;
+          const end = viewportHeight * 0.2;
+          const progress = Math.min(1, Math.max(0, (start - rect.top) / (start - end)));
+          const lines = getIntroLines(item);
+          const lineCount = Math.max(lines.length, 1);
+
+          lines.forEach((line, index) => {
+            const lineProgress = Math.min(1, Math.max(0, progress * lineCount - index));
+
+            line.words.forEach((word, wordIndex) => {
+              const wordStart = wordIndex / line.words.length;
+              const wordEnd = (wordIndex + 1) / line.words.length;
+              const wordProgress = Math.min(1, Math.max(0, (lineProgress - wordStart) / (wordEnd - wordStart)));
+              word.style.setProperty("--word-reveal", `${(wordProgress * 100).toFixed(2)}%`);
+            });
+          });
+        }
+
+        introRevealTicking = false;
+      }
+
+      function requestIntroReveal() {
+        if (introRevealTicking || !introRevealItems.length) return;
+        introRevealTicking = true;
+        requestAnimationFrame(updateIntroReveal);
+      }
+
+      prepareIntroReveal();
+      updateIntroReveal();
+      window.addEventListener("scroll", requestIntroReveal, { passive: true });
+      window.addEventListener("resize", () => {
+        window.clearTimeout(introRevealResizeTimer);
+        introRevealResizeTimer = window.setTimeout(requestIntroReveal, 120);
+      });
+    </script>
+    <script>
       const serviceFlipRoot = document.querySelector("[data-service-flip]");
 
       if (serviceFlipRoot) {
@@ -161,6 +276,13 @@ const {
     </script>
   </body>
 </html>
+
+
+
+
+
+
+
 
 
 
