@@ -1,0 +1,202 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import LogoMarquee from "../components/LogoMarquee.astro";
+import "../styles/global.css";
+
+const careerSnapshots = [
+  {
+    number: "15+",
+    title: "Years in Design",
+    text: "From print production and web design to branding, marketing, and 3D visualization. A multidisciplinary background built through agency, startup, and in-house experience.",
+  },
+  {
+    number: "06",
+    title: "Companies & Teams",
+    text: "Experience across startups, digital agencies, manufacturing, and international B2B companies - working with marketers, developers, and product teams.",
+  },
+  {
+    number: "05",
+    title: "Core Expertise",
+    text: "Brand Identity, Marketing Design, 3D Visualization, Digital Illustration, and Motion Design working together as one visual system.",
+  },
+];
+
+const hardSkills = [
+  {
+    title: "Visual Design",
+    tags: [
+      { label: "Figma", icon: "/icons/tools/figma.svg" },
+      { label: "Photoshop", icon: "/icons/tools/photoshop.svg" },
+      { label: "Illustrator", icon: "/icons/tools/illustrator.svg" },
+      { label: "InDesign", icon: "/icons/tools/indesign.svg" },
+    ],
+  },
+  {
+    title: "3D & Motion",
+    tags: [
+      { label: "Blender", icon: "/icons/tools/blender.svg" },
+      { label: "Substance 3D", icon: "/icons/tools/substance.svg" },
+      { label: "After Effects", icon: "/icons/tools/ae.svg" },
+    ],
+  },
+  {
+    title: "AI Workflow",
+    tags: [
+      { label: "ChatGPT", icon: "/icons/tools/gpt.svg" },
+      { label: "Gemini", icon: "/icons/tools/gemini.svg" },
+      { label: "Kling", icon: "/icons/tools/kling.svg" },
+      { label: "Weave", icon: "/icons/tools/weave.svg" },
+    ],
+  },
+  {
+    title: "Collaboration",
+    tags: [
+      { label: "Notion", icon: "/icons/tools/notion.svg" },
+      { label: "Jira", icon: "/icons/tools/jira.svg" },
+    ],
+  },
+  {
+    title: "Front-End",
+    tags: [
+      { label: "HTML", icon: "/icons/tools/html.svg" },
+      { label: "CSS", icon: "/icons/tools/css.svg" },
+      { label: "GitHub", icon: "/icons/tools/github.svg" },
+      { label: "Codex", icon: "/icons/tools/codex.svg" },
+    ],
+  },
+];
+
+const experienceItems = [
+  {
+    period: "2020 - Present",
+    company: "Slotegrator",
+    role: "Visual & 3D Designer",
+    text: "Led the visual evolution from web design to 3D-driven marketing assets, contributing to the company's website redesign, product launches, rebranding initiatives, and high-quality visuals for digital marketing.",
+  },
+  {
+    period: "2019 - 2020",
+    company: "EcoOkna",
+    role: "Graphic & UX Designer",
+    text: "Designed user interfaces, custom graphics, and digital tools for several large-scale brands, focusing on usability and visual consistency.",
+  },
+  {
+    period: "2018 - 2019",
+    company: "Youwork Today",
+    role: "Product & UI/UX Designer",
+    text: "Designed the startup's digital ecosystem from concept to implementation, including the mobile app, website, marketing materials, and investor presentations. Collaborated closely with the team throughout the entire product design process.",
+  },
+  {
+    period: "2016 - 2018",
+    company: "RLClub",
+    role: "UI & Web Designer",
+    text: "Created mobile interfaces, web experiences, and presentation materials while collaborating closely with the product team.",
+  },
+  {
+    period: "2015",
+    company: "Pixsells",
+    role: "SMM Designer",
+    text: "Designed websites and social media visuals for a wide range of client projects.",
+  },
+  {
+    period: "2009 - 2015",
+    company: "PVG",
+    role: "Prepress Designer",
+    text: "Started my career in print production, building a strong foundation in layout, typography, color management, and production workflows.",
+  },
+  {
+    period: "2018",
+    company: "Sreda Obucheniya",
+    role: "Bachelor's Degree in Digital Design",
+    text: "Sreda Obucheniya Higher School",
+  },
+];
+---
+
+<BaseLayout title="About | Potapov Visual Designer" description="About Vladimir Potapov, visual designer and 3D artist.">
+  <Header />
+
+  <main class="about-page">
+    <section class="about-hero" aria-labelledby="about-title">
+      <div class="about-hero__inner">
+        <div class="about-hero__headline-wrap">
+          <img class="about-hero__photo-placeholder" src="/images/about/portrait-small.png" alt="Vladimir Potapov portrait" />
+          <h1 id="about-title">
+            I bridge the gap between branding, marketing, and 3D design-creating
+            <span>visual systems that help products communicate clearly and brands stay consistent</span>
+            across every touchpoint. From rebranding and marketing campaigns to 3D visuals and event design, I create cohesive design solutions that connect strategy with execution.
+          </h1>
+        </div>
+
+        <a class="about-hero__button" href="/#projects">See my projects</a>
+
+        <p class="about-hero__description">
+          Over the past 15 years, I've worked across startups, digital agencies, and in-house marketing teams, building experience in branding, web design, product design, and 3D visualization. This diverse background allows me to approach projects from different perspectives and create visual solutions that balance creativity with practical business needs. I enjoy collaborating with multidisciplinary teams and developing cohesive design systems that remain consistent across digital products, marketing campaigns, and physical experiences.
+        </p>
+      </div>
+    </section>
+
+    <section class="career-snapshot" aria-labelledby="career-snapshot-title">
+      <h2 id="career-snapshot-title" class="section-label">//Career Snapshot</h2>
+      <div class="career-snapshot__list">
+        {careerSnapshots.map((item) => (
+          <article class="career-snapshot__item">
+            <p class="career-snapshot__number">{item.number}</p>
+            <div class="career-snapshot__content">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="hard-skills" aria-labelledby="hard-skills-title">
+      <h2 id="hard-skills-title" class="section-label">//Hard skills</h2>
+      <div class="hard-skills__list">
+        {hardSkills.map((item) => (
+          <article class="hard-skills__item">
+            <h3 class="hard-skills__title">{item.title}</h3>
+            <div class="hard-skills__content">
+              <ul class="case-tools hard-skills__tags" aria-label={`${item.title} tools`}>
+                {item.tags.map((tag) => (
+                  <li>
+                    <img src={tag.icon} alt="" aria-hidden="true" />
+                    <span>{tag.label}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="experience-education" aria-labelledby="experience-education-title">
+      <h2 id="experience-education-title" class="section-label">//Experience & Education</h2>
+      <div class="experience-education__list">
+        {experienceItems.map((item) => (
+          <article class="experience-education__item">
+            <div class="experience-education__meta">
+              <p>{item.period}</p>
+              <h3>{item.company}</h3>
+            </div>
+            <div class="experience-education__content">
+              <h4>{item.role}</h4>
+              <p>{item.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="about-cta" aria-label="Projects call to action">
+      <a class="about-hero__button" href="/#projects">See my projects</a>
+    </section>
+
+    <LogoMarquee />
+  </main>
+
+  <Footer />
+</BaseLayout>

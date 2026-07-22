@@ -1,0 +1,443 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import LogoMarquee from "../../components/LogoMarquee.astro";
+import NameMarquee from "../../components/NameMarquee.astro";
+import ProjectMedia from "../../components/ProjectMedia.astro";
+import ProjectSlider from "../../components/ProjectSlider.astro";
+import { motorSkinProject as project } from "../../data/projectCases";
+import { moreProjects } from "../../data/site";
+import "../../styles/global.css";
+
+const isDark = project.theme === "dark";
+
+const toolIcons: Record<string, string> = {
+  "After Effects": "/icons/tools/ae.svg",
+  Blender: "/icons/tools/blender.svg",
+  ChatGPT: "/icons/tools/gpt.svg",
+  Figma: "/icons/tools/figma.svg",
+  Illustrator: "/icons/tools/illustrator.svg",
+  InDesign: "/icons/tools/indesign.svg",
+  Jira: "/icons/tools/jira.svg",
+  Kling: "/icons/tools/kling.svg",
+  Photoshop: "/icons/tools/photoshop.svg",
+  Weave: "/icons/tools/weave.svg",
+};
+---
+
+<BaseLayout title={`${project.title} - Potapov Visual Designer`} description={project.subtitle}>
+  <Header dark={isDark} />
+
+  <main class:list={["project-page", `project-page--${project.theme}`]} style={`--project-accent: ${project.accent}`}>
+    <section class="case-hero" aria-label={project.title}>
+      <img class="case-hero__image" src={project.cover.src} alt={project.cover.alt} loading="eager" decoding="async" />
+      <NameMarquee label={`${project.title}-`} />
+    </section>
+
+    <section class="case-overview case-section">
+      <h2>{project.overview.title}</h2>
+      <div class="case-overview__copy">
+        <h2 class="section-label">// {project.overview.eyebrow}</h2>
+        <p class="case-overview__body">{project.overview.before} <span>{project.overview.accent}</span> {project.overview.after}</p>
+      </div>
+    </section>
+
+    <section class="case-glance case-section">
+      <h2 class="section-label">// Project at a Glance</h2>
+      <div class="case-glance__list">
+        {project.glance.map((item) => (
+          <article class:list={["case-glance__row", { "case-glance__row--tools": item.tools }]}>
+            <span class="case-info-icon" aria-hidden="true"></span>
+            <h2>{item.label}</h2>
+            <div class="case-glance__value">
+              {item.value && <strong>{item.value}</strong>}
+              {item.tools && (
+                <ul class="case-tools" aria-label={`${item.label} tools`}>
+                  {item.tools.map((tool) => (
+                    <li>
+                      <img src={tool.icon} alt="" loading="lazy" decoding="async" />
+                      <span>{tool.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            {item.description ? <p class="case-glance__description">{item.description}</p> : <span class="case-glance__description" aria-hidden="true"></span>}
+          </article>
+        ))}
+      </div>
+    </section>
+
+    {project.sections.map((section) => {
+      if (section.type === "intro") {
+        return (
+          <section class="case-concept case-section">
+            <h2 class="section-label">// {section.eyebrow}</h2>
+            <div class="case-concept__grid">
+              {section.callout && (
+                <div class="case-callout">
+                  <span class="case-callout__icon" aria-hidden="true"></span>
+                  <p>{section.callout} {section.calloutAccent && <strong>{section.calloutAccent}</strong>}</p>
+                </div>
+              )}
+              <div class="case-copy case-concept__copy">
+                {section.text.map((paragraph) => <p>{paragraph}</p>)}
+              </div>
+            </div>
+            {section.image && <ProjectMedia class="case-concept__image" src={section.image.src} alt={section.image.alt} ratio="16 / 5.7" />}
+            {section.attributes && (
+              <div class="case-attributes">
+                <h3>{section.attributes.title}</h3>
+                <p>{section.attributes.text}</p>
+              </div>
+            )}
+          </section>
+        );
+      }
+
+      if (section.type === "feature") {
+        return (
+          <section class="case-feature case-section">
+            <h2 class="section-label">// {section.eyebrow}</h2>
+            {section.callout && (
+              <div class="case-feature__top">
+                <div class="case-callout">
+                  <span class="case-callout__icon" aria-hidden="true"></span>
+                  <p>{section.callout} {section.calloutAccent && <strong>{section.calloutAccent}</strong>}</p>
+                </div>
+                <div class="case-feature__copy-block">
+                  <h2>{section.title}</h2>
+                  <div class="case-copy">
+                    {section.text.map((paragraph) => <p>{paragraph}</p>)}
+                  </div>
+                </div>
+              </div>
+            )}
+            {!section.callout && section.image && (
+              <div class:list={["case-feature__split", { "case-feature__split--image-left": section.imageSide === "left" }]}>
+                <div class="case-feature__split-copy">
+                  <h2>{section.title}</h2>
+                  <div class="case-copy">
+                    {section.text.map((paragraph) => <p>{paragraph}</p>)}
+                  </div>
+                  {section.tools && (
+                    <ul class="case-tools case-tools--section" aria-label={`${section.title} tools`}>
+                      {section.tools.map((tool) => <li>{toolIcons[tool] && <img src={toolIcons[tool]} alt="" loading="lazy" decoding="async" />}<span>{tool}</span></li>)}
+                    </ul>
+                  )}
+                </div>
+                <ProjectMedia class="case-feature__split-media" src={section.image.src} alt={section.image.alt} ratio="16 / 9" />
+              </div>
+            )}
+            {!section.callout && !section.image && (
+              <div class="case-feature__intro">
+                <h2>{section.title}</h2>
+                <div>
+                  <div class="case-copy">
+                    {section.text.map((paragraph) => <p>{paragraph}</p>)}
+                  </div>
+                  {section.tools && (
+                    <ul class="case-tools case-tools--section" aria-label={`${section.title} tools`}>
+                      {section.tools.map((tool) => <li>{toolIcons[tool] && <img src={toolIcons[tool]} alt="" loading="lazy" decoding="async" />}<span>{tool}</span></li>)}
+                    </ul>
+                  )}
+                </div>
+              </div>
+            )}
+            {section.callout && section.image && <ProjectMedia class="case-feature__image" src={section.image.src} alt={section.image.alt} ratio="16 / 9" />}
+          </section>
+        );
+      }
+
+      if (section.type === "story-grid") {
+        return (
+          <section class="case-story case-section">
+            <h2 class="section-label">// {section.eyebrow}</h2>
+            <div class="case-story__intro">
+              <h2>{section.title}</h2>
+              <div>
+                <div class="case-copy">
+                  {section.text.map((paragraph) => <p>{paragraph}</p>)}
+                </div>
+                {section.tools && (
+                  <ul class="case-tools case-tools--section" aria-label={`${section.title} tools`}>
+                    {section.tools.map((tool) => <li>{toolIcons[tool] && <img src={toolIcons[tool]} alt="" loading="lazy" decoding="async" />}<span>{tool}</span></li>)}
+                  </ul>
+                )}
+              </div>
+            </div>
+            <div class="case-story__items">
+              {section.items.map((item, index) => (
+                <article class:list={["case-story-card", `case-story-card--${item.align ?? (index % 2 === 0 ? "right" : "left")}`, { "case-story-card--wide": item.layout === "wide" }]}>
+                  <div class="case-story-card__copy">
+                    {item.title && <h3>{item.title}</h3>}
+                    {item.text && <p>{item.text}</p>}
+                    {item.callout && (
+                      <div class="case-story-card__callout">
+                        <span class="case-callout__icon" aria-hidden="true"></span>
+                        <p>{item.callout}</p>
+                      </div>
+                    )}
+                  </div>
+                  {item.slides ? (
+                    <>
+                      <div class="case-story-card__slider">
+                        <ProjectSlider slides={item.slides} title={item.title} numberColor={project.sliderNumberColor} />
+                      </div>
+                      <div class="case-story-card__mobile-gallery">
+                        {item.slides.map((slide) => <ProjectMedia src={slide.src} alt={slide.alt} ratio={item.ratio} />)}
+                      </div>
+                    </>
+                  ) : item.videoSrc ? (
+                    <figure class="project-media project-video case-story-card__media" style={`--media-ratio: ${item.ratio ?? "16 / 10"}`}>
+                      <video src={item.videoSrc} poster={item.src} muted loop playsinline preload="metadata" data-hover-video aria-label={item.alt}></video>
+                      {item.hasAudio !== false && (
+                        <button class="project-video__sound" type="button" aria-label="Turn sound on" data-video-sound><img src="/icons/project/video-muted.svg" alt="" aria-hidden="true" data-video-sound-icon /></button>
+                      )}
+                    </figure>
+                  ) : (
+                    <ProjectMedia class="case-story-card__media" src={item.src} alt={item.alt} ratio={item.ratio} />
+                  )}
+                </article>
+              ))}
+            </div>
+            {section.followup && (
+              <>
+                <div class="case-story__intro case-story__intro--followup">
+                  <h2>{section.followup.title}</h2>
+                  <div>
+                    <div class="case-copy">
+                      {section.followup.text.map((paragraph) => <p>{paragraph}</p>)}
+                    </div>
+                    {section.followup.tools && (
+                      <ul class="case-tools case-tools--section" aria-label={`${section.followup.title} tools`}>
+                        {section.followup.tools.map((tool) => <li>{toolIcons[tool] && <img src={toolIcons[tool]} alt="" loading="lazy" decoding="async" />}<span>{tool}</span></li>)}
+                      </ul>
+                    )}
+                  </div>
+                </div>
+                <div class="case-story__items">
+                  {section.followup.items.map((item, index) => (
+                    <article class:list={["case-story-card", `case-story-card--${item.align ?? (index % 2 === 0 ? "right" : "left")}`, { "case-story-card--wide": item.layout === "wide" }]}>
+                      <div class="case-story-card__copy">
+                        {item.title && <h3>{item.title}</h3>}
+                        {item.text && <p>{item.text}</p>}
+                        {item.callout && (
+                          <div class="case-story-card__callout">
+                            <span class="case-callout__icon" aria-hidden="true"></span>
+                            <p>{item.callout}</p>
+                          </div>
+                        )}
+                      </div>
+                      {item.slides ? (
+                    <>
+                      <div class="case-story-card__slider">
+                        <ProjectSlider slides={item.slides} title={item.title} numberColor={project.sliderNumberColor} />
+                      </div>
+                      <div class="case-story-card__mobile-gallery">
+                        {item.slides.map((slide) => <ProjectMedia src={slide.src} alt={slide.alt} ratio={item.ratio} />)}
+                      </div>
+                    </>
+                  ) : item.videoSrc ? (
+                    <figure class="project-media project-video case-story-card__media" style={`--media-ratio: ${item.ratio ?? "16 / 10"}`}>
+                      <video src={item.videoSrc} poster={item.src} muted loop playsinline preload="metadata" data-hover-video aria-label={item.alt}></video>
+                      {item.hasAudio !== false && (
+                        <button class="project-video__sound" type="button" aria-label="Turn sound on" data-video-sound><img src="/icons/project/video-muted.svg" alt="" aria-hidden="true" data-video-sound-icon /></button>
+                      )}
+                    </figure>
+                  ) : (
+                    <ProjectMedia class="case-story-card__media" src={item.src} alt={item.alt} ratio={item.ratio} />
+                  )}
+                    </article>
+                  ))}
+                </div>
+                {section.followup.after?.map((block) => (
+                  <div class="case-story__intro case-story__intro--followup">
+                    <h2>{block.title}</h2>
+                    <div>
+                      <div class="case-copy">
+                        {block.text.map((paragraph) => <p>{paragraph}</p>)}
+                      </div>
+                      {block.tools && (
+                        <ul class="case-tools case-tools--section" aria-label={`${block.title} tools`}>
+                          {block.tools.map((tool) => <li>{toolIcons[tool] && <img src={toolIcons[tool]} alt="" loading="lazy" decoding="async" />}<span>{tool}</span></li>)}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                ))}
+                {section.followup.threeUp?.map((block) => (
+                  <div class="case-three-up">
+                    <div class="case-three-up__grid">
+                      {block.items.map((item) => <ProjectMedia class="case-three-up__media" src={item.src} alt={item.alt} ratio={item.ratio} />)}
+                    </div>
+                    <div class="case-three-up__copy">
+                      <h3>{block.title}</h3>
+                      <p>{block.text}</p>
+                    </div>
+                  </div>
+                ))}
+                {section.followup.afterThreeUp?.map((block) => (
+                  <div class="case-story__intro case-story__intro--followup">
+                    <h2>{block.title}</h2>
+                    <div>
+                      <div class="case-copy">
+                        {block.text.map((paragraph) => <p>{paragraph}</p>)}
+                      </div>
+                      {block.tools && (
+                        <ul class="case-tools case-tools--section" aria-label={`${block.title} tools`}>
+                          {block.tools.map((tool) => <li>{toolIcons[tool] && <img src={toolIcons[tool]} alt="" loading="lazy" decoding="async" />}<span>{tool}</span></li>)}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                ))}
+                {section.followup.afterThreeUpBlocks?.map((block) => (
+                  <div class="case-three-up">
+                    <div class="case-three-up__grid">
+                      {block.items.map((item) => <ProjectMedia class="case-three-up__media" src={item.src} alt={item.alt} ratio={item.ratio} />)}
+                    </div>
+                    <div class="case-three-up__copy">
+                      <h3>{block.title}</h3>
+                      <p>{block.text}</p>
+                    </div>
+                  </div>
+                ))}
+                {section.followup.wideMedia?.map((block) => (
+                  <div class="case-wide-media">
+                    {block.image.videoSrc ? (
+                      <figure class="project-media project-video case-wide-media__image" style={`--media-ratio: ${block.image.ratio ?? "16 / 9"}`}>
+                        <video src={block.image.videoSrc} poster={block.image.src} muted loop playsinline preload="metadata" data-hover-video aria-label={block.image.alt}></video>
+                        {block.image.hasAudio !== false && (
+                        <button class="project-video__sound" type="button" aria-label="Turn sound on" data-video-sound><img src="/icons/project/video-muted.svg" alt="" aria-hidden="true" data-video-sound-icon /></button>
+                      )}
+                      </figure>
+                    ) : (
+                      <ProjectMedia class="case-wide-media__image" src={block.image.src} alt={block.image.alt} ratio={block.image.ratio} />
+                    )}
+                    <div class="case-wide-media__copy">
+                      <h3>{block.title}</h3>
+                      <p>{block.text}</p>
+                    </div>
+                    {block.callout && (
+                      <div class="case-callout case-wide-media__callout">
+                        <span class="case-callout__icon" aria-hidden="true"></span>
+                        <p>{block.callout}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+                {section.followup.afterWideMedia?.map((block) => (
+                  <div class="case-story__intro case-story__intro--followup">
+                    <h2>{block.title}</h2>
+                    <div>
+                      <div class="case-copy">
+                        {block.text.map((paragraph) => <p>{paragraph}</p>)}
+                      </div>
+                      {block.tools && (
+                        <ul class="case-tools case-tools--section" aria-label={`${block.title} tools`}>
+                          {block.tools.map((tool) => <li>{toolIcons[tool] && <img src={toolIcons[tool]} alt="" loading="lazy" decoding="async" />}<span>{tool}</span></li>)}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                ))}
+                {section.followup.afterWideMediaItems?.map((item, index) => (
+                  <article class:list={["case-story-card", `case-story-card--${item.align ?? (index % 2 === 0 ? "right" : "left")}`]}>
+                    <div class="case-story-card__copy">
+                      {item.title && <h3>{item.title}</h3>}
+                      {item.text && <p>{item.text}</p>}
+                    </div>
+                    {item.videoSrc ? (
+                      <figure class="project-media project-video case-story-card__media" style={`--media-ratio: ${item.ratio ?? "16 / 10"}`}>
+                        <video src={item.videoSrc} poster={item.src} muted loop playsinline preload="metadata" data-hover-video aria-label={item.alt}></video>
+                      {item.hasAudio !== false && (
+                        <button class="project-video__sound" type="button" aria-label="Turn sound on" data-video-sound><img src="/icons/project/video-muted.svg" alt="" aria-hidden="true" data-video-sound-icon /></button>
+                      )}
+                      </figure>
+                    ) : (
+                      <ProjectMedia class="case-story-card__media" src={item.src} alt={item.alt} ratio={item.ratio} />
+                    )}
+                  </article>
+                ))}
+              </>
+            )}
+          </section>
+        );
+      }
+
+      if (section.type === "slider") {
+        return (
+          <section class="case-gallery case-section">
+            <h2 class="section-label">// {section.eyebrow}</h2>
+            <div class="case-gallery__heading">
+              <h2>{section.title}</h2>
+              {section.text && <p>{section.text}</p>}
+            </div>
+            <ProjectSlider slides={section.slides} title={section.title} numberColor={project.sliderNumberColor} />
+            <div class="case-gallery__mobile">
+              {section.slides.map((slide) => <ProjectMedia src={slide.src} alt={slide.alt} ratio="16 / 10" />)}
+            </div>
+          </section>
+        );
+      }
+
+      return null;
+    })}
+
+    <section class="more-projects section">
+      <h2 class="section-label">// More Projects</h2>
+      <div class="more-projects__grid">
+        {moreProjects.map((item) => (
+          <a class="more-card" href={item.slug}>
+            <ProjectMedia class="more-card__image" src="/images/projects/project-placeholder.png" alt={`${item.title} preview`} />
+            <h2>{item.title}</h2>
+            <p>({item.year})</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <LogoMarquee />
+  </main>
+
+  <Footer />
+
+  <script>
+    const hoverVideos = document.querySelectorAll("[data-hover-video]");
+    const canHoverVideos = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    hoverVideos.forEach((video) => {
+      const soundButton = video.parentElement?.querySelector("[data-video-sound]");
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.removeAttribute("controls");
+
+      soundButton?.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const soundIcon = soundButton.querySelector("[data-video-sound-icon]");
+        video.muted = !video.muted;
+        soundButton.setAttribute("aria-label", video.muted ? "Turn sound on" : "Turn sound off");
+        if (soundIcon) {
+          soundIcon.setAttribute("src", video.muted ? "/icons/project/video-muted.svg" : "/icons/project/video-sound.svg");
+        }
+        video.play().catch(() => {});
+      });
+
+      if (canHoverVideos) {
+        video.addEventListener("pointerenter", () => video.play().catch(() => {}));
+        video.addEventListener("pointerleave", () => {
+          video.pause();
+        });
+      } else {
+        video.addEventListener("touchstart", () => video.play().catch(() => {}), { passive: true });
+      }
+    });
+  </script>
+</BaseLayout>
+
+
+
+

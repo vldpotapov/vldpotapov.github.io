@@ -1,0 +1,129 @@
+---
+import Header from "../components/Header.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/global.css";
+
+const contactLinks = [
+  { label: "Linkedin", href: "#", icon: "/icons/social/linkedin.svg" },
+  { label: "Telegram", href: "#", icon: "/icons/social/telegram.svg" },
+  { label: "vpotapovcz@gmail.com", href: "mailto:vpotapovcz@gmail.com", icon: "/icons/social/email.svg" },
+  { label: "Dribbble", href: "#", icon: "/icons/social/dribbble.svg" },
+  { label: "Behance", href: "#", icon: "/icons/social/behance.svg" },
+];
+---
+
+<BaseLayout title="Contact | Potapov Visual Designer" description="Contact Vladimir Potapov for design projects.">
+  <Header />
+
+  <main class="contact-page">
+    <section class="contact-hero" aria-labelledby="contact-title">
+      <div class="contact-hero__inner">
+        <h1 id="contact-title">Reach Out</h1>
+
+        <div class="contact-hero__body">
+          <h2>Tell me about your idea.<br />I’ll take it from there.</h2>
+
+          <form class="contact-form" action="/api/contact" method="post" data-contact-form>
+            <label>
+              <span>Name</span>
+              <input type="text" name="name" placeholder="Name" autocomplete="name" required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" placeholder="Email" autocomplete="email" required />
+            </label>
+            <label>
+              <span>Message</span>
+              <textarea name="message" placeholder="Message" required></textarea>
+            </label>
+            <button class="contact-form__submit" type="submit" data-contact-submit>
+              <span data-contact-submit-label>Send Message</span>
+            </button>
+          </form>
+
+          <div class="contact-status contact-status--success" data-contact-success hidden>
+            <h3>Message sent<span>.</span></h3>
+            <p>Thank you for reaching out. I'll get back to you soon.</p>
+            <button class="contact-status__action" type="button" data-contact-reset>
+              <img src="/icons/social/telegram.svg" alt="" />
+              <span>Send another message</span>
+            </button>
+          </div>
+
+          <div class="contact-status contact-status--error" data-contact-error hidden>
+            <h3>Something went wrong<span>.</span></h3>
+            <p>Please try again or email me directly.</p>
+            <button class="contact-status__action" type="button" data-contact-retry>
+              <img src="/icons/social/telegram.svg" alt="" />
+              <span>Try again</span>
+            </button>
+          </div>
+
+          <ul class="contact-links" aria-label="Contact links">
+            {contactLinks.map((link) => (
+              <li>
+                <a href={link.href}>
+                  <img src={link.icon} alt="" />
+                  <span>{link.label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<script>
+  const contactForm = document.querySelector("[data-contact-form]");
+  const contactSubmit = document.querySelector("[data-contact-submit]");
+  const contactSubmitLabel = document.querySelector("[data-contact-submit-label]");
+  const contactSuccess = document.querySelector("[data-contact-success]");
+  const contactError = document.querySelector("[data-contact-error]");
+  const contactReset = document.querySelector("[data-contact-reset]");
+  const contactRetry = document.querySelector("[data-contact-retry]");
+
+  function setContactState(state) {
+    const isSending = state === "sending";
+    contactForm?.toggleAttribute("hidden", state === "success" || state === "error");
+    contactSuccess?.toggleAttribute("hidden", state !== "success");
+    contactError?.toggleAttribute("hidden", state !== "error");
+    contactSubmit?.toggleAttribute("disabled", isSending);
+    contactForm?.classList.toggle("is-sending", isSending);
+
+    if (contactSubmitLabel) {
+      contactSubmitLabel.textContent = isSending ? "Sending..." : "Send Message";
+    }
+  }
+
+  contactForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!(contactForm instanceof HTMLFormElement) || !contactForm.reportValidity()) {
+      return;
+    }
+
+    setContactState("sending");
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(new FormData(contactForm))),
+      });
+
+      if (!response.ok) {
+        throw new Error("Contact form failed");
+      }
+
+      contactForm.reset();
+      setContactState("success");
+    } catch {
+      setContactState("error");
+    }
+  });
+
+  contactReset?.addEventListener("click", () => setContactState("idle"));
+  contactRetry?.addEventListener("click", () => setContactState("idle"));
+</script>

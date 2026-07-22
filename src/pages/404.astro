@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { serviceNumberSymbols } from "../data/serviceNumbers";
+import "../styles/global.css";
+
+const serviceNumber04 = serviceNumberSymbols.find((symbol) => symbol.number === "04");
+const zeroPath = serviceNumber04?.digits[0].d;
+const fourPath = serviceNumber04?.digits[1].d;
+---
+
+<BaseLayout title="404 | Potapov Visual Designer" description="Page not found.">
+  <Header />
+
+  <main class="not-found-page">
+    <section class="not-found-hero" aria-labelledby="not-found-title">
+      <div class="not-found-hero__inner">
+        <svg class="not-found-hero__number" viewBox="0 -32 1800 764" aria-hidden="true" focusable="false">
+          {fourPath && <path class="not-found-hero__number-path" d={fourPath} transform="translate(0 700) scale(1 -1)" />}
+          {zeroPath && <path class="not-found-hero__number-path" d={zeroPath} transform="translate(600 700) scale(1 -1)" />}
+          {fourPath && <path class="not-found-hero__number-path" d={fourPath} transform="translate(1200 700) scale(1 -1)" />}
+        </svg>
+        <div class="not-found-hero__copy">
+          <h1 id="not-found-title">
+            Oops!<br />
+            Looks like you’re lost.<br />
+            Let’s get you back on track.
+          </h1>
+        </div>
+        <a class="not-found-hero__button" href="/">Back to Homepage</a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

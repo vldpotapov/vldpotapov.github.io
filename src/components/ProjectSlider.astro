@@ -1,0 +1,84 @@
+---
+type Slide = { src: string; alt: string };
+const { slides = [], title = "Project gallery", numberColor } = Astro.props as { slides?: Slide[]; title?: string; numberColor?: string };
+const limitedSlides = slides.slice(0, 6);
+---
+
+<div class="project-slider" style={numberColor ? `--slider-number-color: ${numberColor}` : undefined} data-project-slider>
+  <div class="project-slider__viewport" aria-label={title}>
+    {limitedSlides.map((slide, index) => (
+      <button class:list={["project-slider__slide", { "is-active": index === 0 }]} type="button" aria-label={`Show image ${index + 1}`} data-project-slide data-slide-index={index}>
+        <img src={slide.src} alt={slide.alt} loading="lazy" decoding="async" />
+        <span class="project-slider__number">{String(index + 1).padStart(2, "0")}</span>
+      </button>
+    ))}
+  </div>
+
+  <div class="project-slider__controls">
+    <button class="project-slider__close" type="button" aria-label="Close fullscreen gallery" data-slider-close>
+      <img src="/icons/ui/close.svg" alt="" />
+    </button>
+    <button class="project-slider__arrow project-slider__arrow--prev" type="button" aria-label="Previous image" data-slider-prev>
+      <img src="/icons/ui/arrow.svg" alt="" />
+    </button>
+    <button class="project-slider__arrow project-slider__arrow--next" type="button" aria-label="Next image" data-slider-next>
+      <img src="/icons/ui/arrow.svg" alt="" />
+    </button>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll("[data-project-slider]").forEach((slider) => {
+    const slides = Array.from(slider.querySelectorAll("[data-project-slide]"));
+    const closeButton = slider.querySelector("[data-slider-close]");
+    const previousButton = slider.querySelector("[data-slider-prev]");
+    const nextButton = slider.querySelector("[data-slider-next]");
+    let activeIndex = 0;
+
+    const setActiveSlide = (index) => {
+      if (!slides.length) return;
+      activeIndex = (index + slides.length) % slides.length;
+      slides.forEach((item, itemIndex) => {
+        item.classList.toggle("is-active", itemIndex === activeIndex);
+      });
+    };
+
+    const openFullscreen = () => {
+      slider.classList.add("is-fullscreen");
+      document.documentElement.classList.add("project-slider-open");
+    };
+
+    const closeFullscreen = () => {
+      slider.classList.remove("is-fullscreen");
+      document.documentElement.classList.remove("project-slider-open");
+    };
+
+    slides.forEach((slide, index) => {
+      slide.addEventListener("click", () => {
+        if (index === activeIndex) {
+          if (slider.classList.contains("is-fullscreen")) {
+            closeFullscreen();
+            return;
+          }
+
+          openFullscreen();
+          return;
+        }
+
+        setActiveSlide(index);
+      });
+    });
+
+    closeButton?.addEventListener("click", closeFullscreen);
+    previousButton?.addEventListener("click", () => setActiveSlide(activeIndex - 1));
+    nextButton?.addEventListener("click", () => setActiveSlide(activeIndex + 1));
+
+    document.addEventListener("keydown", (event) => {
+      if (!slider.classList.contains("is-fullscreen")) return;
+
+      if (event.key === "Escape") closeFullscreen();
+      if (event.key === "ArrowLeft") setActiveSlide(activeIndex - 1);
+      if (event.key === "ArrowRight") setActiveSlide(activeIndex + 1);
+    });
+  });
+</script>

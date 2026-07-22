@@ -75,19 +75,26 @@
 
 export const projects = [
   {
-    title: "Motor Skin",
+    title: "IGB Live 2026",
     year: "2024",
-    slug: "/projects/motor-skin/",
-    image: "/images/projects/project-placeholder.png",
-    imageAlt: "Motor Skin project preview",
+    slug: "/projects/igb-live-2026/",
+    image: "/images/projects/igb-live-2026/hero.png",
+    imageAlt: "IGB Live London 2026 project preview",
     summary:
-      "Bringing your vision to life quickly and efficiently. A clean visual direction shaped through strategy, identity and execution.",
-    tags: ["Brand Strategy and Messaging", "Logo Design", "Visual Identity"],
+      "A large-scale exhibition marketing campaign created for Slotegrator's participation in IGB Live London. The project combined exhibition design, editorial design, motion graphics, social media, printed materials, and sales assets into a cohesive visual system built around a single campaign concept.",
+    tags: [
+      "Exhibition Design",
+      "Campaign Rollout",
+      "Editorial Design",
+      "Social Media Assets",
+      "Motion Graphics",
+      "Print Production",
+    ],
   },
   {
     title: "Branding",
     year: "2024",
-    slug: "/projects/motor-skin/",
+    slug: "/projects/igb-live-2026/",
     image: "/images/projects/project-placeholder.png",
     imageAlt: "Branding project preview",
     summary:
@@ -99,7 +106,7 @@ export const projects = [
 export const moreProjects = Array.from({ length: 6 }, (_, index) => ({
   title: "Branding",
   year: "2024",
-  slug: "/projects/motor-skin/",
+  slug: "/projects/igb-live-2026/",
   index: index + 1,
 }));
 
@@ -128,6 +135,7 @@ export const logos = [
 ];
 
 export const socialLinks = ["LinkedIn", "Telegram", "Behance"];
+
 
 
 
