@@ -2,6 +2,12 @@
 
 Static portfolio site built with Astro. The main GitHub repository is `vldpotapov.github.io`, and Cloudflare Pages is connected to this repository.
 
+Live Cloudflare Pages URL:
+
+```text
+https://vldpotapov.pages.dev
+```
+
 ## Рабочее правило
 
 После заметных изменений в структуре сайта, страницах, данных, ассетах, деплое или командах нужно проверять этот README и сразу обновлять инструкцию, если она устарела.
@@ -152,13 +158,23 @@ Root directory: /
 
 ```text
 RESEND_API_KEY
-CONTACT_TO_EMAIL
 CONTACT_FROM_EMAIL
 ```
 
 `RESEND_API_KEY` - ключ API из Resend.  
-`CONTACT_TO_EMAIL` - почта, на которую приходят сообщения.  
 `CONTACT_FROM_EMAIL` - подтвержденный отправитель в Resend, например `Portfolio <hello@yourdomain.com>`.
+
+Адрес получателя по умолчанию уже прописан в коде:
+
+```text
+vpotapovcz@gmail.com
+```
+
+Если нужно временно переопределить получателя без правки кода, можно дополнительно добавить переменную:
+
+```text
+CONTACT_TO_EMAIL
+```
 
 После изменения переменных окружения нужно заново задеплоить сайт.
 

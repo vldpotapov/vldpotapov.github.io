@@ -10,6 +10,8 @@ type ContactPayload = {
   message?: string;
 };
 
+const DEFAULT_CONTACT_TO_EMAIL = "vpotapovcz@gmail.com";
+
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {
     status,
@@ -48,10 +50,10 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   }
 
   const apiKey = env.RESEND_API_KEY;
-  const to = env.CONTACT_TO_EMAIL;
+  const to = env.CONTACT_TO_EMAIL || DEFAULT_CONTACT_TO_EMAIL;
   const from = env.CONTACT_FROM_EMAIL;
 
-  if (!apiKey || !to || !from) {
+  if (!apiKey || !from) {
     return json({ error: "Contact form is not configured" }, 500);
   }
 
