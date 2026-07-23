@@ -2819,12 +2819,12 @@ img {
 
 /* Motion */
 @keyframes marquee {
-  from {
-    transform: translateX(0);
+  0% {
+    transform: translate3d(0, 0, 0);
   }
 
-  to {
-    transform: translateX(-50%);
+  100% {
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
@@ -2869,6 +2869,16 @@ img {
     scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+  }
+
+  .name-marquee__track,
+  .logo-marquee__track {
+    animation-duration: 200s !important;
+    animation-iteration-count: infinite !important;
+  }
+
+  .logo-marquee__track {
+    animation-duration: 50s !important;
   }
 
   .hero__portrait,

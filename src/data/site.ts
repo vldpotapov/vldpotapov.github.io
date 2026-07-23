@@ -76,7 +76,7 @@
 export const projects = [
   {
     title: "IGB Live 2026",
-    year: "2024",
+    year: "2026",
     slug: "/projects/igb-live-2026/",
     image: "/images/projects/igb-live-2026/hero.png",
     imageAlt: "IGB Live London 2026 project preview",
