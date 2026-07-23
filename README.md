@@ -1,6 +1,6 @@
 # Portfolio
 
-Static portfolio site built with Astro. GitHub is used as the source repository. The temporary live version can be published through GitHub Pages, and the final version is planned for Cloudflare Pages.
+Static portfolio site built with Astro. The main GitHub repository is `vldpotapov.github.io`, and Cloudflare Pages is connected to this repository.
 
 ## Рабочее правило
 
@@ -78,9 +78,9 @@ npm.cmd run build
 
 Папку `dist` руками не редактировать. Это результат сборки, он пересоздается автоматически.
 
-## Публикация на GitHub Pages
+## GitHub repository
 
-Сейчас проект дополнительно отправлен в репозиторий:
+Основной репозиторий проекта:
 
 ```text
 https://github.com/vldpotapov/vldpotapov.github.io
@@ -92,15 +92,11 @@ https://github.com/vldpotapov/vldpotapov.github.io
 https://vldpotapov.github.io/
 ```
 
-В проекте есть два git-remote:
+Локальный git remote:
 
 ```text
-origin  -> https://github.com/vldpotapov/portfolio.git
-pages   -> https://github.com/vldpotapov/vldpotapov.github.io.git
+origin -> https://github.com/vldpotapov/vldpotapov.github.io.git
 ```
-
-`origin` - основной рабочий репозиторий.  
-`pages` - временная публикация на GitHub Pages.
 
 GitHub Pages должен публиковать сайт через GitHub Actions. Для этого в проекте есть workflow:
 
@@ -121,14 +117,11 @@ GitHub Pages должен публиковать сайт через GitHub Acti
 Settings -> Pages -> Build and deployment -> Source -> GitHub Actions
 ```
 
-Чтобы отправить изменения в оба места:
+Чтобы отправить изменения на GitHub:
 
 ```powershell
 git push origin main
-git push pages main
 ```
-
-Если репозиторий `pages` снова окажется с другой историей, обычный push может не пройти. Тогда лучше не нажимать force самому, а попросить Codex проверить ситуацию.
 
 Перед публикацией обязательно:
 
