@@ -219,6 +219,8 @@ CONTACT_TO_EMAIL
 
 ## Страницы
 
+Сейчас сайт собран на английском языке. Переключатель `Ru` временно скрыт в `src/components/Header.astro`; когда начнем русскую версию, его можно вернуть в desktop и mobile меню.
+
 ```text
 /                          src/pages/index.astro
 /about                     src/pages/about.astro

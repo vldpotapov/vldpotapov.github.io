@@ -4,6 +4,10 @@ import { heroSocialLinks } from "../data/site";
 const { dark = false } = Astro.props;
 ---
 
+<a class:list={["brand-mark-link", { "brand-mark-link--dark": dark }]} href="/" aria-label="Home">
+  <img class="brand__mark" src="/icons/main/logo-mark.svg" alt="" />
+</a>
+
 <header class:list={["site-header", { "site-header--dark": dark }]}>
   <a class="brand" href="/" aria-label="Home">
     <img class="brand__mark" src="/icons/main/logo-mark.svg" alt="" />
@@ -17,10 +21,6 @@ const { dark = false } = Astro.props;
     <a href="/files/Vladimir_Potapov_CV.pdf" class="with-icon" target="_blank" rel="noopener noreferrer">
       <img src="/icons/social/pdfdoc.svg" alt="" />
       <span>CV</span>
-    </a>
-    <a href="#" class="with-icon">
-      <img src="/icons/ui/arrow.svg" alt="" />
-      <span>Ru</span>
     </a>
   </nav>
 
@@ -47,10 +47,6 @@ const { dark = false } = Astro.props;
       <a href="/files/Vladimir_Potapov_CV.pdf" target="_blank" rel="noopener noreferrer">
         <img src="/icons/social/pdfdoc.svg" alt="" />
         <span>CV</span>
-      </a>
-      <a href="#">
-        <img src="/icons/ui/arrow.svg" alt="" />
-        <span>Ru</span>
       </a>
     </nav>
     <div class="mobile-socials">
