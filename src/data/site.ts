@@ -191,8 +191,6 @@ export const contactSocialLinks = [
   socialLinks.email,
   socialLinks.dribbble,
   socialLinks.behance,
-  socialLinks.website,
-  socialLinks.github,
 ] as const;
 
 
