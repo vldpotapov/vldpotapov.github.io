@@ -1,6 +1,6 @@
 # Portfolio
 
-Static portfolio site built with Astro. GitHub is used as the source repository, and the live site is planned for Cloudflare Pages.
+Static portfolio site built with Astro. GitHub is used as the source repository. The temporary live version can be published through GitHub Pages, and the final version is planned for Cloudflare Pages.
 
 ## Рабочее правило
 
@@ -76,7 +76,46 @@ npm.cmd run build
 
 Папку `dist` руками не редактировать. Это результат сборки, он пересоздается автоматически.
 
-## Публикация
+## Публикация на GitHub Pages
+
+Сейчас проект дополнительно отправлен в репозиторий:
+
+```text
+https://github.com/vldpotapov/vldpotapov.github.io
+```
+
+Этот репозиторий открывается как сайт:
+
+```text
+https://vldpotapov.github.io/
+```
+
+В проекте есть два git-remote:
+
+```text
+origin  -> https://github.com/vldpotapov/portfolio.git
+pages   -> https://github.com/vldpotapov/vldpotapov.github.io.git
+```
+
+`origin` - основной рабочий репозиторий.  
+`pages` - временная публикация на GitHub Pages.
+
+Чтобы отправить изменения в оба места:
+
+```powershell
+git push origin main
+git push pages main
+```
+
+Если репозиторий `pages` снова окажется с другой историей, обычный push может не пройти. Тогда лучше не нажимать force самому, а попросить Codex проверить ситуацию.
+
+Перед публикацией обязательно:
+
+```powershell
+npm.cmd run build
+```
+
+## Публикация на Cloudflare Pages
 
 Рабочая схема:
 
@@ -386,4 +425,3 @@ FIGMA_MCP_SETUP.md
 ```
 
 Если после перезапуска компьютера Codex не видит Figma, открой этот файл и повтори шаги подключения.
-
