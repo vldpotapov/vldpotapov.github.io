@@ -1,10 +1,12 @@
 ---
+import { heroSocialLinks } from "../data/site";
+
 const { dark = false } = Astro.props;
 ---
 
 <header class:list={["site-header", { "site-header--dark": dark }]}>
   <a class="brand" href="/" aria-label="Home">
-    <img class="brand__mark" src="/icons/main/copyrights.svg" alt="" />
+    <img class="brand__mark" src="/icons/main/logo-mark.svg" alt="" />
     <span>Potapov Visual Designer</span>
   </a>
 
@@ -31,7 +33,7 @@ const { dark = false } = Astro.props;
   <div class="mobile-panel" aria-hidden="true">
     <div class="mobile-panel__top">
       <a class="brand" href="/" aria-label="Home">
-        <img class="brand__mark" src="/icons/main/copyrights.svg" alt="" />
+        <img class="brand__mark" src="/icons/main/logo-mark.svg" alt="" />
         <span>Potapov Visual Designer</span>
       </a>
       <button class="menu-close" type="button" aria-label="Close menu">
@@ -52,10 +54,11 @@ const { dark = false } = Astro.props;
       </a>
     </nav>
     <div class="mobile-socials">
-      <a href="#" aria-label="LinkedIn"><img src="/icons/social/linkedin.svg" alt="" /></a>
-      <a href="#" aria-label="Dribbble"><img src="/icons/social/dribbble.svg" alt="" /></a>
-      <a href="#" aria-label="Behance"><img src="/icons/social/behance.svg" alt="" /></a>
-      <a href="#" aria-label="Telegram"><img src="/icons/social/telegram.svg" alt="" /></a>
+      {heroSocialLinks.map((link) => (
+        <a href={link.href} aria-label={link.label} target="_blank" rel="noopener noreferrer">
+          <img src={link.icon} alt="" />
+        </a>
+      ))}
     </div>
   </div>
 </header>

@@ -1,5 +1,6 @@
 ﻿---
 import NameMarquee from "./NameMarquee.astro";
+import { footerSocialLinks } from "../data/site";
 ---
 
 <footer class="footer" id="contact">
@@ -9,9 +10,12 @@ import NameMarquee from "./NameMarquee.astro";
     <NameMarquee />
     <div class="footer__role">// Graphic Designer<br />3D Artist</div>
     <div class="footer__links">
-      <a href="#"><img src="/icons/social/linkedin.svg" alt="" /><span>LinkedIn</span></a>
-      <a href="#"><img src="/icons/social/telegram.svg" alt="" /><span>Telegram</span></a>
-      <a href="mailto:vpotapov@gmail.com"><img src="/icons/social/email.svg" alt="" /><span>vpotapov@gmail.com</span></a>
+      {footerSocialLinks.map((link) => (
+        <a href={link.href} target={link.href.startsWith("mailto:") ? undefined : "_blank"} rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}>
+          <img src={link.icon} alt="" />
+          <span>{link.label}</span>
+        </a>
+      ))}
     </div>
     <a class="to-top" href="#" aria-label="Back to top"><img src="/icons/ui/arrow.svg" alt="" /></a>
   </div>

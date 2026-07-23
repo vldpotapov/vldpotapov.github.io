@@ -6,7 +6,7 @@ import LogoMarquee from "../components/LogoMarquee.astro";
 import NameMarquee from "../components/NameMarquee.astro";
 import PlaceholderImage from "../components/PlaceholderImage.astro";
 import { serviceNumberSymbols } from "../data/serviceNumbers";
-import { projects, services } from "../data/site";
+import { heroSocialLinks, projects, services } from "../data/site";
 import "../styles/global.css";
 ---
 
@@ -18,10 +18,12 @@ import "../styles/global.css";
       <img class="hero__portrait" src="/images/hero/portrait1.png" alt="Vladimir Potapov portrait" />
       <NameMarquee />
       <div class="hero__socials">
-        <a href="#"><img src="/icons/social/linkedin.svg" alt="" /><span>LinkedIn</span></a>
-        <a href="#"><img src="/icons/social/dribbble.svg" alt="" /><span>Dribbble</span></a>
-        <a href="#"><img src="/icons/social/behance.svg" alt="" /><span>Behance</span></a>
-        <a href="#"><img src="/icons/social/telegram.svg" alt="" /><span>Telegram</span></a>
+        {heroSocialLinks.map((link) => (
+          <a href={link.href} target="_blank" rel="noopener noreferrer">
+            <img src={link.icon} alt="" />
+            <span>{link.label}</span>
+          </a>
+        ))}
       </div>
       <p class="hero__role">// Graphic Designer<br />3D Artist</p>
     </section>

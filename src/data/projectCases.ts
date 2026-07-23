@@ -275,7 +275,12 @@ export const motorSkinProject = {
           {
             title: "Campaign Videos",
             text: "A series of campaign videos expanded the narrative beyond static visuals, combining live-action footage with motion graphics to reinforce the spy-inspired concept across digital platforms.",
-            image: { src: "/videos/projects/igb-live-2026/posters/igb_london_26_short.png", alt: "IGB Live campaign video preview", ratio: "1400 / 788" },
+            image: {
+              src: "/videos/projects/igb-live-2026/posters/igb_london_26_short.png",
+              videoSrc: "/videos/projects/igb-live-2026/Igb_london_26_short.mp4",
+              alt: "IGB Live campaign video preview",
+              ratio: "1400 / 788",
+            },
             callout: "Live-action footage was filmed with the support of an external videographer, while visual effects and post-production were created by our in-house motion designer. Included here to present the campaign as a complete creative experience.",
           },
         ],

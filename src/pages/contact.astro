@@ -1,15 +1,8 @@
 ---
 import Header from "../components/Header.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { contactSocialLinks } from "../data/site";
 import "../styles/global.css";
-
-const contactLinks = [
-  { label: "Linkedin", href: "#", icon: "/icons/social/linkedin.svg" },
-  { label: "Telegram", href: "#", icon: "/icons/social/telegram.svg" },
-  { label: "vpotapovcz@gmail.com", href: "mailto:vpotapovcz@gmail.com", icon: "/icons/social/email.svg" },
-  { label: "Dribbble", href: "#", icon: "/icons/social/dribbble.svg" },
-  { label: "Behance", href: "#", icon: "/icons/social/behance.svg" },
-];
 ---
 
 <BaseLayout title="Contact | Potapov Visual Designer" description="Contact Vladimir Potapov for design projects.">
@@ -62,9 +55,9 @@ const contactLinks = [
           </div>
 
           <ul class="contact-links" aria-label="Contact links">
-            {contactLinks.map((link) => (
+            {contactSocialLinks.map((link) => (
               <li>
-                <a href={link.href}>
+                <a href={link.href} target={link.href.startsWith("mailto:") ? undefined : "_blank"} rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}>
                   <img src={link.icon} alt="" />
                   <span>{link.label}</span>
                 </a>

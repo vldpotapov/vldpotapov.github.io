@@ -134,7 +134,66 @@ export const logos = [
   { name: "LicensingAid", src: "/images/logos/licensingAid.svg" },
 ];
 
-export const socialLinks = ["LinkedIn", "Telegram", "Behance"];
+export const socialLinks = {
+  linkedin: {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/v-potapov/",
+    icon: "/icons/social/linkedin.svg",
+  },
+  dribbble: {
+    label: "Dribbble",
+    href: "https://dribbble.com/v_potapov",
+    icon: "/icons/social/dribbble.svg",
+  },
+  behance: {
+    label: "Behance",
+    href: "https://www.behance.net/vpotapov",
+    icon: "/icons/social/behance.svg",
+  },
+  telegram: {
+    label: "Telegram",
+    href: "https://t.me/vpotapovcz",
+    icon: "/icons/social/telegram.svg",
+  },
+  email: {
+    label: "vpotapovcz@gmail.com",
+    href: "mailto:vpotapovcz@gmail.com",
+    icon: "/icons/social/email.svg",
+  },
+  website: {
+    label: "Website",
+    href: "https://vldpotapov.github.io/",
+    icon: "/icons/ui/arrow.svg",
+  },
+  github: {
+    label: "GitHub",
+    href: "https://vldpotapov.pages.dev/",
+    icon: "/icons/tools/github.svg",
+  },
+} as const;
+
+export const heroSocialLinks = [
+  socialLinks.linkedin,
+  socialLinks.dribbble,
+  socialLinks.behance,
+  socialLinks.telegram,
+] as const;
+
+export const footerSocialLinks = [
+  socialLinks.linkedin,
+  socialLinks.telegram,
+  socialLinks.email,
+] as const;
+
+export const contactSocialLinks = [
+  socialLinks.linkedin,
+  socialLinks.telegram,
+  socialLinks.email,
+  socialLinks.dribbble,
+  socialLinks.behance,
+  socialLinks.website,
+  socialLinks.github,
+] as const;
 
 
 

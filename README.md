@@ -5,7 +5,46 @@ Static portfolio site built with Astro. The main GitHub repository is `vldpotapo
 Live Cloudflare Pages URL:
 
 ```text
-https://vldpotapov.pages.dev
+https://vpotapov.pages.dev
+```
+
+## Current brand and sharing assets
+
+Favicon files:
+
+```text
+public/favicon.svg
+public/favicon-32.png
+public/apple-touch-icon.png
+```
+
+Main menu logo:
+
+```text
+public/icons/main/logo-mark.svg
+```
+
+Open Graph images for link previews:
+
+```text
+public/images/og/og-home.jpg
+public/images/og/og-igb-live-2026.jpg
+```
+
+Recommended OG image size is `1200x630px`, JPG or PNG. The home/default preview image is connected in `src/layouts/BaseLayout.astro`. The IGB Live project uses its own preview image from `src/pages/projects/igb-live-2026.astro`.
+
+Social links are edited in one place:
+
+```text
+src/data/site.ts
+```
+
+The same social data is used by the main hero, footer, mobile menu, and contact page.
+
+Cloudflare Pages accepts project files up to `25 MiB`. The active compressed campaign video is:
+
+```text
+public/videos/projects/igb-live-2026/Igb_london_26_short.mp4
 ```
 
 ## Рабочее правило
