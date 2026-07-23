@@ -5,3 +5,4 @@ dist/
 .pnpm-store/
 .env
 .DS_Store
+local-assets/
