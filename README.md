@@ -100,6 +100,25 @@ pages   -> https://github.com/vldpotapov/vldpotapov.github.io.git
 `origin` - основной рабочий репозиторий.  
 `pages` - временная публикация на GitHub Pages.
 
+GitHub Pages должен публиковать сайт через GitHub Actions. Для этого в проекте есть workflow:
+
+```text
+.github/workflows/deploy-pages.yml
+```
+
+Он делает так:
+
+1. Берет свежий код из ветки `main`.
+2. Устанавливает зависимости.
+3. Собирает Astro командой `npm run build`.
+4. Публикует папку `dist` на GitHub Pages.
+
+Важно: если на GitHub все еще показывается старый сайт, проверь в репозитории `vldpotapov.github.io`:
+
+```text
+Settings -> Pages -> Build and deployment -> Source -> GitHub Actions
+```
+
 Чтобы отправить изменения в оба места:
 
 ```powershell

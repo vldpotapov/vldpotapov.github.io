@@ -4,10 +4,10 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "set CI=true&& set ASTRO_TELEMETRY_DISABLED=1&& astro dev",
-    "build": "set CI=true&& set ASTRO_TELEMETRY_DISABLED=1&& astro build",
-    "preview": "set CI=true&& set ASTRO_TELEMETRY_DISABLED=1&& astro preview",
-    "astro": "set CI=true&& set ASTRO_TELEMETRY_DISABLED=1&& astro"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
