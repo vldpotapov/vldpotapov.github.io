@@ -65,6 +65,7 @@ The `/projects` page ends with the standard logo marquee and footer.
 Button hover fill animation is controlled by `.button` styles in `src/styles/global.css`. Project cards use a desktop-only `View` cursor, also styled in `src/styles/global.css` and initialized in `src/layouts/BaseLayout.astro`.
 
 Internal page transitions are handled globally in `src/layouts/BaseLayout.astro` and styled in `src/styles/global.css` with `.page-transition-overlay`, `.site-shell`, `is-page-leaving`, and `is-page-entering`.
+Hash links such as the footer back-to-top button (`href="#"`) are excluded from this transition and should scroll within the current page without the orange overlay.
 
 Scroll-reveal header behavior is handled in `src/components/Header.astro` and styled in `src/styles/global.css` with `.site-header.is-floating` and `.site-header.is-visible`. It starts only after the first screen section and shows the header while scrolling up.
 

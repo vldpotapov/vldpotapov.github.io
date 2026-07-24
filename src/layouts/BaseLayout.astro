@@ -382,6 +382,8 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
 
       function isInternalPageLink(link) {
         if (!link || link.target || link.hasAttribute("download")) return false;
+        const rawHref = link.getAttribute("href") || "";
+        if (rawHref.startsWith("#")) return false;
         if (link.origin !== window.location.origin) return false;
         if (link.pathname === window.location.pathname && link.hash) return false;
         return link.href !== window.location.href;
