@@ -3,6 +3,17 @@ import { heroSocialLinks } from "../data/site";
 import LogoMark from "./LogoMark.astro";
 
 const { dark = false } = Astro.props;
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const navItems = [
+  { href: "/projects", label: "Projects" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
+
+const isActivePath = (href: string) => {
+  const cleanHref = href.replace(/\/$/, "") || "/";
+  return currentPath === cleanHref || (cleanHref !== "/" && currentPath.startsWith(`${cleanHref}/`));
+};
 ---
 
 <header class:list={["site-header", { "site-header--dark": dark }]}>
@@ -16,9 +27,11 @@ const { dark = false } = Astro.props;
   </a>
 
   <nav class="desktop-nav" aria-label="Main navigation">
-    <a href="/projects"><span>Projects</span></a>
-    <a href="/about"><span>About</span></a>
-    <a href="/contact"><span>Contact</span></a>
+    {navItems.map((item) => isActivePath(item.href) ? (
+      <span class="nav-link is-active" aria-current="page"><span>{item.label}</span></span>
+    ) : (
+      <a class="nav-link" href={item.href}><span>{item.label}</span></a>
+    ))}
     <a href="/files/Vladimir_Potapov_CV.pdf" class="with-icon" target="_blank" rel="noopener noreferrer">
       <img src="/icons/social/pdfdoc.svg" alt="" />
       <span>CV</span>
@@ -42,9 +55,11 @@ const { dark = false } = Astro.props;
       </button>
     </div>
     <nav class="mobile-nav" aria-label="Mobile navigation">
-      <a href="/projects"><span>Projects</span></a>
-      <a href="/about"><span>About</span></a>
-      <a href="/contact"><span>Contact</span></a>
+      {navItems.map((item) => isActivePath(item.href) ? (
+        <span class="nav-link is-active" aria-current="page"><span>{item.label}</span></span>
+      ) : (
+        <a class="nav-link" href={item.href}><span>{item.label}</span></a>
+      ))}
       <a href="/files/Vladimir_Potapov_CV.pdf" target="_blank" rel="noopener noreferrer">
         <img src="/icons/social/pdfdoc.svg" alt="" />
         <span>CV</span>
