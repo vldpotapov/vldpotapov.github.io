@@ -103,6 +103,65 @@ export const projects = [
   },
 ];
 
+export const oldProjects = [
+  {
+    title: "Visual Identity",
+    year: "2020",
+    category: "Branding",
+    number: "01",
+    href: "#",
+  },
+  {
+    title: "Cole Tech",
+    year: "2020",
+    category: "Branding",
+    number: "02",
+    href: "#",
+  },
+  {
+    title: "Visual Identity",
+    year: "2020",
+    category: "Branding",
+    number: "03",
+    href: "#",
+  },
+  {
+    title: "Cole Tech",
+    year: "2020",
+    category: "Branding",
+    number: "04",
+    href: "#",
+  },
+  {
+    title: "Visual Identity",
+    year: "2020",
+    category: "Branding",
+    number: "05",
+    href: "#",
+  },
+  {
+    title: "Cole Tech",
+    year: "2020",
+    category: "Branding",
+    number: "06",
+    href: "#",
+  },
+  {
+    title: "Visual Identity",
+    year: "2020",
+    category: "Branding",
+    number: "07",
+    href: "#",
+  },
+  {
+    title: "Cole Tech",
+    year: "2020",
+    category: "Branding",
+    number: "08",
+    href: "#",
+  },
+];
+
 export const moreProjects = Array.from({ length: 6 }, (_, index) => ({
   title: "Branding",
   year: "2024",
@@ -192,7 +251,6 @@ export const contactSocialLinks = [
   socialLinks.dribbble,
   socialLinks.behance,
 ] as const;
-
 
 
 

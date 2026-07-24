@@ -1,0 +1,13 @@
+{
+  "name": "Portfolio Frame Export",
+  "id": "portfolio-frame-export",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"],
+  "networkAccess": {
+    "allowedDomains": ["none"],
+    "devAllowedDomains": ["http://localhost:8787/"],
+    "reasoning": "Send selected frame data to the local portfolio export server."
+  }
+}

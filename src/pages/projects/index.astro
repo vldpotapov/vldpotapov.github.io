@@ -1,0 +1,76 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import LogoMarquee from "../../components/LogoMarquee.astro";
+import PlaceholderImage from "../../components/PlaceholderImage.astro";
+import { oldProjects, projects } from "../../data/site";
+import "../../styles/global.css";
+---
+
+<BaseLayout title="Projects | Potapov Visual Designer" description="Selected portfolio projects by Vladimir Potapov.">
+  <Header />
+
+  <main class="projects-index-page">
+    <section class="projects-index-hero" aria-labelledby="projects-index-title">
+      <h1 id="projects-index-title">Work Index</h1>
+    </section>
+
+    <section class="projects-index-list" aria-label="Projects">
+      <div class="projects__grid">
+        {
+          projects.map((project, index) => (
+            <a class:list={["project-card", { "project-card--reverse": index % 2 === 1 }]} href={project.slug}>
+              <div class="project-card__image">
+                {project.image ? (
+                  <img class="project-card__img" src={project.image} alt={project.imageAlt} loading="lazy" decoding="async" />
+                ) : (
+                  <PlaceholderImage class="project-card__placeholder" label="" />
+                )}
+              </div>
+              <div class="project-card__info">
+                <p>({project.year})</p>
+                <h2>{project.title}</h2>
+                <p>{project.summary}</p>
+                <ul>
+                  {project.tags.map((tag) => (
+                    <li>{tag}</li>
+                  ))}
+                </ul>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="old-projects" aria-labelledby="old-projects-title">
+      <h2 class="old-projects__label" id="old-projects-title">// Old project</h2>
+      <div class="old-projects__list">
+        {
+          oldProjects.map((project) => (
+            <a class="old-projects__row" href={project.href}>
+              <span class="old-projects__name">
+                <strong>{project.title}</strong>
+                <span>({project.year})</span>
+              </span>
+              <span class="old-projects__category">{project.category}</span>
+              <span class="old-projects__action">
+                <span class="old-projects__number">{project.number}</span>
+                <img class="old-projects__arrow" src="/icons/ui/arrow45.svg" alt="" aria-hidden="true" />
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="projects-expertise-link" aria-label="Expertise link">
+      <a class="button" href="/#expertise">My Expertise</a>
+    </section>
+
+    <LogoMarquee />
+  </main>
+
+  <Footer />
+</BaseLayout>

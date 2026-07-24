@@ -1,0 +1,127 @@
+{
+  "savedAt": "2026-07-24T12:43:55.959Z",
+  "source": "figma-selection-export",
+  "exportedAt": "2026-07-24T12:43:55.960Z",
+  "fileName": "🦄 Portfolio 2026",
+  "pageName": "♦️ Components",
+  "selection": [
+    {
+      "id": "79:3629",
+      "name": "cursor link",
+      "type": "FRAME"
+    }
+  ],
+  "frame": {
+    "id": "79:3629",
+    "name": "cursor link",
+    "type": "FRAME",
+    "visible": true,
+    "locked": false,
+    "position": {
+      "x": 2222,
+      "y": 3101,
+      "width": 76,
+      "height": 76
+    },
+    "opacity": 1,
+    "blendMode": "PASS_THROUGH",
+    "fills": [],
+    "strokes": [],
+    "strokeWeight": 1,
+    "cornerRadius": 0,
+    "effects": [],
+    "autoLayout": null,
+    "constraints": {
+      "horizontal": "MIN",
+      "vertical": "MIN"
+    },
+    "text": null,
+    "children": [
+      {
+        "id": "79:3627",
+        "name": "Ellipse 1",
+        "type": "ELLIPSE",
+        "visible": true,
+        "locked": false,
+        "position": {
+          "x": 2222,
+          "y": 3101,
+          "width": 76,
+          "height": 76
+        },
+        "opacity": 1,
+        "blendMode": "PASS_THROUGH",
+        "fills": [
+          {
+            "type": "SOLID",
+            "color": "#FF442B",
+            "opacity": 1
+          }
+        ],
+        "strokes": [],
+        "strokeWeight": 1,
+        "cornerRadius": 0,
+        "effects": [],
+        "autoLayout": null,
+        "constraints": {
+          "horizontal": "MIN",
+          "vertical": "MIN"
+        },
+        "text": null,
+        "children": []
+      },
+      {
+        "id": "79:3628",
+        "name": "View",
+        "type": "TEXT",
+        "visible": true,
+        "locked": false,
+        "position": {
+          "x": 2242,
+          "y": 3127,
+          "width": 36,
+          "height": 24
+        },
+        "opacity": 1,
+        "blendMode": "PASS_THROUGH",
+        "fills": [
+          {
+            "type": "SOLID",
+            "color": "#FFFFFF",
+            "opacity": 1
+          }
+        ],
+        "strokes": [],
+        "strokeWeight": 1,
+        "effects": [],
+        "autoLayout": null,
+        "constraints": {
+          "horizontal": "CENTER",
+          "vertical": "CENTER"
+        },
+        "text": {
+          "characters": "View",
+          "fontSize": 16,
+          "fontName": {
+            "family": "Google Sans",
+            "style": "Regular"
+          },
+          "fontWeight": 400,
+          "lineHeight": {
+            "unit": "PERCENT",
+            "value": 150
+          },
+          "letterSpacing": {
+            "unit": "PIXELS",
+            "value": 0.20000000298023224
+          },
+          "textAlignHorizontal": "LEFT",
+          "textAlignVertical": "CENTER",
+          "textCase": "ORIGINAL",
+          "textDecoration": "NONE"
+        },
+        "children": []
+      }
+    ]
+  }
+}

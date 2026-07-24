@@ -24,6 +24,8 @@ Main menu logo:
 public/icons/main/logo-mark.svg
 ```
 
+The visible top-left logo is split into two layers: the `P` shape is rendered inside `Header.astro` so it shares the same `mix-blend-mode` context as the navigation, while the orange dot is rendered from `BaseLayout.astro` as a separate non-blended layer.
+
 Open Graph images for link previews:
 
 ```text
@@ -41,6 +43,31 @@ src/data/site.ts
 
 The same social data is used by the main hero, footer, mobile menu, and contact page.
 
+Project cards are edited in one place:
+
+```text
+src/data/site.ts
+```
+
+The home page and `/projects` page use the same `projects` list. Cards alternate automatically: first image on the left, second image on the right, then left again.
+
+Old project rows on the `/projects` page are edited in:
+
+```text
+src/data/site.ts
+```
+
+Use the `oldProjects` array for title, year, category, number, and link.
+The row hover state is handled in `src/styles/global.css` by the `old-projects` styles: the accent layer expands from the vertical center, the number fades out, and the arrow fades in.
+The `My Expertise` button on `/projects` links back to the home page section `/#expertise`.
+The `/projects` page ends with the standard logo marquee and footer.
+
+Button hover fill animation is controlled by `.button` styles in `src/styles/global.css`. Project cards use a desktop-only `View` cursor, also styled in `src/styles/global.css` and initialized in `src/layouts/BaseLayout.astro`.
+
+Internal page transitions are handled globally in `src/layouts/BaseLayout.astro` and styled in `src/styles/global.css` with `.page-transition-overlay`, `.site-shell`, `is-page-leaving`, and `is-page-entering`.
+
+Scroll-reveal header behavior is handled in `src/components/Header.astro` and styled in `src/styles/global.css` with `.site-header.is-floating` and `.site-header.is-visible`. It starts only after the first screen section and shows the header while scrolling up.
+
 Cloudflare Pages accepts project files up to `25 MiB`. The active compressed campaign video is:
 
 ```text
@@ -51,7 +78,7 @@ public/videos/projects/igb-live-2026/Igb_london_26_short.mp4
 
 После заметных изменений в структуре сайта, страницах, данных, ассетах, деплое или командах нужно проверять этот README и сразу обновлять инструкцию, если она устарела.
 
-Общее правило адаптива: на мобильной версии внешний горизонтальный отступ контентных блоков должен быть 16px слева и справа. Внутренние отступы внутри кнопок, инпутов, тегов и карточек могут отличаться, если это часть компонента.
+Общее правило отступов: внешний горизонтальный отступ контентных блоков должен быть 20px на desktop и 16px на mobile. Это задается через `--page-pad` в `src/styles/global.css`. Внутренние отступы внутри кнопок, инпутов, тегов и карточек могут отличаться, если это часть компонента.
 
 ## Быстрый старт
 
@@ -226,6 +253,7 @@ CONTACT_TO_EMAIL
 /about                     src/pages/about.astro
 /contact                   src/pages/contact.astro
 /404                       src/pages/404.astro
+/projects                  src/pages/projects/index.astro
 /projects/igb-live-2026    src/pages/projects/igb-live-2026.astro
 ```
 
@@ -514,3 +542,9 @@ FIGMA_MCP_SETUP.md
 ```
 
 Если после перезапуска компьютера Codex не видит Figma, открой этот файл и повтори шаги подключения.
+
+Инструкция для локального экспорта выделенного фрейма из Figma в JSON:
+
+```text
+FIGMA_FRAME_EXPORT.md
+```

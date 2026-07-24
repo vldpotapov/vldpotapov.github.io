@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        margin: 0;
+        padding: 16px;
+        background: #ffffff;
+        color: #111111;
+        font: 13px/1.4 Inter, Arial, sans-serif;
+      }
+
+      button {
+        width: 100%;
+        border: 0;
+        border-radius: 8px;
+        padding: 12px 14px;
+        background: #111111;
+        color: #ffffff;
+        cursor: pointer;
+        font: inherit;
+        font-weight: 600;
+      }
+
+      button:disabled {
+        cursor: wait;
+        opacity: 0.5;
+      }
+
+      p {
+        margin: 12px 0 0;
+        color: #555555;
+      }
+
+      .status {
+        min-height: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="export">Export Selected Frame</button>
+    <p class="status" id="status">Select one frame, section, component, or group in Figma, then export.</p>
+
+    <script>
+      const button = document.getElementById("export");
+      const status = document.getElementById("status");
+
+      button.onclick = () => {
+        button.disabled = true;
+        status.textContent = "Exporting...";
+        parent.postMessage({ pluginMessage: { type: "export-selection" } }, "*");
+      };
+
+      onmessage = (event) => {
+        const message = event.data.pluginMessage;
+        if (!message) return;
+
+        button.disabled = false;
+        status.textContent = message.text;
+      };
+    </script>
+  </body>
+</html>

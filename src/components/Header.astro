@@ -1,21 +1,22 @@
 ---
 import { heroSocialLinks } from "../data/site";
+import LogoMark from "./LogoMark.astro";
 
 const { dark = false } = Astro.props;
 ---
 
-<a class:list={["brand-mark-link", { "brand-mark-link--dark": dark }]} href="/" aria-label="Home">
-  <img class="brand__mark" src="/icons/main/logo-mark.svg" alt="" />
-</a>
-
 <header class:list={["site-header", { "site-header--dark": dark }]}>
+  <a class="brand-mark-link" href="/" aria-label="Home">
+    <LogoMark part="shape" />
+  </a>
+
   <a class="brand" href="/" aria-label="Home">
     <img class="brand__mark" src="/icons/main/logo-mark.svg" alt="" />
     <span>Potapov Visual Designer</span>
   </a>
 
   <nav class="desktop-nav" aria-label="Main navigation">
-    <a href="/#projects"><span>Projects</span></a>
+    <a href="/projects"><span>Projects</span></a>
     <a href="/about"><span>About</span></a>
     <a href="/contact"><span>Contact</span></a>
     <a href="/files/Vladimir_Potapov_CV.pdf" class="with-icon" target="_blank" rel="noopener noreferrer">
@@ -41,7 +42,7 @@ const { dark = false } = Astro.props;
       </button>
     </div>
     <nav class="mobile-nav" aria-label="Mobile navigation">
-      <a href="/#projects"><span>Projects</span></a>
+      <a href="/projects"><span>Projects</span></a>
       <a href="/about"><span>About</span></a>
       <a href="/contact"><span>Contact</span></a>
       <a href="/files/Vladimir_Potapov_CV.pdf" target="_blank" rel="noopener noreferrer">
@@ -79,4 +80,74 @@ const { dark = false } = Astro.props;
   panel?.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => setMenu(false));
   });
+
+  let lastScrollY = window.scrollY;
+  let headerTicking = false;
+  let floatingHeaderVisible = false;
+  let wasPastHero = false;
+
+  function getHeaderRevealStart() {
+    return Math.max(window.innerHeight || document.documentElement.clientHeight, 760);
+  }
+
+  function updateScrollHeader() {
+    if (!header) {
+      headerTicking = false;
+      return;
+    }
+
+    const currentScrollY = Math.max(window.scrollY, 0);
+    const revealStart = getHeaderRevealStart();
+    const isPastHero = currentScrollY > revealStart;
+    const scrollDelta = currentScrollY - lastScrollY;
+    const isScrollingUp = scrollDelta < -2;
+    const isScrollingDown = scrollDelta > 2;
+    const isMenuOpen = header.classList.contains("is-open");
+
+    if (!isPastHero) {
+      floatingHeaderVisible = false;
+    } else if (isScrollingUp || isMenuOpen) {
+      floatingHeaderVisible = true;
+    } else if (isScrollingDown) {
+      floatingHeaderVisible = false;
+    }
+
+    const isEnteringHiddenFloating = isPastHero && !wasPastHero && !floatingHeaderVisible;
+
+    if (isEnteringHiddenFloating) {
+      header.classList.add("is-no-transition");
+    }
+
+    header.classList.toggle("is-floating", isPastHero);
+    header.classList.toggle("is-visible", isPastHero && floatingHeaderVisible);
+    document.documentElement.classList.toggle("header-is-floating", isPastHero);
+    document.documentElement.classList.toggle("header-is-visible", isPastHero && floatingHeaderVisible);
+
+    if (!isPastHero) {
+      header.classList.remove("is-visible");
+      document.documentElement.classList.remove("header-is-visible");
+    }
+
+    if (isEnteringHiddenFloating) {
+      requestAnimationFrame(() => header.classList.remove("is-no-transition"));
+    }
+
+    wasPastHero = isPastHero;
+
+    if (Math.abs(scrollDelta) > 2) {
+      lastScrollY = currentScrollY;
+    }
+    headerTicking = false;
+  }
+
+  function requestScrollHeader() {
+    if (headerTicking) return;
+    headerTicking = true;
+    requestAnimationFrame(updateScrollHeader);
+  }
+
+  updateScrollHeader();
+  window.addEventListener("scroll", requestScrollHeader, { passive: true });
+  window.addEventListener("resize", requestScrollHeader);
+  window.addEventListener("pageTransitionComplete", requestScrollHeader);
 </script>
