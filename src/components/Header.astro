@@ -12,7 +12,7 @@ const navItems = [
 
 const isActivePath = (href: string) => {
   const cleanHref = href.replace(/\/$/, "") || "/";
-  return currentPath === cleanHref || (cleanHref !== "/" && currentPath.startsWith(`${cleanHref}/`));
+  return currentPath === cleanHref;
 };
 ---
 

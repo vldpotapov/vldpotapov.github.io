@@ -64,6 +64,7 @@ html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
   overflow-x: clip;
+  overflow-x: hidden;
 }
 
 html.menu-open {
@@ -74,6 +75,7 @@ body {
   margin: 0;
   min-width: 320px;
   overflow-x: clip;
+  overflow-x: hidden;
   font-size: var(--type-body-main-size);
   line-height: var(--type-body-main-line);
   letter-spacing: var(--type-body-main-track);
@@ -91,7 +93,7 @@ body::before {
 }
 
 html.menu-open body::before {
-  opacity: 1;
+  opacity: 0;
 }
 
 .site-shell {
@@ -440,6 +442,9 @@ img {
   position: fixed;
   z-index: 9000;
   inset: 0 0 auto;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .site-header.is-floating {
@@ -683,7 +688,7 @@ html.header-is-floating .brand-mark-dot-link {
   padding-right: 0.18em;
   color: var(--white);
   font-size: var(--type-h1-v1-size);
-  font-weight: 600;
+  font-weight: 700;
   line-height: var(--type-h1-v1-line);
   letter-spacing: var(--type-h1-v1-track);
   white-space: nowrap;
@@ -698,7 +703,7 @@ html.header-is-floating .brand-mark-dot-link {
   margin: 0;
   color: var(--white);
   font-size: var(--type-h2-v1-size);
-  font-weight: 600;
+  font-weight: 700;
   line-height: var(--type-h2-v1-line);
   letter-spacing: var(--type-h2-v1-track);
   text-align: right;
@@ -822,7 +827,7 @@ html.header-is-floating .brand-mark-dot-link {
   max-width: 1200px;
   margin: 0 0 0 auto;
   font-size: var(--type-body-v1-size);
-  font-weight: 600;
+  font-weight: 700;
   line-height: var(--type-body-v1-line);
   letter-spacing: var(--type-body-v1-track);
   text-align: right;
@@ -986,7 +991,7 @@ html.header-is-floating .brand-mark-dot-link {
 .more-card h2 {
   margin: 0;
   font-size: var(--type-h2-v1-size);
-  font-weight: 600;
+  font-weight: 700;
   line-height: var(--type-h2-v1-line);
   letter-spacing: var(--type-h2-v1-track);
 }
@@ -1566,7 +1571,7 @@ html.header-is-floating .brand-mark-dot-link {
   font-size: 50px;
   font-weight: 500;
   line-height: 1.2;
-  letter-spacing: 0;
+  letter-spacing: -1px;
 }
 
 .career-snapshot__content p {
@@ -1575,7 +1580,7 @@ html.header-is-floating .brand-mark-dot-link {
   color: var(--black);
   font-size: 16px;
   line-height: 1.5;
-  letter-spacing: 0.2px;
+  letter-spacing: -0.2px;
 }
 
 .hard-skills {
@@ -1686,7 +1691,7 @@ html.header-is-floating .brand-mark-dot-link {
   margin: 0;
   color: var(--black);
   font-size: var(--type-h1-v2-size);
-  font-weight: 600;
+  font-weight: 700;
   line-height: var(--type-h1-v2-line);
   letter-spacing: var(--type-h1-v2-track);
 }
@@ -1975,7 +1980,7 @@ html.header-is-floating .brand-mark-dot-link {
   margin: 0;
   color: var(--project-text);
   font-size: var(--type-h1-v2-size);
-  font-weight: 600;
+  font-weight: 700;
   line-height: var(--type-h1-v2-line);
   letter-spacing: var(--type-h1-v2-track);
 }
@@ -2328,7 +2333,7 @@ html.header-is-floating .brand-mark-dot-link {
   margin: 0 0 20px;
   color: var(--project-text);
   font-size: var(--type-h4-v2-size);
-  font-weight: 600;
+  font-weight: 700;
   line-height: var(--type-h4-v2-line);
   letter-spacing: var(--type-h4-v2-track);
 }
@@ -2347,7 +2352,7 @@ html.header-is-floating .brand-mark-dot-link {
   margin: 0;
   color: var(--project-text);
   font-size: var(--type-h3-v1-size);
-  font-weight: 600;
+  font-weight: 700;
   line-height: var(--type-h3-v1-line);
   letter-spacing: var(--type-h3-v1-track);
 }
@@ -2680,7 +2685,7 @@ html.header-is-floating .brand-mark-dot-link {
   margin: 0 0 22px;
   color: var(--project-text);
   font-size: var(--type-h4-v2-size);
-  font-weight: 600;
+  font-weight: 700;
   line-height: var(--type-h4-v2-line);
   letter-spacing: var(--type-h4-v2-track);
 }
@@ -3141,7 +3146,7 @@ html.header-is-floating .brand-mark-dot-link {
   .case-story__intro,
   .case-gallery__heading {
     display: block;
-    margin-top: 72px;
+    margin-top: 48px;
   }
 
   .case-callout {
@@ -3156,25 +3161,29 @@ html.header-is-floating .brand-mark-dot-link {
   .case-copy,
   .case-story-card p,
   .case-gallery__heading p {
-    margin-top: 34px;
+    margin-top: 20px;
     font-size: 16px;
   }
 
   .case-concept__copy {
-    margin-top: 80px;
+    margin-top: 32px;
     font-size: 16px;
     line-height: 1.45;
+  }
+
+  .case-feature__copy-block {
+    margin-top: 32px;
   }
 
   .case-concept__image,
   .case-feature__image {
     width: 100%;
     min-height: 0;
-    margin-top: 54px;
+    margin-top: 40px;
   }
 
   .case-concept__image {
-    margin-top: 96px;
+    margin-top: 48px;
   }
 
   .case-attributes {
@@ -3186,7 +3195,7 @@ html.header-is-floating .brand-mark-dot-link {
   margin: 0 0 20px;
   color: var(--project-text);
   font-size: var(--type-h4-v2-size);
-  font-weight: 600;
+  font-weight: 700;
   line-height: var(--type-h4-v2-line);
   letter-spacing: var(--type-h4-v2-track);
 }
@@ -3195,7 +3204,7 @@ html.header-is-floating .brand-mark-dot-link {
   margin: 0 0 22px;
   color: var(--project-text);
   font-size: var(--type-h4-v2-size);
-  font-weight: 600;
+  font-weight: 700;
   line-height: var(--type-h4-v2-line);
   letter-spacing: var(--type-h4-v2-track);
 }
@@ -3209,12 +3218,12 @@ html.header-is-floating .brand-mark-dot-link {
   .case-feature__intro h2,
   .case-story__intro h2,
   .case-gallery__heading h2 {
-    margin-top: 54px;
+    margin-top: 32px;
   }
 
   .case-story__items {
-    gap: 76px;
-    margin-top: 76px;
+    gap: 56px;
+    margin-top: 48px;
   }
 
   .case-story-card,
@@ -3222,11 +3231,47 @@ html.header-is-floating .brand-mark-dot-link {
     display: block;
   }
 
+  .case-story-card--left .case-story-card__copy,
+  .case-story-card--left .project-media,
+  .case-story-card--left .case-story-card__slider {
+    order: initial;
+  }
+
   .case-story-card__copy,
   .case-story-card--right .case-story-card__copy {
     max-width: none;
-    margin: 0 0 28px;
+    margin: 0 0 20px;
     text-align: left;
+  }
+
+  .case-story-card--wide .case-story-card__copy {
+    display: block;
+    min-height: 0;
+  }
+
+  .case-story-card--wide .case-story-card__media,
+  .project-media.case-story-card__media,
+  .project-media.case-feature__split-media,
+  .case-story-card__mobile-gallery .project-media,
+  .case-gallery__mobile .project-media,
+  .case-three-up__media,
+  .case-wide-media__image {
+    aspect-ratio: auto;
+    overflow: visible;
+  }
+
+  .case-story-card--wide .case-story-card__media img,
+  .project-media.case-story-card__media img,
+  .project-media.case-feature__split-media img,
+  .case-story-card__mobile-gallery .project-media img,
+  .case-gallery__mobile .project-media img,
+  .case-three-up__media img,
+  .case-wide-media__image img,
+  .project-video.case-story-card__media video,
+  .case-wide-media__image.project-video video {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 
   .project-slider,
@@ -3238,7 +3283,7 @@ html.header-is-floating .brand-mark-dot-link {
   .case-story-card__mobile-gallery {
     display: grid;
     gap: 16px;
-    margin-top: 54px;
+    margin-top: 40px;
   }
 
   .case-story-card__mobile-gallery {
@@ -3250,7 +3295,7 @@ html.header-is-floating .brand-mark-dot-link {
     flex-direction: column;
     gap: 20px;
     width: 100%;
-    margin-top: 76px;
+    margin-top: 56px;
   }
 
   .case-three-up__copy {
@@ -3275,7 +3320,7 @@ html.header-is-floating .brand-mark-dot-link {
     flex-direction: column;
     gap: 20px;
     width: 100%;
-    margin-top: 76px;
+    margin-top: 56px;
   }
 
   .case-wide-media__copy {
@@ -3525,10 +3570,11 @@ html.header-is-floating .brand-mark-dot-link {
     padding: 20px 30px 30px 20px;
     background: var(--white);
     color: var(--black);
+    clip-path: inset(0 0 0 100%);
     opacity: 0;
     pointer-events: none;
-    transform: translateX(100%);
     transition:
+      clip-path 180ms ease,
       opacity 180ms ease,
       transform 180ms ease;
   }
@@ -3540,15 +3586,24 @@ html.header-is-floating .brand-mark-dot-link {
     display: block;
     border: 0;
     padding: 0;
-    background: transparent;
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms ease;
+  }
+
+  .site-header.is-open > .brand,
+  .site-header.is-open > .brand-mark-link,
+  .site-header.is-open > .menu-toggle {
     opacity: 0;
     pointer-events: none;
   }
 
   .site-header.is-open .mobile-panel {
+    clip-path: inset(0);
     opacity: 1;
     pointer-events: auto;
-    transform: translateY(0);
+    transform: none;
   }
 
   .site-header.is-open .mobile-menu-backdrop {
@@ -3666,7 +3721,7 @@ html.header-is-floating .brand-mark-dot-link {
   margin: 0;
   color: var(--white);
   font-size: var(--type-h2-v1-size);
-  font-weight: 600;
+  font-weight: 700;
   line-height: var(--type-h2-v1-line);
   letter-spacing: var(--type-h2-v1-track);
   text-align: right;
@@ -3900,9 +3955,9 @@ html.header-is-floating .brand-mark-dot-link {
 
   .about-hero h1 {
     font-size: var(--about-hero-title-size);
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.2;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
     text-align: right;
   }
 
@@ -3956,12 +4011,12 @@ html.header-is-floating .brand-mark-dot-link {
   .career-snapshot__content h3 {
     margin-bottom: 20px;
     font-size: 35px;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .hard-skills__title {
     font-size: 30px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.2;
   }
 
@@ -3980,7 +4035,7 @@ html.header-is-floating .brand-mark-dot-link {
 
   .experience-education__meta h3 {
     font-size: 35px;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .experience-education__content {
@@ -3991,7 +4046,7 @@ html.header-is-floating .brand-mark-dot-link {
   .experience-education__content h4 {
     margin-bottom: 16px;
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .about-page > section.about-cta {

@@ -379,6 +379,18 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
     <script>
       const pageTransitionMotion = window.matchMedia("(prefers-reduced-motion: no-preference)");
       const pageTransitionDuration = 620;
+      let pageTransitionTimer = 0;
+
+      function resetPageTransition() {
+        window.clearTimeout(pageTransitionTimer);
+        sessionStorage.removeItem("pageTransition");
+        document.documentElement.classList.remove("is-page-leaving", "is-page-entering");
+        requestAnimationFrame(() => {
+          window.dispatchEvent(new Event("pageTransitionComplete"));
+          window.dispatchEvent(new Event("resize"));
+          window.dispatchEvent(new Event("scroll"));
+        });
+      }
 
       function isInternalPageLink(link) {
         if (!link || link.target || link.hasAttribute("download")) return false;
@@ -390,10 +402,21 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
       }
 
       if (pageTransitionMotion.matches) {
+        window.addEventListener("pageshow", (event) => {
+          const navigationEntry = performance.getEntriesByType("navigation")[0];
+          const isHistoryNavigation =
+            event.persisted ||
+            (navigationEntry instanceof PerformanceNavigationTiming && navigationEntry.type === "back_forward");
+
+          if (isHistoryNavigation || document.documentElement.classList.contains("is-page-leaving")) {
+            resetPageTransition();
+          }
+        });
+
         if (sessionStorage.getItem("pageTransition") === "true") {
           sessionStorage.removeItem("pageTransition");
           document.documentElement.classList.add("is-page-entering");
-          window.setTimeout(() => {
+          pageTransitionTimer = window.setTimeout(() => {
             document.documentElement.classList.remove("is-page-entering");
             requestAnimationFrame(() => {
               window.dispatchEvent(new Event("pageTransitionComplete"));
@@ -413,7 +436,7 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
           sessionStorage.setItem("pageTransition", "true");
           document.documentElement.classList.add("is-page-leaving");
 
-          window.setTimeout(() => {
+          pageTransitionTimer = window.setTimeout(() => {
             window.location.href = link.href;
           }, pageTransitionDuration);
         });

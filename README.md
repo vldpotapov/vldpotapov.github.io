@@ -69,7 +69,7 @@ Hash links such as the footer back-to-top button (`href="#"`) are excluded from 
 
 Scroll-reveal header behavior is handled in `src/components/Header.astro` and styled in `src/styles/global.css` with `.site-header.is-floating` and `.site-header.is-visible`. It starts only after the first screen section and shows the header while scrolling up.
 
-Active header navigation is also handled in `src/components/Header.astro`. The current page item is rendered as `.nav-link.is-active` instead of a clickable link: in the hero header it stays underlined, in the floating header it becomes orange, and in the mobile menu it is orange.
+Active header navigation is also handled in `src/components/Header.astro`. The current page item is rendered as `.nav-link.is-active` instead of a clickable link only when the URL matches exactly. Deeper pages keep the parent item clickable, so `/projects/igb-live-2026/` still has a working `Projects` link back to `/projects`.
 
 Cloudflare Pages accepts project files up to `25 MiB`. The active compressed campaign video is:
 
