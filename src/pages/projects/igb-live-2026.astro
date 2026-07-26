@@ -35,9 +35,9 @@ const toolIcons: Record<string, string> = {
       <NameMarquee label={`${project.title}-`} />
     </section>
 
-    <section class="case-overview case-section">
+    <section class="case-overview case-section" data-reveal="bottom">
       <h2>{project.overview.title}</h2>
-      <div class="case-overview__copy">
+      <div class="case-overview__copy" data-reveal="right" data-reveal-delay="200">
         <h2 class="section-label">// {project.overview.eyebrow}</h2>
         <p class="case-overview__body">{project.overview.before} <span>{project.overview.accent}</span> {project.overview.after}</p>
       </div>
@@ -45,7 +45,7 @@ const toolIcons: Record<string, string> = {
 
     <section class="case-glance case-section">
       <h2 class="section-label">// Project at a Glance</h2>
-      <div class="case-glance__list">
+      <div class="case-glance__list" data-reveal="bottom">
         {project.glance.map((item) => (
           <article class:list={["case-glance__row", { "case-glance__row--tools": item.tools }]}>
             <span class="case-info-icon" aria-hidden="true"></span>
@@ -74,20 +74,20 @@ const toolIcons: Record<string, string> = {
         return (
           <section class="case-concept case-section">
             <h2 class="section-label">// {section.eyebrow}</h2>
-            <div class="case-concept__grid">
+            <div class="case-concept__grid" data-reveal="left">
               {section.callout && (
                 <div class="case-callout">
                   <span class="case-callout__icon" aria-hidden="true"></span>
                   <p>{section.callout} {section.calloutAccent && <strong>{section.calloutAccent}</strong>}</p>
                 </div>
               )}
-              <div class="case-copy case-concept__copy">
+              <div class="case-copy case-concept__copy" data-reveal="right" data-reveal-delay="200">
                 {section.text.map((paragraph) => <p>{paragraph}</p>)}
               </div>
             </div>
-            {section.image && <ProjectMedia class="case-concept__image" src={section.image.src} alt={section.image.alt} ratio="16 / 5.7" />}
+            {section.image && <ProjectMedia class="case-concept__image" data-reveal="bottom" src={section.image.src} alt={section.image.alt} ratio="16 / 5.7" />}
             {section.attributes && (
-              <div class="case-attributes">
+              <div class="case-attributes" data-reveal="bottom" data-reveal-delay="150">
                 <h3>{section.attributes.title}</h3>
                 <p>{section.attributes.text}</p>
               </div>
@@ -101,12 +101,12 @@ const toolIcons: Record<string, string> = {
           <section class="case-feature case-section">
             <h2 class="section-label">// {section.eyebrow}</h2>
             {section.callout && (
-              <div class="case-feature__top">
+              <div class="case-feature__top" data-reveal="left">
                 <div class="case-callout">
                   <span class="case-callout__icon" aria-hidden="true"></span>
                   <p>{section.callout} {section.calloutAccent && <strong>{section.calloutAccent}</strong>}</p>
                 </div>
-                <div class="case-feature__copy-block">
+                <div class="case-feature__copy-block" data-reveal="right" data-reveal-delay="200">
                   <h2>{section.title}</h2>
                   <div class="case-copy">
                     {section.text.map((paragraph) => <p>{paragraph}</p>)}
@@ -145,7 +145,7 @@ const toolIcons: Record<string, string> = {
                 </div>
               </div>
             )}
-            {section.callout && section.image && <ProjectMedia class="case-feature__image" src={section.image.src} alt={section.image.alt} ratio="16 / 9" />}
+            {section.callout && section.image && <ProjectMedia class="case-feature__image" data-reveal="bottom" src={section.image.src} alt={section.image.alt} ratio="16 / 9" />}
           </section>
         );
       }
@@ -154,7 +154,7 @@ const toolIcons: Record<string, string> = {
         return (
           <section class="case-story case-section">
             <h2 class="section-label">// {section.eyebrow}</h2>
-            <div class="case-story__intro">
+            <div class="case-story__intro" data-reveal="left">
               <h2>{section.title}</h2>
               <div>
                 <div class="case-copy">
@@ -169,7 +169,7 @@ const toolIcons: Record<string, string> = {
             </div>
             <div class="case-story__items">
               {section.items.map((item, index) => (
-                <article class:list={["case-story-card", `case-story-card--${item.align ?? (index % 2 === 0 ? "right" : "left")}`, { "case-story-card--wide": item.layout === "wide" }]}>
+                <article class:list={["case-story-card", `case-story-card--${item.align ?? (index % 2 === 0 ? "right" : "left")}`, { "case-story-card--wide": item.layout === "wide" }]} data-reveal={item.align === "left" ? "right" : "left"} data-reveal-delay={index * 150}>
                   <div class="case-story-card__copy">
                     {item.title && <h3>{item.title}</h3>}
                     {item.text && <p>{item.text}</p>}
@@ -204,7 +204,7 @@ const toolIcons: Record<string, string> = {
             </div>
             {section.followup && (
               <>
-                <div class="case-story__intro case-story__intro--followup">
+                <div class="case-story__intro case-story__intro--followup" data-reveal="left">
                   <h2>{section.followup.title}</h2>
                   <div>
                     <div class="case-copy">
@@ -219,7 +219,7 @@ const toolIcons: Record<string, string> = {
                 </div>
                 <div class="case-story__items">
                   {section.followup.items.map((item, index) => (
-                    <article class:list={["case-story-card", `case-story-card--${item.align ?? (index % 2 === 0 ? "right" : "left")}`, { "case-story-card--wide": item.layout === "wide" }]}>
+                    <article class:list={["case-story-card", `case-story-card--${item.align ?? (index % 2 === 0 ? "right" : "left")}`, { "case-story-card--wide": item.layout === "wide" }]} data-reveal={item.align === "left" ? "right" : "left"} data-reveal-delay={index * 150}>
                       <div class="case-story-card__copy">
                         {item.title && <h3>{item.title}</h3>}
                         {item.text && <p>{item.text}</p>}
@@ -253,7 +253,7 @@ const toolIcons: Record<string, string> = {
                   ))}
                 </div>
                 {section.followup.after?.map((block) => (
-                  <div class="case-story__intro case-story__intro--followup">
+                  <div class="case-story__intro case-story__intro--followup" data-reveal="left">
                     <h2>{block.title}</h2>
                     <div>
                       <div class="case-copy">
@@ -268,7 +268,7 @@ const toolIcons: Record<string, string> = {
                   </div>
                 ))}
                 {section.followup.threeUp?.map((block) => (
-                  <div class="case-three-up">
+                  <div class="case-three-up" data-reveal="bottom">
                     <div class="case-three-up__grid">
                       {block.items.map((item) => <ProjectMedia class="case-three-up__media" src={item.src} alt={item.alt} ratio={item.ratio} />)}
                     </div>
@@ -279,7 +279,7 @@ const toolIcons: Record<string, string> = {
                   </div>
                 ))}
                 {section.followup.afterThreeUp?.map((block) => (
-                  <div class="case-story__intro case-story__intro--followup">
+                  <div class="case-story__intro case-story__intro--followup" data-reveal="left">
                     <h2>{block.title}</h2>
                     <div>
                       <div class="case-copy">
@@ -294,7 +294,7 @@ const toolIcons: Record<string, string> = {
                   </div>
                 ))}
                 {section.followup.afterThreeUpBlocks?.map((block) => (
-                  <div class="case-three-up">
+                  <div class="case-three-up" data-reveal="bottom">
                     <div class="case-three-up__grid">
                       {block.items.map((item) => <ProjectMedia class="case-three-up__media" src={item.src} alt={item.alt} ratio={item.ratio} />)}
                     </div>
@@ -305,7 +305,7 @@ const toolIcons: Record<string, string> = {
                   </div>
                 ))}
                 {section.followup.wideMedia?.map((block) => (
-                  <div class="case-wide-media">
+                  <div class="case-wide-media" data-reveal="bottom">
                     {block.image.videoSrc ? (
                       <figure class="project-media project-video case-wide-media__image" style={`--media-ratio: ${block.image.ratio ?? "16 / 9"}`}>
                         <video src={block.image.videoSrc} poster={block.image.src} muted loop playsinline preload="metadata" data-hover-video aria-label={block.image.alt}></video>
@@ -329,7 +329,7 @@ const toolIcons: Record<string, string> = {
                   </div>
                 ))}
                 {section.followup.afterWideMedia?.map((block) => (
-                  <div class="case-story__intro case-story__intro--followup">
+                  <div class="case-story__intro case-story__intro--followup" data-reveal="left">
                     <h2>{block.title}</h2>
                     <div>
                       <div class="case-copy">
@@ -344,7 +344,7 @@ const toolIcons: Record<string, string> = {
                   </div>
                 ))}
                 {section.followup.afterWideMediaItems?.map((item, index) => (
-                  <article class:list={["case-story-card", `case-story-card--${item.align ?? (index % 2 === 0 ? "right" : "left")}`]}>
+                  <article class:list={["case-story-card", `case-story-card--${item.align ?? (index % 2 === 0 ? "right" : "left")}`]} data-reveal={item.align === "left" ? "right" : "left"} data-reveal-delay={index * 150}>
                     <div class="case-story-card__copy">
                       {item.title && <h3>{item.title}</h3>}
                       {item.text && <p>{item.text}</p>}
@@ -371,7 +371,7 @@ const toolIcons: Record<string, string> = {
         return (
           <section class="case-gallery case-section">
             <h2 class="section-label">// {section.eyebrow}</h2>
-            <div class="case-gallery__heading">
+            <div class="case-gallery__heading" data-reveal="left">
               <h2>{section.title}</h2>
               {section.text && <p>{section.text}</p>}
             </div>
@@ -386,7 +386,7 @@ const toolIcons: Record<string, string> = {
       return null;
     })}
 
-    <section class="more-projects section">
+    <section class="more-projects section" data-reveal="bottom">
       <h2 class="section-label">// More Projects</h2>
       <div class="more-projects__grid">
         {moreProjects.map((item) => (
@@ -404,7 +404,72 @@ const toolIcons: Record<string, string> = {
 
   <Footer />
 
+  <!-- Image lightbox overlay -->
+  <div class="image-lightbox" id="imageLightbox" aria-hidden="true">
+    <div class="image-lightbox__zone image-lightbox__zone--prev" data-lightbox-prev aria-label="Previous image"></div>
+    <div class="image-lightbox__zone image-lightbox__zone--next" data-lightbox-next aria-label="Next image"></div>
+    <button class="image-lightbox__close" type="button" aria-label="Close image" data-lightbox-close>
+      <img src="/icons/ui/close.svg" alt="" />
+    </button>
+    <img class="image-lightbox__img" src="" alt="" />
+  </div>
   <script>
+    /* ---- Scroll Reveal ---- */
+    const revealElements = document.querySelectorAll("[data-reveal]");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (revealElements.length && !prefersReducedMotion) {
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              const delay = parseInt(el.dataset.revealDelay || "0", 10);
+              setTimeout(() => el.classList.add("is-revealed"), delay);
+              revealObserver.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0, rootMargin: "0px 0px -20px 0px" }
+      );
+
+      revealElements.forEach((el) => revealObserver.observe(el));
+
+      /* Immediately reveal elements already in viewport on load */
+      requestAnimationFrame(() => {
+        revealElements.forEach((el) => {
+          if (el.classList.contains("is-revealed")) return;
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const delay = parseInt(el.dataset.revealDelay || "0", 10);
+            setTimeout(() => el.classList.add("is-revealed"), delay);
+            revealObserver.unobserve(el);
+          }
+        });
+      });
+    } else if (prefersReducedMotion) {
+      revealElements.forEach((el) => {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+    }
+
+    /* ---- Clean up reveal animations to remove stacking contexts ---- */
+    revealElements.forEach((el) => {
+      if (el.classList.contains("is-revealed")) {
+        /* Already animated — clean up now */
+        el.style.animation = "none";
+        el.style.transform = "none";
+        el.style.opacity = "1";
+      } else {
+        el.addEventListener("animationend", () => {
+          el.style.animation = "none";
+          el.style.transform = "none";
+          el.style.opacity = "1";
+        }, { once: true });
+      }
+    });
+    /* ---- Hover Videos ---- */
     const hoverVideos = document.querySelectorAll("[data-hover-video]");
     const canHoverVideos = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
@@ -435,6 +500,217 @@ const toolIcons: Record<string, string> = {
         video.addEventListener("touchstart", () => video.play().catch(() => {}), { passive: true });
       }
     });
+
+    /* ---- Image Lightbox + Zoom Cursor ---- */
+    const lightbox = document.getElementById("imageLightbox");
+    const lightboxImg = lightbox?.querySelector(".image-lightbox__img");
+    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    /* Create custom zoom/close cursor (reuse if slider already created one) */
+    let zoomCursor = null;
+    if (canHover && lightbox) {
+      zoomCursor = document.querySelector(".project-zoom-cursor");
+      if (!zoomCursor) {
+        zoomCursor = document.createElement("div");
+        zoomCursor.className = "project-zoom-cursor";
+        zoomCursor.textContent = "Zoom";
+        /* Read project accent color from <main> and apply to cursor */
+        const projectMain = document.querySelector(".project-page");
+        const accentColor = projectMain ? getComputedStyle(projectMain).getPropertyValue("--project-accent").trim() : "";
+        if (accentColor) zoomCursor.style.background = accentColor;
+        document.body.appendChild(zoomCursor);
+      }
+    }
+
+    let cursorX = window.innerWidth / 2, cursorY = window.innerHeight / 2, cursorTicking = false;
+
+    /* Always track mouse position so lightbox opens at cursor */
+    document.addEventListener("mousemove", (e) => {
+      cursorX = e.clientX;
+      cursorY = e.clientY;
+    });
+
+    function updateZoomCursor() {
+      if (!zoomCursor) return;
+      zoomCursor.style.left = cursorX + 'px';
+      zoomCursor.style.top = cursorY + 'px';
+      cursorTicking = false;
+    }
+
+    function trackCursor(event) {
+      cursorX = event.clientX;
+      cursorY = event.clientY;
+      if (cursorTicking) return;
+      cursorTicking = true;
+      requestAnimationFrame(updateZoomCursor);
+    }
+
+    if (lightbox && lightboxImg) {
+      /* ---- Open lightbox from any .project-media image ---- */
+      const mediaFigures = document.querySelectorAll(
+        ".project-media:has(> img):not(.project-video)"
+      );
+
+      function openPageLightbox(img) {
+        if (!img) return;
+        lightboxImg.src = img.src || '';
+        lightboxImg.alt = img.alt || '';
+        lightbox.classList.add("is-open");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.documentElement.style.overflow = "hidden";
+        if (zoomCursor) {
+          zoomCursor.style.left = cursorX + 'px';
+          zoomCursor.style.top = cursorY + 'px';
+          zoomCursor.textContent = "Close";
+          zoomCursor.classList.add("is-visible");
+        }
+      }
+
+      function closePageLightbox() {
+        lightbox.classList.remove("is-open");
+        lightbox.setAttribute("aria-hidden", "true");
+        document.documentElement.style.overflow = "";
+        carouselSlides = [];
+        carouselIndex = 0;
+        updateNavZones();
+        if (zoomCursor) {
+          zoomCursor.textContent = "Zoom";
+          zoomCursor.classList.remove("is-visible");
+        }
+      }
+
+      mediaFigures.forEach((figure) => {
+        const img = figure.querySelector("img");
+        if (!img) return;
+
+        figure.addEventListener("click", () => {
+          openPageLightbox(img);
+        });
+
+        if (canHover && zoomCursor) {
+          figure.addEventListener("pointerenter", () => {
+            zoomCursor.textContent = "Zoom";
+            zoomCursor.classList.add("is-visible");
+          });
+          figure.addEventListener("pointermove", trackCursor);
+          figure.addEventListener("pointerleave", () => {
+            if (!lightbox.classList.contains("is-open")) {
+              zoomCursor.classList.remove("is-visible");
+            }
+          });
+        }
+      });
+
+      /* ---- Carousel state ---- */
+      let carouselSlides = [];
+      let carouselIndex = 0;
+
+      function updateCarouselSlide() {
+        if (!carouselSlides.length || !lightboxImg) return;
+        const slide = carouselSlides[carouselIndex];
+        lightboxImg.src = slide.src;
+        lightboxImg.alt = slide.alt;
+      }
+
+      /* ---- Open lightbox from slider (custom event) ---- */
+      document.querySelectorAll("[data-project-slider]").forEach((sliderEl) => {
+        sliderEl.addEventListener("slider:activate", (e) => {
+          const { slides, activeIndex } = e.detail;
+          carouselSlides = slides || [];
+          carouselIndex = activeIndex || 0;
+          openPageLightbox(carouselSlides[carouselIndex]);
+          updateNavZones();
+        });
+      });
+
+      /* ---- Prev/Next navigation ---- */
+      const prevZone = lightbox?.querySelector("[data-lightbox-prev]");
+      const nextZone = lightbox?.querySelector("[data-lightbox-next]");
+
+      function updateNavZones() {
+        const hasCarousel = carouselSlides.length > 1;
+        if (prevZone) prevZone.style.display = hasCarousel ? "" : "none";
+        if (nextZone) nextZone.style.display = hasCarousel ? "" : "none";
+      }
+
+      function goNext() {
+        if (!carouselSlides.length) return;
+        carouselIndex = (carouselIndex + 1) % carouselSlides.length;
+        updateCarouselSlide();
+      }
+
+      function goPrev() {
+        if (!carouselSlides.length) return;
+        carouselIndex = (carouselIndex - 1 + carouselSlides.length) % carouselSlides.length;
+        updateCarouselSlide();
+      }
+
+      prevZone?.addEventListener("click", (e) => {
+        const imgRect = lightboxImg.getBoundingClientRect();
+        if (e.clientY >= imgRect.top && e.clientY <= imgRect.bottom) {
+          e.stopPropagation();
+          goPrev();
+        }
+      });
+      nextZone?.addEventListener("click", (e) => {
+        const imgRect = lightboxImg.getBoundingClientRect();
+        if (e.clientY >= imgRect.top && e.clientY <= imgRect.bottom) {
+          e.stopPropagation();
+          goNext();
+        }
+      });
+
+      /* Track cursor inside the lightbox with zone-aware labels */
+      if (canHover && zoomCursor) {
+        lightbox.addEventListener("pointerenter", () => {
+          zoomCursor.classList.add("is-visible");
+        });
+        const arrowSvg = '<svg width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block"><path d="M14.1399 16L12.6816 14.4959L16.0612 11.0432L-3.07266e-07 11.0294L0.00206735 8.90798L16.025 8.92177L12.7022 5.49562L14.1667 4L20 10.0143L14.1399 16Z" fill="currentColor"/></svg>';
+        const arrowFlipped = '<svg width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;transform:scaleX(-1)"><path d="M14.1399 16L12.6816 14.4959L16.0612 11.0432L-3.07266e-07 11.0294L0.00206735 8.90798L16.025 8.92177L12.7022 5.49562L14.1667 4L20 10.0143L14.1399 16Z" fill="currentColor"/></svg>';
+
+        lightbox.addEventListener("pointermove", (e) => {
+          trackCursor(e);
+          const rect = lightbox.getBoundingClientRect();
+          const imgRect = lightboxImg.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const w = rect.width;
+          const inImageY = e.clientY >= imgRect.top && e.clientY <= imgRect.bottom;
+          const inCarousel = carouselSlides.length > 1;
+          const zone = inCarousel && inImageY
+            ? (x < w * 0.25 ? "prev" : x > w * 0.75 ? "next" : "close")
+            : "close";
+          if (zone === "prev") {
+            zoomCursor.innerHTML = arrowFlipped;
+          } else if (zone === "next") {
+            zoomCursor.innerHTML = arrowSvg;
+          } else {
+            zoomCursor.textContent = "Close";
+          }
+        });
+        lightbox.addEventListener("pointerleave", () => {
+          zoomCursor.classList.remove("is-visible");
+        });
+      }
+
+
+      lightbox.addEventListener("click", () => {
+        closePageLightbox();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (!lightbox.classList.contains("is-open")) return;
+        if (e.key === "Escape") {
+          e.stopImmediatePropagation();
+          closePageLightbox();
+        } else if (e.key === "ArrowRight" && carouselSlides.length > 1) {
+          e.stopImmediatePropagation();
+          goNext();
+        } else if (e.key === "ArrowLeft" && carouselSlides.length > 1) {
+          e.stopImmediatePropagation();
+          goPrev();
+        }
+      });
+    }
   </script>
 </BaseLayout>
 
