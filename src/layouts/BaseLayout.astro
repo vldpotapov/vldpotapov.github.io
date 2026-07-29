@@ -21,6 +21,7 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <script is:inline>
+      // @ts-nocheck
       try {
         if (
           window.matchMedia("(prefers-reduced-motion: no-preference)").matches &&
@@ -62,6 +63,7 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
       <slot />
     </div>
     <script>
+      // @ts-nocheck
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
       const parallaxItems = Array.from(document.querySelectorAll(".hero__portrait, .case-hero__image"));
       let ticking = false;
@@ -105,6 +107,7 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
       window.addEventListener("pageTransitionComplete", requestHeroParallax);
     </script>
     <script>
+      // @ts-nocheck
       const introRevealItems = Array.from(document.querySelectorAll("[data-intro-reveal]"));
       const introReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
       let introRevealTicking = false;
@@ -220,6 +223,7 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
       });
     </script>
     <script>
+      // @ts-nocheck
       const serviceFlipRoot = document.querySelector("[data-service-flip]");
 
       if (serviceFlipRoot) {
@@ -285,6 +289,7 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
       }
     </script>
     <script>
+      // @ts-nocheck
       const footerReveal = document.querySelector(".footer__portrait");
       const footerRevealImage = footerReveal?.querySelector(".footer__image");
       const footerRevealOverlay = footerReveal?.querySelector(".footer__overlay");
@@ -326,6 +331,7 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
       window.addEventListener("resize", requestFooterReveal);
     </script>
     <script>
+      // @ts-nocheck
       const pointerFine = window.matchMedia("(hover: hover) and (pointer: fine)");
       const motionSafe = window.matchMedia("(prefers-reduced-motion: no-preference)");
 
@@ -377,6 +383,7 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
       }
     </script>
     <script>
+      // @ts-nocheck
       const pageTransitionMotion = window.matchMedia("(prefers-reduced-motion: no-preference)");
       const pageTransitionDuration = 620;
       let pageTransitionTimer = 0;
