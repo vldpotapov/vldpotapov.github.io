@@ -4,9 +4,10 @@ const {
   alt = "",
   class: className = "",
   ratio = "16 / 10",
+  ...attrs
 } = Astro.props;
 ---
 
-<figure class:list={["project-media", className]} style={`--media-ratio: ${ratio}`}>
+<figure class:list={["project-media", className]} style={`--media-ratio: ${ratio}`} {...attrs}>
   {src ? <img src={src} alt={alt} loading="lazy" decoding="async" /> : <div class="project-media__empty" aria-label={alt}></div>}
 </figure>
