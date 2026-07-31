@@ -1,4 +1,4 @@
-﻿---
+---
 import LogoMark from "../components/LogoMark.astro";
 
 const {
@@ -55,7 +55,10 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
     />
   </head>
   <body>
-    <div class="page-transition-overlay" aria-hidden="true"></div>
+    <div class="page-transition" aria-hidden="true">
+      <div class="page-transition__layer page-transition__layer--black"></div>
+      <div class="page-transition__layer page-transition__layer--accent"></div>
+    </div>
     <div class="site-shell" data-site-shell>
       <a class="brand-mark-dot-link" href="/" aria-label="Home" tabindex="-1" aria-hidden="true">
         <LogoMark part="dot" />
@@ -345,7 +348,9 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
         });
       }
 
-      if (pointerFine.matches && motionSafe.matches && document.querySelector(".project-card")) {
+      const projectLinks = document.querySelectorAll(".project-card, .more-card");
+
+      if (pointerFine.matches && motionSafe.matches && projectLinks.length) {
         const viewCursor = document.createElement("div");
         viewCursor.className = "project-view-cursor";
         viewCursor.textContent = "View";
@@ -370,7 +375,7 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
           requestAnimationFrame(updateViewCursor);
         }
 
-        document.querySelectorAll(".project-card").forEach((card) => {
+        projectLinks.forEach((card) => {
           card.addEventListener("pointerenter", (event) => {
             requestViewCursor(event);
             viewCursor.classList.add("is-visible");

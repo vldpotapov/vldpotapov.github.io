@@ -1,0 +1,254 @@
+/* About page */
+
+/* About page */
+.about-page {
+  min-height: 100vh;
+  background: var(--white);
+  color: var(--black);
+}
+
+.about-page > section:not(.about-hero) {
+  border-top: 1px solid var(--gray-77);
+  padding-top: 18px;
+}
+
+.about-page > section.about-cta {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.about-hero {
+  min-height: 100vh;
+  padding: 256px var(--page-pad) 80px;
+}
+
+.about-hero__inner {
+  width: min(1400px, 100%);
+  margin: 0 auto;
+}
+
+.about-hero__headline-wrap {
+  position: relative;
+  --about-hero-title-size: var(--type-h3-v1-size);
+  --about-hero-baseline-ratio: 0.86;
+  --about-hero-photo-height: 120px;
+}
+
+.about-hero__photo-placeholder {
+  position: absolute;
+  top: calc((var(--about-hero-title-size) * var(--about-hero-baseline-ratio)) - var(--about-hero-photo-height));
+  left: 0;
+  width: 100px;
+  height: var(--about-hero-photo-height);
+  border-radius: 6px;
+  background: var(--gray-77);
+  object-fit: cover;
+}
+
+.about-hero h1 {
+  margin: 0;
+  color: var(--black);
+  font-size: var(--about-hero-title-size);
+  font-weight: 500;
+  line-height: var(--type-h3-v1-line);
+  letter-spacing: var(--type-h3-v1-track);
+  text-align: left;
+}
+
+.about-hero h1::before {
+  content: "";
+  float: left;
+  width: 50%;
+  height: 1em;
+  shape-outside: inset(0);
+  pointer-events: none;
+}
+
+.about-hero h1 span {
+  color: var(--accent);
+}
+
+.about-hero__button {
+  display: flex;
+  width: max-content;
+  min-height: 64px;
+  align-items: center;
+  justify-content: center;
+  margin: 120px auto 120px;
+  border-radius: 999px;
+  padding: 19px 40px;
+  color: var(--white);
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.about-hero__description {
+  max-width: 600px;
+  margin: 80px 0 0 50%;
+  color: var(--black);
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.2px;
+}
+
+.career-snapshot {
+  padding: 0 var(--page-pad) 160px;
+  background: var(--white);
+  color: var(--black);
+}
+
+.career-snapshot .section-label,
+.hard-skills .section-label,
+.experience-education .section-label {
+  position: static;
+  color: var(--accent);
+}
+
+.career-snapshot__list,
+.hard-skills__list,
+.experience-education__list {
+  display: grid;
+  gap: 160px;
+  width: min(1440px, 100%);
+  margin: 140px auto 0;
+}
+
+.career-snapshot__item,
+.hard-skills__item,
+.experience-education__item {
+  display: grid;
+  grid-template-columns: minmax(240px, min(50%, 500px)) minmax(0, 1fr);
+  gap: 32px;
+  padding: 20px;
+}
+
+.career-snapshot__number {
+  margin: 0;
+  color: transparent;
+  font-family: var(--font-mono);
+  font-size: 200px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0;
+  -webkit-text-stroke: 1px var(--black);
+  text-stroke: 1px var(--black);
+}
+
+.career-snapshot__content {
+  /* min-height: 220px; */
+  border-bottom: 1px solid var(--gray-77);
+  padding: 0 0 32px;
+}
+
+.career-snapshot__item:last-child .career-snapshot__content {
+  border-bottom: 0;
+}
+
+.career-snapshot__content h3 {
+  margin: 0 0 24px;
+  color: var(--black);
+  font-size: 50px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.career-snapshot__content p {
+  max-width: 480px;
+  margin: 0;
+  color: var(--black);
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.2px;
+}
+
+.hard-skills {
+  padding: 0 var(--page-pad) 160px;
+  background: var(--white);
+  color: var(--black);
+}
+
+.hard-skills__title {
+  margin: 0;
+  color: var(--black);
+  font-size: 50px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.hard-skills__content {
+  min-height: 205px;
+  border-bottom: 1px solid var(--gray-77);
+  padding: 120px 0 40px;
+}
+
+.hard-skills__item:last-child .hard-skills__content {
+  border-bottom: 0;
+}
+
+.hard-skills__tags {
+  align-content: flex-start;
+}
+
+.experience-education {
+  padding: 0 var(--page-pad) 0;
+  background: var(--white);
+  color: var(--black);
+}
+
+.experience-education__meta p {
+  margin: 0;
+  color: var(--gray-64);
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.35;
+}
+
+.experience-education__meta h3 {
+  max-width: 500px;
+  margin: 0;
+  color: var(--black);
+  font-size: 50px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.experience-education__content {
+  min-height: 205px;
+  border-bottom: 1px solid var(--gray-77);
+  padding: 130px 0 40px;
+}
+
+.experience-education__item:last-child .experience-education__content {
+  border-bottom: 0;
+}
+
+.experience-education__content h4 {
+  margin: 0 0 20px;
+  color: var(--black);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.experience-education__content p {
+  max-width: 600px;
+  margin: 0;
+  color: var(--black);
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.2px;
+}
+
+.about-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--page-pad);
+  background: var(--white);
+}
+

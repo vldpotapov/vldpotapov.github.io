@@ -77,7 +77,7 @@ export const motorSkinProject = {
   sliderNumberColor: "#000",
   backHref: "/#projects",
   cover: {
-    src: "/images/projects/igb-live-2026/hero.png",
+    src: "/images/projects/igb-live-2026/hero.jpg",
     alt: "IGB Live London campaign cover",
   },
   heroMeta: ["Visual Campaign", "Exhibition Design", "Motion Graphics"],
@@ -90,7 +90,7 @@ export const motorSkinProject = {
     after: "My role was to translate the campaign concept into a consistent brand experience across every customer touchpoint.",
   },
   glance: [
-    { label: "Duration", value: "3+ Months", description: "Planning, design, and production." },
+    { label: "Timeline", value: "2026 · 3+ Months", description: "Planning, design, and production." },
     { label: "Deliverables", value: "40+ Assets", description: "Digital, print, motion, and environmental design." },
     { label: "Touchpoints", value: "8+ Channels", description: "Social media, sales materials, exhibition booth, magazine, print, and more." },
     { label: "Recognition", value: "Award-winning", description: "Best Pre-Show Marketing Campaign." },

@@ -6,6 +6,7 @@ import LogoMarquee from "../../components/LogoMarquee.astro";
 import NameMarquee from "../../components/NameMarquee.astro";
 import ProjectMedia from "../../components/ProjectMedia.astro";
 import ProjectSlider from "../../components/ProjectSlider.astro";
+import MoreProjects from "../../components/MoreProjects.astro";
 import { motorSkinProject as project } from "../../data/projectCases";
 import { moreProjects } from "../../data/site";
 import "../../styles/global.css";
@@ -386,18 +387,7 @@ const toolIcons: Record<string, string> = {
       return null;
     })}
 
-    <section class="more-projects section" data-reveal="bottom">
-      <h2 class="section-label">// More Projects</h2>
-      <div class="more-projects__grid">
-        {moreProjects.map((item) => (
-          <a class="more-card" href={item.slug}>
-            <ProjectMedia class="more-card__image" src="/images/projects/project-placeholder.png" alt={`${item.title} preview`} />
-            <h2>{item.title}</h2>
-            <p>({item.year})</p>
-          </a>
-        ))}
-      </div>
-    </section>
+    <MoreProjects projects={moreProjects} />
 
     <LogoMarquee />
   </main>
@@ -546,9 +536,9 @@ const toolIcons: Record<string, string> = {
     }
 
     if (lightbox && lightboxImg) {
-      /* ---- Open lightbox from any .project-media image ---- */
+      /* ---- Open lightbox from case media only, never from related-project links ---- */
       const mediaFigures = document.querySelectorAll(
-        ".project-media:has(> img):not(.project-video)"
+        ".project-media:has(> img):not(.project-video):not(.more-card__image)"
       );
 
       function openPageLightbox(img) {

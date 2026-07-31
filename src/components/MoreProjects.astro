@@ -1,0 +1,25 @@
+---
+import ProjectMedia from "./ProjectMedia.astro";
+
+const { projects = [] } = Astro.props;
+---
+
+<section class="more-projects section" data-reveal="bottom">
+  <h2 class="section-label">// More Projects</h2>
+  <div class="more-projects__grid">
+    {projects.map((project) => (
+      <a class="more-card" href={project.slug}>
+        <ProjectMedia
+          class="more-card__image"
+          src={project.image}
+          alt={`${project.title} preview`}
+          ratio="auto"
+        />
+        <div class="more-card__info">
+          <h3>{project.title}</h3>
+          <p>({project.year})</p>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,131 @@
+/* Project case page: selected visuals slider and related projects */
+
+.project-slider {
+  --slider-folded-size: clamp(38px, 4.55vw, 44px);
+  --slider-number-color: #fff;
+  position: relative;
+  width: min(968px, calc(100% - var(--page-pad) * 2));
+  margin: 86px auto 0;
+}
+
+.project-slider__viewport {
+  display: flex;
+  aspect-ratio: 968 / 645;
+  height: auto;
+  min-height: 0;
+  gap: 0;
+}
+
+.project-slider__slide {
+  position: relative;
+  min-width: 0;
+  flex: 0 0 var(--slider-folded-size);
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  border-right: 1px solid #777;
+  border-radius: 0;
+  background: var(--project-panel);
+  cursor: pointer;
+  transition: flex-basis 360ms ease, flex-grow 360ms ease, opacity 220ms ease;
+}
+
+.project-slider__slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0.8;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 260ms ease;
+}
+
+.project-slider__slide:hover:not(.is-active) {
+  flex-basis: calc(var(--slider-folded-size) * 1.2);
+}
+
+.project-slider__slide:hover:not(.is-active)::after {
+  opacity: 0.4;
+}
+
+.project-slider__slide.is-active {
+  flex: 1 1 auto;
+}
+
+.project-slider__slide.is-active::after {
+  opacity: 0;
+}
+
+.project-slider__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-slider__number {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 10px 8px 10px 10px;
+  color: var(--slider-number-color);
+  background: var(--project-accent);
+  border-radius: 21px 0 0 0;
+  font-family: "DM Mono", monospace;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.project-slider__controls {
+  display: none;
+}
+
+.project-slider__arrow {
+  position: fixed;
+  z-index: 1002;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #000;
+  cursor: pointer;
+}
+
+.project-slider__arrow img {
+  width: 20px;
+  height: 20px;
+  filter: invert(1);
+}
+
+.project-slider__arrow {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.project-slider__arrow--prev {
+  left: 24px;
+}
+
+.project-slider__arrow--prev img {
+  transform: rotate(180deg);
+}
+
+.project-slider__arrow--next {
+  right: 24px;
+}
+
+.case-gallery__mobile {
+  display: none;
+}
+
+
+

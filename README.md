@@ -58,16 +58,16 @@ src/data/site.ts
 ```
 
 Use the `oldProjects` array for title, year, category, number, and link.
-The row hover state is handled in `src/styles/global.css` by the `old-projects` styles: the accent layer expands from the vertical center, the number fades out, and the arrow fades in.
+The row hover state is handled in `src/styles/pages/projects.css` by the `old-projects` styles: the accent layer expands from the vertical center, the number fades out, and the arrow fades in.
 The `My Expertise` button on `/projects` links back to the home page section `/#expertise`.
 The `/projects` page ends with the standard logo marquee and footer.
 
-Button hover fill animation is controlled by `.button` styles in `src/styles/global.css`. Project cards use a desktop-only `View` cursor, also styled in `src/styles/global.css` and initialized in `src/layouts/BaseLayout.astro`.
+Button hover fill animation is controlled by `.button` styles in `src/styles/shared.css`. Project cards use a desktop-only `View` cursor styled in `src/styles/pages/home.css` and initialized in `src/layouts/BaseLayout.astro`.
 
-Internal page transitions are handled globally in `src/layouts/BaseLayout.astro` and styled in `src/styles/global.css` with `.page-transition-overlay`, `.site-shell`, `is-page-leaving`, and `is-page-entering`.
+Internal page transitions are handled globally in `src/layouts/BaseLayout.astro` and styled in `src/styles/foundation.css` and `src/styles/motion.css`. The transition uses stacked black and accent layers (`.page-transition__layer`) together with `.site-shell`, `is-page-leaving`, and `is-page-entering`.
 Hash links such as the footer back-to-top button (`href="#"`) are excluded from this transition and should scroll within the current page without the orange overlay.
 
-Scroll-reveal header behavior is handled in `src/components/Header.astro` and styled in `src/styles/global.css` with `.site-header.is-floating` and `.site-header.is-visible`. It starts only after the first screen section and shows the header while scrolling up.
+Scroll-reveal header behavior is handled in `src/components/Header.astro` and styled in `src/styles/shared.css` with `.site-header.is-floating` and `.site-header.is-visible`. It starts only after the first screen section and shows the header while scrolling up.
 
 Active header navigation is also handled in `src/components/Header.astro`. The current page item is rendered as `.nav-link.is-active` instead of a clickable link only when the URL matches exactly. Deeper pages keep the parent item clickable, so `/projects/igb-live-2026/` still has a working `Projects` link back to `/projects`.
 
@@ -81,7 +81,7 @@ public/videos/projects/igb-live-2026/Igb_london_26_short.mp4
 
 После заметных изменений в структуре сайта, страницах, данных, ассетах, деплое или командах нужно проверять этот README и сразу обновлять инструкцию, если она устарела.
 
-Общее правило отступов: внешний горизонтальный отступ контентных блоков должен быть 20px на desktop и 16px на mobile. Это задается через `--page-pad` в `src/styles/global.css`. Внутренние отступы внутри кнопок, инпутов, тегов и карточек могут отличаться, если это часть компонента.
+Общее правило отступов: внешний горизонтальный отступ контентных блоков должен быть 20px на desktop и 16px на mobile. Это задается через `--page-pad` в `src/styles/foundation.css`. Внутренние отступы внутри кнопок, инпутов, тегов и карточек могут отличаться, если это часть компонента.
 
 ## Быстрый старт
 
@@ -120,6 +120,15 @@ http://localhost:4321/
 ```text
 Ctrl + C
 ```
+
+Если Astro сообщает, что сервер уже запущен, но сайт не открывается, сначала остановить зависший процесс, затем запустить сервер заново:
+
+```powershell
+npm.cmd run astro -- dev stop
+npm.cmd run dev
+```
+
+После запуска терминал нужно оставить открытым, пока работаешь с сайтом.
 
 Проверить сборку перед публикацией:
 
@@ -271,11 +280,35 @@ src/components/ProjectMedia.astro
 src/components/ProjectSlider.astro
 ```
 
-Основные стили:
+## Структура CSS
+
+`src/styles/global.css` - только точка подключения остальных файлов. Новые правила непосредственно в него добавлять не нужно.
 
 ```text
-src/styles/global.css
+src/styles/global.css                         порядок подключения файлов
+src/styles/foundation.css                     переменные, reset, базовая разметка и page transition
+src/styles/shared.css                         кнопки, ссылки, header, hero, footer и бегущие строки
+src/styles/motion.css                         общие keyframes и prefers-reduced-motion
+src/styles/effects.css                        scroll reveal и image lightbox
+
+src/styles/pages/home.css                     главная: Intro, Expertise, Projects
+src/styles/pages/contact.css                  базовые стили Contact
+src/styles/pages/about.css                    базовые стили About
+src/styles/pages/projects.css                 страница списка проектов
+src/styles/pages/not-found.css                страница 404
+
+src/styles/pages/project/core.css             основа страницы проекта
+src/styles/pages/project/story.css            текстовые и медиа-блоки кейса
+src/styles/pages/project/slider.css           слайдер Selected Visuals
+src/styles/pages/project/responsive.css       адаптив страницы проекта
+
+src/styles/responsive/site.css                общий адаптив, главная и список проектов
+src/styles/responsive/about.css               адаптив About
+src/styles/responsive/contact.css             адаптив Contact
+src/styles/responsive/not-found.css           адаптив 404
 ```
+
+Правило редактирования: сначала ищи файл нужной страницы. Общие элементы меняй в `shared.css`, а глобальные переменные и `--page-pad` - в `foundation.css`. Порядок `@import` в `global.css` менять без необходимости не стоит: он сохраняет правильный CSS-каскад.
 
 ## Где редактировать контент
 
@@ -289,7 +322,7 @@ src/data/site.ts
 
 - `services` - секция Expertise на главной.
 - `projects` - карточки проектов на главной.
-- `moreProjects` - блок More Projects.
+- `moreProjects` - данные повторно используемого блока More Projects. Разметка находится в `src/components/MoreProjects.astro`, а стили - в `src/styles/pages/project/more-projects.css`.
 - `logos` - бегущая строка логотипов.
 
 Данные страницы проекта:
@@ -342,7 +375,7 @@ src/data/site.ts
 
 `slug` должен совпадать с реальным адресом страницы проекта.
 
-Скорость бегущих строк регулируется в `src/styles/global.css` через CSS-переменные и animation duration для marquee-блоков.
+Скорость бегущих строк регулируется в `src/styles/shared.css` через CSS-переменные и `animation-duration` для marquee-блоков.
 
 ## Проекты
 
@@ -379,7 +412,7 @@ public/images/projects/igb-live-2026
 Путь в коде пишется от папки `public`:
 
 ```ts
-src: "/images/projects/igb-live-2026/hero.png"
+src: "/images/projects/igb-live-2026/hero.jpg"
 ```
 
 Папка видео проекта:

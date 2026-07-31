@@ -1,0 +1,161 @@
+/* About page responsive rules */
+
+@media (max-width: 1200px) {
+  .about-hero {
+    padding-top: 180px;
+  }
+
+  .about-hero__headline-wrap {
+    --about-hero-title-size: clamp(40px, 5vw, 60px);
+  }
+
+  .about-hero h1 {
+    font-size: var(--about-hero-title-size);
+  }
+
+  .about-hero__description {
+    margin-left: 50%;
+  }
+
+  .career-snapshot__list,
+  .hard-skills__list,
+  .experience-education__list {
+    gap: 120px;
+    margin-top: 100px;
+  }
+
+  .career-snapshot__item,
+  .hard-skills__item,
+  .experience-education__item {
+    grid-template-columns: minmax(220px, 0.42fr) minmax(0, 1fr);
+  }
+
+  .career-snapshot__number {
+    font-size: clamp(120px, 15vw, 200px);
+  }
+
+  .hard-skills__content {
+    padding-top: 96px;
+  }
+
+  .experience-education__content {
+    padding-top: 96px;
+  }
+}
+
+@media (max-width: 760px) {
+  .about-hero {
+    padding: 200px var(--page-pad) 80px;
+  }
+
+  .about-hero__headline-wrap {
+    --about-hero-title-size: 30px;
+    --about-hero-baseline-ratio: 0.86;
+  }
+
+  .about-hero__photo-placeholder {
+    position: absolute;
+    top: calc((var(--about-hero-title-size) * var(--about-hero-baseline-ratio)) - var(--about-hero-photo-height));
+    left: 0;
+    width: 100px;
+    height: var(--about-hero-photo-height);
+    margin-bottom: 0;
+  }
+
+  .about-hero h1 {
+    font-size: var(--about-hero-title-size);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    text-align: right;
+  }
+
+  .about-hero h1::before {
+    display: block;
+    width: 45%;
+    height: 1em;
+  }
+
+  .about-hero__button {
+    min-height: 64px;
+    margin: 60px auto;
+    padding: 20px 40px;
+  }
+
+  .about-hero__description {
+    max-width: none;
+    margin: 40px 0 0;
+  }
+
+  .career-snapshot,
+  .hard-skills,
+  .experience-education {
+    padding: 0 var(--page-pad) 40px;
+  }
+
+  .career-snapshot__list,
+  .hard-skills__list,
+  .experience-education__list {
+    gap: 80px;
+    margin-top: 70px;
+  }
+
+  .career-snapshot__item,
+  .hard-skills__item,
+  .experience-education__item {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0;
+  }
+
+  .career-snapshot__number {
+    font-size: 120px;
+  }
+
+  .career-snapshot__content {
+    min-height: auto;
+    padding-bottom: 40px;
+  }
+
+  .career-snapshot__content h3 {
+    margin-bottom: 20px;
+    font-size: 35px;
+    font-weight: 700;
+  }
+
+  .hard-skills__title {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .hard-skills__content {
+    min-height: auto;
+    padding: 10px 0 40px;
+  }
+
+  .experience-education__meta p {
+    font-size: 16px;
+  }
+
+  .experience-education__meta h3 {
+    font-size: 35px;
+    font-weight: 700;
+  }
+
+  .experience-education__content {
+    min-height: auto;
+    padding: 0 0 40px;
+  }
+
+  .experience-education__content h4 {
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .about-page > section.about-cta {
+    padding: 0 var(--page-pad);
+  }
+}
+

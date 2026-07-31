@@ -1,4 +1,4 @@
-﻿export const services = [
+export const services = [
   {
     title: "Brand Identity",
     intro:
@@ -78,7 +78,7 @@ export const projects = [
     title: "IGB Live 2026",
     year: "2026",
     slug: "/projects/igb-live-2026/",
-    image: "/images/projects/igb-live-2026/hero.png",
+    image: "/images/projects/igb-live-2026/hero.jpg",
     imageAlt: "IGB Live London 2026 project preview",
     summary:
       "A large-scale exhibition marketing campaign created for Slotegrator's participation in IGB Live London. The project combined exhibition design, editorial design, motion graphics, social media, printed materials, and sales assets into a cohesive visual system built around a single campaign concept.",
@@ -166,6 +166,7 @@ export const moreProjects = Array.from({ length: 6 }, (_, index) => ({
   title: "Branding",
   year: "2024",
   slug: "/projects/igb-live-2026/",
+  image: "/images/projects/project-placeholder.png",
   index: index + 1,
 }));
 
@@ -218,12 +219,12 @@ export const socialLinks = {
   },
   website: {
     label: "Website",
-    href: "https://vldpotapov.github.io/",
+    href: "https://vpotapov.pages.dev/",
     icon: "/icons/ui/arrow.svg",
   },
   github: {
     label: "GitHub",
-    href: "https://vldpotapov.pages.dev/",
+    href: "https://github.com/vldpotapov/vldpotapov.github.io",
     icon: "/icons/tools/github.svg",
   },
 } as const;
@@ -248,7 +249,6 @@ export const contactSocialLinks = [
   socialLinks.dribbble,
   socialLinks.behance,
 ] as const;
-
 
 
 

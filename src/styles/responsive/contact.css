@@ -1,0 +1,120 @@
+/* Contact page responsive rules */
+
+@media (max-width: 1200px) {
+  .contact-hero {
+    padding-top: 140px;
+  }
+
+  .contact-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 96px;
+    width: min(900px, 100%);
+    min-height: auto;
+  }
+
+  .contact-hero__body {
+    min-height: auto;
+  }
+
+  .contact-links {
+    margin-top: 120px;
+  }
+}
+
+@media (max-width: 760px) {
+  .contact-hero {
+    min-height: 100vh;
+    padding: 96px var(--page-pad) 48px;
+  }
+
+  .contact-hero__inner {
+    gap: 76px;
+  }
+
+  .contact-hero h1 {
+    font-size: 60px;
+    line-height: 1.2;
+    letter-spacing: -2px;
+  }
+
+  .contact-hero__body h2 {
+    margin-bottom: 40px;
+    font-size: 40px;
+    line-height: 1.15;
+    letter-spacing: -1px;
+  }
+
+  .contact-form {
+    gap: 12px;
+  }
+
+  .contact-form-stage {
+    min-height: 318px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    height: 50px;
+  }
+
+  .contact-form__submit {
+    width: 199px;
+    height: 64px;
+    margin-top: 28px;
+    padding: 20px 40px;
+  }
+
+  .contact-status {
+    min-height: 100%;
+    text-align: left;
+  }
+
+  .contact-status h3 {
+    font-size: 30px;
+    line-height: 1.2;
+    letter-spacing: -2px;
+  }
+
+  .contact-status p,
+  .contact-status__action {
+    font-size: 16px;
+  }
+
+  .contact-links {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 84px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
