@@ -1,7 +1,7 @@
 /* Project case page: selected visuals slider and related projects */
 
 .project-slider {
-  --slider-folded-size: clamp(38px, 4.55vw, 44px);
+  --slider-folded-size: clamp(38px, 4.55vw, 50px);
   --slider-number-color: #fff;
   position: relative;
   width: min(968px, calc(100% - var(--page-pad) * 2));
@@ -42,7 +42,7 @@
 }
 
 .project-slider__slide:hover:not(.is-active) {
-  flex-basis: calc(var(--slider-folded-size) * 1.2);
+  flex-basis: calc(var(--slider-folded-size) * 1.5);
 }
 
 .project-slider__slide:hover:not(.is-active)::after {

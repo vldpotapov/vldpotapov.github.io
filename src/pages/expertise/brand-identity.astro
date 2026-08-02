@@ -1,0 +1,327 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import LogoMarquee from "../../components/LogoMarquee.astro";
+import MoreProjects from "../../components/MoreProjects.astro";
+import ImageLightbox from "../../components/ImageLightbox.astro";
+import ExploreExpertise from "../../components/ExploreExpertise.astro";
+import { moreProjects } from "../../data/site";
+import "../../styles/global.css";
+
+const visualSystemItems = [
+  {
+    title: "2020 - Early Visual Direction",
+    description:
+      "The 2020 materials show an early stage of the visual language, when the brand was beginning to establish more consistent graphic principles across marketing communication. The system was still flexible and experimental, but recurring approaches to layout, typography, color, and imagery were already beginning to emerge.",
+    video: "/videos/expertise/branding/slot-guide-2020.mp4",
+    poster: "/videos/expertise/branding/posters/slot-guide-2020.png",
+  },
+  {
+    title: "2022 - Developing Consistency",
+    description:
+      "By 2022, the visual language had become more structured and recognizable. Graphic elements, digital layouts, presentation materials, and campaign visuals began to follow a more unified direction, creating stronger consistency across different formats and communication channels.",
+    video: "/videos/expertise/branding/slot-guide-2022.mp4",
+    poster: "/videos/expertise/branding/posters/slot-guide-2022.png",
+  },
+  {
+    title: "2024 - Brand Book",
+    description:
+      "The 2024 brand book formalized the visual system, bringing together typography, color, graphic elements, layout principles, and examples of application in one consistent reference.",
+    video: "/videos/expertise/branding/brandbook-2024.mp4",
+    poster: "/videos/expertise/branding/posters/brandbook-2024.png",
+  },
+  {
+    title: "2026 - Brand Book",
+    description:
+      "The latest Slotegrator brand book presents the most developed version of the visual system, bringing together updated principles for typography, imagery, graphic elements, digital design, 3D, and campaigns.",
+    video: "/videos/expertise/branding/brandbook-2026.mp4",
+    poster: "/videos/expertise/branding/posters/brandbook-2026.png",
+  },
+];
+
+const socialMediaImages = Array.from({ length: 8 }, (_, index) => ({
+  src: `/images/expertise/branding/smm-${index + 1}.png`,
+  alt: `Slotegrator social media design example ${index + 1}`,
+}));
+
+const ebookImages = Array.from({ length: 5 }, (_, index) => ({
+  src: `/images/expertise/branding/ebook-${index + 1}.png`,
+  alt: `Slotegrator editorial and ebook design example ${index + 1}`,
+}));
+
+const keyVisualVideos = [
+  {
+    video: "/videos/expertise/branding/keyvisual-1.mp4",
+    poster: "/videos/expertise/branding/posters/keyvisual-1.png",
+    alt: "Slotegrator 3D key visual animation 1",
+  },
+  {
+    video: "/videos/expertise/branding/keyvisual-2.mp4",
+    poster: "/videos/expertise/branding/posters/keyvisual-2.png",
+    alt: "Slotegrator 3D key visual animation 2",
+  },
+];
+---
+
+<BaseLayout
+  title="Brand Identity | Potapov Visual Designer"
+  description="Brand identity, visual systems, and branding work by Vladimir Potapov."
+>
+  <Header />
+
+  <main class="expertise-page expertise-page--brand-identity">
+    <section class="expertise-hero" aria-labelledby="brand-identity-title">
+      <div class="expertise-hero__title-block">
+        <h1 class="expertise-hero__title" id="brand-identity-title">Brand Identity</h1>
+      </div>
+    </section>
+
+    <section class="expertise-overview" aria-labelledby="brand-overview-title">
+      <img
+        class="expertise-overview__image"
+        src="/images/expertise/branding/branding-hero.png"
+        alt="Brand identity visual system"
+      />
+
+      <div class="expertise-overview__inner">
+        <div class="expertise-overview__spacer" aria-hidden="true"></div>
+        <div class="expertise-overview__copy">
+          <h2 class="section-label" id="brand-overview-title">// Overview</h2>
+          <p>
+            I develop visual identities for existing brands, helping them evolve while staying recognizable and
+            consistent. <span>Individual design solutions become part of one flexible and coherent brand system.</span>
+            My work spans visual direction, key visuals, 3D, digital products, campaigns, print, events, and motion.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="expertise-visual-language" aria-labelledby="visual-language-title">
+      <h2 class="section-label" id="visual-language-title">// Visual Language</h2>
+
+      <div class="expertise-visual-language__intro">
+        <div class="expertise-visual-language__spacer" aria-hidden="true"></div>
+        <div class="expertise-visual-language__copy">
+          <h3>Brand Evolution &amp; Visual System</h3>
+          <div>
+            <p>Slotegrator provides a clear example of how a brand can gradually evolve through continuous design work rather than a single isolated redesign.</p>
+            <p>Over several years, I worked alongside the marketing and design team to develop and apply the brand's visual language across websites, product pages, campaigns, 3D visuals, social media, editorial materials, and brand guidelines.</p>
+            <p>The following timeline shows how separate visual decisions gradually developed into a more coherent and adaptable brand system.</p>
+          </div>
+        </div>
+      </div>
+
+      <figure class="expertise-visual-language__media">
+        <button
+          class="expertise-lightbox-media"
+          type="button"
+          aria-label="Open Logo Evolution image"
+          data-lightbox-image
+        >
+          <img
+            src="/images/expertise/branding/logo.png"
+            alt="Evolution of the Slotegrator logo from 2019 to 2026"
+            loading="lazy"
+            decoding="async"
+          />
+        </button>
+        <figcaption class="expertise-visual-language__caption">
+          <h3>Logo Evolution</h3>
+          <p>Slotegrator's logo evolved through several stages, becoming cleaner, more confident, and better suited to a modern digital brand.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="expertise-visual-language__media">
+        <div class="expertise-visual-language__gallery">
+          <button
+            class="expertise-lightbox-media"
+            type="button"
+            aria-label="Open website evolution image from 2019 to 2023"
+            data-lightbox-image
+          >
+            <img
+              src="/images/expertise/branding/web main.png"
+              alt="Evolution of the Slotegrator website from 2019 to 2023"
+              loading="lazy"
+              decoding="async"
+            />
+          </button>
+
+          <button
+            class="expertise-lightbox-media"
+            type="button"
+            aria-label="Open product pages evolution image"
+            data-lightbox-image
+          >
+            <img
+              src="/images/expertise/branding/web-products.png"
+              alt="Evolution of Slotegrator digital product pages"
+              loading="lazy"
+              decoding="async"
+            />
+          </button>
+
+          <button
+            class="expertise-lightbox-media"
+            type="button"
+            aria-label="Open 2026 website evolution image"
+            data-lightbox-image
+          >
+            <img
+              src="/images/expertise/branding/web-2026.png"
+              alt="Slotegrator website visual system in 2026"
+              loading="lazy"
+              decoding="async"
+            />
+          </button>
+        </div>
+
+        <figcaption class="expertise-visual-language__caption">
+          <h3>Digital Evolution</h3>
+          <p>The evolution of Slotegrator's website and product pages reflects the broader development of the brand's digital presence. Across several iterations, the experience became clearer, more structured, and more visually distinctive - moving from information-focused layouts toward a unified system with stronger hierarchy, consistent art direction, and individual product key visuals.</p>
+        </figcaption>
+      </figure>
+
+      <div class="expertise-system">
+        <div class="expertise-system__intro">
+          <h3>Building the Visual System</h3>
+          <p>The brand's visual language evolved through typography, color, graphic elements, 3D, and motion, gradually forming a more consistent and flexible system.</p>
+        </div>
+
+        <div class="expertise-system__list">
+          {visualSystemItems.map((item) => (
+            <article class="expertise-system__item">
+              <figure class="expertise-system__video">
+                <video
+                  src={item.video}
+                  poster={item.poster}
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  data-hover-video
+                  aria-label={item.title}
+                ></video>
+              </figure>
+              <div class="expertise-visual-language__caption">
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div class="expertise-identity-use">
+        <div class="expertise-system__intro">
+          <h3>Identity in Use</h3>
+          <p>A visual identity becomes meaningful only when it works consistently across real applications. The following examples show how the Slotegrator visual language was adapted to different types of communication while maintaining a recognizable overall character.</p>
+        </div>
+
+        <div class="expertise-identity-use__list">
+          <article class="expertise-identity-use__item">
+            <div class="expertise-identity-use__copy">
+              <h3>Social Media</h3>
+              <p>Social media required a flexible system capable of supporting many topics, formats, and campaigns. Layouts, typography, graphic elements, and imagery were adapted for regular content while preserving consistency across individual posts and larger communication series.</p>
+            </div>
+            <div class="expertise-identity-use__gallery">
+              {socialMediaImages.map((image) => (
+                <button
+                  class="expertise-lightbox-media"
+                  type="button"
+                  aria-label={`Open ${image.alt}`}
+                  data-lightbox-image
+                >
+                  <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+                </button>
+              ))}
+            </div>
+          </article>
+
+          <article class="expertise-identity-use__item">
+            <div class="expertise-identity-use__copy">
+              <h3>Editorial &amp; eBooks</h3>
+              <p>Editorial materials and eBooks allowed the brand system to work across longer, more structured formats. Typography, infographics, illustrations, 3D elements, and page layouts were combined to make complex information clear while maintaining a strong visual identity.</p>
+            </div>
+            <div class="expertise-identity-use__gallery">
+              {ebookImages.map((image) => (
+                <button
+                  class="expertise-lightbox-media"
+                  type="button"
+                  aria-label={`Open ${image.alt}`}
+                  data-lightbox-image
+                >
+                  <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+                </button>
+              ))}
+            </div>
+          </article>
+
+          <article class="expertise-identity-use__item">
+            <div class="expertise-identity-use__copy">
+              <h3>3D Key Visuals</h3>
+              <p>3D key visuals became an important part of the brand's product communication. Each visual was designed around an individual product idea, but shared materials, lighting, composition, and visual principles helped connect the full series to the broader Slotegrator identity.</p>
+            </div>
+            <div class="expertise-identity-use__gallery expertise-identity-use__gallery--video">
+              {keyVisualVideos.map((item) => (
+                <figure class="expertise-system__video">
+                  <video
+                    src={item.video}
+                    poster={item.poster}
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                    data-hover-video
+                    aria-label={item.alt}
+                  ></video>
+                </figure>
+              ))}
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <ExploreExpertise currentSlug="brand-identity" />
+
+    <MoreProjects
+      projects={moreProjects.slice(0, 3)}
+      title="// Selected Projects"
+      singleColumnBreakpoint
+      selected
+    />
+
+    <LogoMarquee />
+  </main>
+
+  <Footer />
+  <ImageLightbox />
+</BaseLayout>
+
+<script>
+  const initExpertiseVideos = () => {
+    const videos = document.querySelectorAll<HTMLVideoElement>(".expertise-page [data-hover-video]");
+    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    videos.forEach((video) => {
+      if (video.dataset.videoReady === "true") return;
+      video.dataset.videoReady = "true";
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.removeAttribute("controls");
+
+      if (canHover) {
+        video.addEventListener("pointerenter", () => video.play().catch(() => {}));
+        video.addEventListener("pointerleave", () => video.pause());
+      } else {
+        video.addEventListener("touchstart", () => video.play().catch(() => {}), { passive: true });
+      }
+    });
+  };
+
+  initExpertiseVideos();
+  document.addEventListener("astro:page-load", initExpertiseVideos);
+</script>

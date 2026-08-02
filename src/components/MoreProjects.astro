@@ -1,11 +1,23 @@
 ---
 import ProjectMedia from "./ProjectMedia.astro";
 
-const { projects = [] } = Astro.props;
+const {
+  projects = [],
+  title = "// More Projects",
+  singleColumnBreakpoint = false,
+  selected = false,
+} = Astro.props;
 ---
 
-<section class="more-projects section" data-reveal="bottom">
-  <h2 class="section-label">// More Projects</h2>
+<section
+  class:list={[
+    "more-projects",
+    "section",
+    { "more-projects--single-breakpoint": singleColumnBreakpoint, "more-projects--selected": selected },
+  ]}
+  data-reveal={selected ? undefined : "bottom"}
+>
+  <h2 class="section-label">{title}</h2>
   <div class="more-projects__grid">
     {projects.map((project) => (
       <a class="more-card" href={project.slug}>

@@ -267,6 +267,7 @@ CONTACT_TO_EMAIL
 /404                       src/pages/404.astro
 /projects                  src/pages/projects/index.astro
 /projects/igb-live-2026    src/pages/projects/igb-live-2026.astro
+/expertise/brand-identity  src/pages/expertise/brand-identity.astro
 ```
 
 Общие компоненты:
@@ -276,6 +277,7 @@ src/components/Header.astro
 src/components/Footer.astro
 src/components/LogoMarquee.astro
 src/components/NameMarquee.astro
+src/components/ImageLightbox.astro
 src/components/ProjectMedia.astro
 src/components/ProjectSlider.astro
 ```
@@ -295,6 +297,7 @@ src/styles/pages/home.css                     главная: Intro, Expertise, 
 src/styles/pages/contact.css                  базовые стили Contact
 src/styles/pages/about.css                    базовые стили About
 src/styles/pages/projects.css                 страница списка проектов
+src/styles/pages/expertise.css                страницы направлений Expertise
 src/styles/pages/not-found.css                страница 404
 
 src/styles/pages/project/core.css             основа страницы проекта
@@ -376,6 +379,45 @@ src/data/site.ts
 `slug` должен совпадать с реальным адресом страницы проекта.
 
 Скорость бегущих строк регулируется в `src/styles/shared.css` через CSS-переменные и `animation-duration` для marquee-блоков.
+
+## Expertise
+
+Первая отдельная страница направления:
+
+```text
+src/pages/expertise/brand-identity.astro
+```
+
+Стили hero и будущих блоков страниц Expertise:
+
+```text
+src/styles/pages/expertise.css
+```
+
+The reusable `Explore Expertise` navigation is implemented in `src/components/ExploreExpertise.astro`. Pass the current page slug through `currentSlug`; that row becomes a non-clickable current-page state while the remaining rows keep their links and hover animation.
+
+`MoreProjects.astro` also supports the Expertise-page variant through `title`, `selected`, and `singleColumnBreakpoint`. This variant can show a smaller project selection and switches directly from three columns to one at `960px`, while the project-page version keeps its existing two-column intermediate layout.
+
+Пока все шесть карточек секции Expertise на главной временно ведут на `/expertise/brand-identity/`. Когда появятся отдельные страницы направлений, ссылки нужно обновить в `src/pages/index.astro`.
+
+Ассеты страницы Brand Identity складываются сюда:
+
+```text
+public/images/expertise/branding
+public/videos/expertise/branding
+```
+
+The `Building the Visual System` videos and the `Identity in Use` media are configured in the data arrays at the top of `src/pages/expertise/brand-identity.astro`. Posters are stored in `public/videos/expertise/branding/posters`; these videos are intentionally muted and do not show a sound control. Social and ebook images are read in order from `smm-1.png` through `smm-8.png` and `ebook-1.png` through `ebook-5.png`.
+
+Тексты блоков `Overview` и `Visual Language` редактируются в `src/pages/expertise/brand-identity.astro`. Полноширинное изображение Overview сейчас подключено отсюда:
+
+```text
+public/images/expertise/branding/branding-hero.png
+```
+
+Изображения страницы Expertise, которые должны раскрываться поверх сайта, получают атрибут `data-lightbox-image`. Общая разметка и логика находятся в `src/components/ImageLightbox.astro`; внешний вид overlay используется совместно со страницей проекта из `src/styles/effects.css`.
+
+После основного контента страница использует общие компоненты `MoreProjects`, `LogoMarquee` и `Footer`.
 
 ## Проекты
 

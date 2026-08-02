@@ -97,6 +97,7 @@
 .service__number-sticky {
   position: sticky;
   top: 120px;
+  align-self: start;
   width: min(456px, 100%);
   height: clamp(220px, 19.8vw, 380px);
   perspective: 1200px;
@@ -166,6 +167,10 @@
   display: block;
   max-width: none;
   margin: 0;
+}
+
+.services__list .service:last-child {
+  min-height: 0;
 }
 
 .service__body {

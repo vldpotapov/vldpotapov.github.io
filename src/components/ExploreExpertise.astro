@@ -1,0 +1,234 @@
+---
+import { services } from "../data/site";
+
+interface Props {
+  currentSlug: string;
+}
+
+const { currentSlug } = Astro.props;
+
+const slugs = [
+  "brand-identity",
+  "marketing-design",
+  "3d-visualization",
+  "digital-illustration",
+  "motion-design",
+  "event-design",
+];
+
+const expertiseItems = services.map((service, index) => ({
+  ...service,
+  number: String(index + 1).padStart(2, "0"),
+  slug: slugs[index],
+  href: `/expertise/${slugs[index]}/`,
+}));
+---
+
+<section class="explore-expertise" aria-labelledby="explore-expertise-title">
+  <div class="explore-expertise__title-wrapper">
+    <h2 id="explore-expertise-title">// Explore Expertise</h2>
+  </div>
+
+  <div class="explore-expertise__list">
+    {
+      expertiseItems.map((item) => {
+        const isCurrent = item.slug === currentSlug;
+        const content = (
+          <>
+            <span class="explore-expertise__identity">
+              <span class="explore-expertise__number">{item.number}</span>
+              <strong>{item.title}</strong>
+            </span>
+            <span class="explore-expertise__tags" aria-hidden="true">
+              {item.items.map((tag) => <span>{tag}</span>)}
+            </span>
+            <img class="explore-expertise__arrow" src="/icons/ui/arrow45.svg" alt="" aria-hidden="true" />
+          </>
+        );
+
+        return isCurrent ? (
+          <div class="explore-expertise__row is-current" aria-current="page">
+            {content}
+          </div>
+        ) : (
+          <a class="explore-expertise__row" href={item.href}>
+            {content}
+          </a>
+        );
+      })
+    }
+  </div>
+</section>
+
+<style>
+  .explore-expertise {
+    padding: 0 0 120px;
+    border-top: 1px solid var(--gray-77);
+    background: var(--white);
+    color: var(--black);
+  }
+
+  .explore-expertise__title-wrapper {
+    height: 50px;
+    padding: 12px var(--page-pad);
+  }
+
+  .explore-expertise__title-wrapper h2 {
+    margin: 0;
+    color: var(--accent);
+    font-size: var(--type-h2-deco-size);
+    font-weight: 500;
+    line-height: var(--type-h2-deco-line);
+    letter-spacing: var(--type-h2-deco-track);
+  }
+
+  .explore-expertise__list {
+    display: grid;
+    margin-top: 60px;
+  }
+
+  .explore-expertise__row {
+    position: relative;
+    display: grid;
+    min-height: 70px;
+    grid-template-columns: 250px minmax(0, 1fr) 30px;
+    align-items: center;
+    gap: 0;
+    padding: 0 var(--page-pad);
+    border-bottom: 1px solid var(--gray-77);
+    color: var(--black);
+    overflow: hidden;
+    transition: color 180ms ease;
+  }
+
+  .explore-expertise__row::before {
+    content: "";
+    position: absolute;
+    inset: 50% 0 auto;
+    z-index: 0;
+    height: 0;
+    background: var(--accent);
+    transform: translateY(-50%);
+    transition: height 260ms ease;
+  }
+
+  .explore-expertise__row > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .explore-expertise__identity {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    align-items: baseline;
+    gap: 10px;
+    font-size: 18px;
+    line-height: 1.3;
+  }
+
+  .explore-expertise__identity strong {
+    overflow: hidden;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .explore-expertise__number {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.35;
+  }
+
+  .explore-expertise__tags {
+    display: flex;
+    min-width: 0;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .explore-expertise__tags > span {
+    padding: 2px 10px;
+    border-radius: 8px;
+    background: rgb(21 20 20 / 8%);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    white-space: nowrap;
+  }
+
+  .explore-expertise__arrow {
+    display: block;
+    width: 30px;
+    height: 30px;
+  }
+
+  .explore-expertise__row.is-current {
+    background: #f5f5f5;
+    color: #4f4f4f;
+    cursor: default;
+  }
+
+  .explore-expertise__row.is-current::before {
+    display: none;
+  }
+
+  .explore-expertise__row.is-current .explore-expertise__tags > span {
+    background: rgb(21 20 20 / 8%);
+  }
+
+  .explore-expertise__row.is-current .explore-expertise__arrow {
+    opacity: 0.7;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .explore-expertise__row:not(.is-current):hover {
+      color: var(--white);
+    }
+
+    .explore-expertise__row:not(.is-current):hover::before {
+      height: 100%;
+    }
+
+    .explore-expertise__row:not(.is-current):hover .explore-expertise__arrow {
+      filter: brightness(0) invert(1);
+    }
+
+    .explore-expertise__row:not(.is-current):hover .explore-expertise__tags > span {
+      background: rgb(21 20 20 / 12%);
+    }
+  }
+
+  .explore-expertise__row:not(.is-current):focus-visible {
+    color: var(--white);
+    outline: 2px solid var(--black);
+    outline-offset: -2px;
+  }
+
+  .explore-expertise__row:not(.is-current):focus-visible::before {
+    height: 100%;
+  }
+
+  .explore-expertise__row:not(.is-current):focus-visible .explore-expertise__arrow {
+    filter: brightness(0) invert(1);
+  }
+
+  @media (max-width: 760px) {
+    .explore-expertise {
+      padding-bottom: 80px;
+    }
+
+    .explore-expertise__row {
+      grid-template-columns: minmax(0, 1fr) 30px;
+      padding: 0 var(--page-pad);
+    }
+
+    .explore-expertise__identity {
+      font-size: 18px;
+    }
+
+    .explore-expertise__tags {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,106 @@
+<div class="image-lightbox" data-image-lightbox aria-hidden="true">
+  <button class="image-lightbox__close" type="button" aria-label="Close image" data-lightbox-close>
+    <img src="/icons/ui/close.svg" alt="" />
+  </button>
+  <img class="image-lightbox__img" src="" alt="" />
+</div>
+
+<script>
+  const lightbox = document.querySelector<HTMLElement>("[data-image-lightbox]");
+  const lightboxImage = lightbox?.querySelector<HTMLImageElement>(".image-lightbox__img");
+  const closeButton = lightbox?.querySelector<HTMLButtonElement>("[data-lightbox-close]");
+  const triggers = document.querySelectorAll<HTMLElement>("[data-lightbox-image]");
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  let zoomCursor: HTMLElement | null = null;
+  let cursorX = window.innerWidth / 2;
+  let cursorY = window.innerHeight / 2;
+  let cursorTicking = false;
+
+  if (canHover && lightbox && triggers.length) {
+    zoomCursor = document.querySelector<HTMLElement>(".project-zoom-cursor");
+
+    if (!zoomCursor) {
+      zoomCursor = document.createElement("div");
+      zoomCursor.className = "project-zoom-cursor";
+      zoomCursor.textContent = "Zoom";
+      document.body.appendChild(zoomCursor);
+    }
+
+    zoomCursor.classList.add("expertise-lightbox-cursor");
+  }
+
+  const updateCursor = () => {
+    if (!zoomCursor) return;
+    zoomCursor.style.left = `${cursorX}px`;
+    zoomCursor.style.top = `${cursorY}px`;
+    cursorTicking = false;
+  };
+
+  const trackCursor = (event: PointerEvent | MouseEvent) => {
+    cursorX = event.clientX;
+    cursorY = event.clientY;
+
+    if (cursorTicking) return;
+    cursorTicking = true;
+    requestAnimationFrame(updateCursor);
+  };
+
+  const closeLightbox = () => {
+    if (!lightbox) return;
+    lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.documentElement.style.overflow = "";
+
+    if (zoomCursor) {
+      zoomCursor.textContent = "Zoom";
+      zoomCursor.classList.remove("is-visible");
+    }
+  };
+
+  const openLightbox = (image: HTMLImageElement) => {
+    if (!lightbox || !lightboxImage) return;
+    lightboxImage.src = image.currentSrc || image.src;
+    lightboxImage.alt = image.alt;
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.documentElement.style.overflow = "hidden";
+
+    if (zoomCursor) {
+      zoomCursor.textContent = "Close";
+      zoomCursor.classList.add("is-visible");
+      updateCursor();
+    }
+  };
+
+  document.addEventListener("mousemove", trackCursor);
+
+  triggers.forEach((trigger) => {
+    const image = trigger.querySelector<HTMLImageElement>("img");
+    if (!image) return;
+
+    trigger.addEventListener("click", () => openLightbox(image));
+
+    if (canHover && zoomCursor) {
+      trigger.addEventListener("pointerenter", () => {
+        zoomCursor!.textContent = "Zoom";
+        zoomCursor!.classList.add("is-visible");
+      });
+      trigger.addEventListener("pointermove", trackCursor);
+      trigger.addEventListener("pointerleave", () => {
+        if (!lightbox?.classList.contains("is-open")) zoomCursor!.classList.remove("is-visible");
+      });
+    }
+  });
+
+  lightbox?.addEventListener("pointermove", trackCursor);
+  lightbox?.addEventListener("click", closeLightbox);
+  closeButton?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    closeLightbox();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && lightbox?.classList.contains("is-open")) closeLightbox();
+  });
+</script>

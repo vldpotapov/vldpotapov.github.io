@@ -66,7 +66,6 @@ html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
   overflow-x: clip;
-  overflow-x: hidden;
 }
 
 html.menu-open {
@@ -77,7 +76,6 @@ body {
   margin: 0;
   min-width: 320px;
   overflow-x: clip;
-  overflow-x: hidden;
   font-size: var(--type-body-main-size);
   line-height: var(--type-body-main-line);
   letter-spacing: var(--type-body-main-track);

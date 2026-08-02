@@ -74,7 +74,11 @@ import "../styles/global.css";
               const number = String(index + 1).padStart(2, "0");
 
               return (
-                <article class="service" data-service-number={number}>
+                <a
+                  class="service"
+                  href="/expertise/brand-identity/"
+                  data-service-number={number}
+                >
                   <div class="service__body">
                     <h2>{service.title}</h2>
                     <p>{service.intro}</p>
@@ -87,7 +91,7 @@ import "../styles/global.css";
                       ))}
                     </ul>
                   </div>
-                </article>
+                </a>
               );
             })
           }

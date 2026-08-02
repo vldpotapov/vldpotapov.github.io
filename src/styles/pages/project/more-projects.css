@@ -17,6 +17,15 @@
   margin-top: 80px;
 }
 
+.more-projects--selected {
+  padding-top: 12px;
+  padding-bottom: 180px;
+}
+
+.more-projects--selected .section-label {
+  min-height: 38px;
+}
+
 .more-card {
   display: grid;
   row-gap: 12px;
@@ -75,9 +84,17 @@
   .more-projects__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .more-projects--single-breakpoint .more-projects__grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 760px) {
+  .more-projects--selected {
+    padding-bottom: 80px;
+  }
+
   .more-projects__grid {
     grid-template-columns: 1fr;
     gap: 16px;
