@@ -398,6 +398,8 @@ The reusable `Explore Expertise` navigation is implemented in `src/components/Ex
 
 `MoreProjects.astro` also supports the Expertise-page variant through `title`, `selected`, and `singleColumnBreakpoint`. This variant can show a smaller project selection and switches directly from three columns to one at `960px`, while the project-page version keeps its existing two-column intermediate layout.
 
+Подборка `Selected Projects` для Brand Identity формируется в `selectedProjects` в начале `src/pages/expertise/brand-identity.astro`. Первая карточка использует реальные данные IGB из массива `projects`, следующие карточки пока берутся из `moreProjects` как заглушки.
+
 Пока все шесть карточек секции Expertise на главной временно ведут на `/expertise/brand-identity/`. Когда появятся отдельные страницы направлений, ссылки нужно обновить в `src/pages/index.astro`.
 
 Ассеты страницы Brand Identity складываются сюда:
@@ -408,6 +410,10 @@ public/videos/expertise/branding
 ```
 
 The `Building the Visual System` videos and the `Identity in Use` media are configured in the data arrays at the top of `src/pages/expertise/brand-identity.astro`. Posters are stored in `public/videos/expertise/branding/posters`; these videos are intentionally muted and do not show a sound control. Social and ebook images are read in order from `smm-1.png` through `smm-8.png` and `ebook-1.png` through `ebook-5.png`.
+
+В `visualSystemItems` поле `description` может быть обычной строкой или массивом строк. Каждая строка массива выводится отдельным абзацем.
+
+Дополнительные изображения внутри `Editorial & eBooks` настраиваются в массиве `editorialEditionImages` той же страницы. Сетка использует изображения `prediction_digital_*` / `prediction_print_*` из проекта IGB.
 
 Тексты блоков `Overview` и `Visual Language` редактируются в `src/pages/expertise/brand-identity.astro`. Полноширинное изображение Overview сейчас подключено отсюда:
 
@@ -426,6 +432,8 @@ public/images/expertise/branding/branding-hero.png
 ```text
 src/pages/projects/igb-live-2026.astro
 ```
+
+Scroll appearance directions for the IGB page are set with `data-reveal="left|right|bottom"` in `src/pages/projects/igb-live-2026.astro`; optional timing is set with `data-reveal-delay` in milliseconds. Section labels, the hero, logo marquee, and footer do not use these content reveal animations.
 
 Обычные правки проекта лучше делать здесь:
 
@@ -612,6 +620,33 @@ public/images/logos
 ```
 
 ## Figma MCP
+
+Основной способ прямого чтения макетов — Figwright. Он позволяет Codex читать выделенные фреймы, стили, компоненты и тексты непосредственно из открытого файла Figma без промежуточного экспорта в JSON:
+
+1. Перезапустить Codex, чтобы загрузился MCP-сервер `figwright` из `C:\Users\user\.codex\config.toml`.
+2. В Figma Desktop открыть `Plugins → Development → Import plugin from manifest…`.
+3. Выбрать `C:\Users\user\.figwright\plugin\manifest.json` (импорт выполняется только один раз).
+4. Запустить `Plugins → Development → Figwright` и оставить окно плагина открытым.
+5. Выделить нужный фрейм и написать Codex, что фрейм готов к чтению.
+
+При успешном подключении проверка `ping` показывает:
+
+- `hop: "e2e"`;
+- `connectedCount: 1`;
+- имя открытого файла и текущей страницы Figma.
+
+Если окно плагина показывает `Reconnecting` или `waiting for an MCP client`:
+
+1. Закрыть окно Figwright в Figma.
+2. Убедиться, что Codex открыт и MCP-сервер `figwright` загружен.
+3. В Figma открыть `Plugins → Development → Manage plugins in development`.
+4. Если в списке есть старый или повторный Figwright, удалить его.
+5. Повторно импортировать `C:\Users\user\.figwright\plugin\manifest.json`.
+6. Запустить Figwright и оставить окно плагина открытым.
+
+После подключения достаточно выделять нужные фреймы в Figma. Локальный Frame Export для обычной работы больше не требуется.
+
+Установленная версия плагина: `v0.3.0`. Старый Figma Bridge и локальный Frame Export остаются резервными вариантами на случай проблем с прямым соединением.
 
 Инструкция по подключению локального Figma Bridge:
 

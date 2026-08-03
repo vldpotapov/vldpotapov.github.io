@@ -37,10 +37,10 @@
   margin: 0 0 60px;
   padding: 0 var(--page-pad);
   color: var(--accent);
-  font-size: var(--type-h2-deco-size);
+  font-size: var(--type-h2-v2-size);
   font-weight: 500;
-  line-height: var(--type-h2-deco-line);
-  letter-spacing: var(--type-h2-deco-track);
+  line-height: var(--type-h2-v2-line);
+  letter-spacing: var(--type-h2-v2-track);
 }
 
 .old-projects__list {

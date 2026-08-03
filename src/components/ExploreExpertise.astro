@@ -76,10 +76,10 @@ const expertiseItems = services.map((service, index) => ({
   .explore-expertise__title-wrapper h2 {
     margin: 0;
     color: var(--accent);
-    font-size: var(--type-h2-deco-size);
+    font-size: var(--type-h2-v2-size);
     font-weight: 500;
-    line-height: var(--type-h2-deco-line);
-    letter-spacing: var(--type-h2-deco-track);
+    line-height: var(--type-h2-v2-line);
+    letter-spacing: var(--type-h2-v2-track);
   }
 
   .explore-expertise__list {
@@ -90,11 +90,10 @@ const expertiseItems = services.map((service, index) => ({
   .explore-expertise__row {
     position: relative;
     display: grid;
-    min-height: 70px;
     grid-template-columns: 250px minmax(0, 1fr) 30px;
     align-items: center;
     gap: 0;
-    padding: 0 var(--page-pad);
+    padding: 20px var(--page-pad);
     border-bottom: 1px solid var(--gray-77);
     color: var(--black);
     overflow: hidden;
@@ -144,12 +143,12 @@ const expertiseItems = services.map((service, index) => ({
     display: flex;
     min-width: 0;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
   }
 
   .explore-expertise__tags > span {
-    padding: 2px 10px;
-    border-radius: 8px;
+    padding: 2px 8px;
+    border-radius: 6px;
     background: rgb(21 20 20 / 8%);
     font-size: 16px;
     font-weight: 400;
@@ -220,7 +219,7 @@ const expertiseItems = services.map((service, index) => ({
 
     .explore-expertise__row {
       grid-template-columns: minmax(0, 1fr) 30px;
-      padding: 0 var(--page-pad);
+      padding: 20px var(--page-pad);
     }
 
     .explore-expertise__identity {

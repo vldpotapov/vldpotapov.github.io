@@ -75,9 +75,9 @@ const toolIcons: Record<string, string> = {
         return (
           <section class="case-concept case-section">
             <h2 class="section-label">// {section.eyebrow}</h2>
-            <div class="case-concept__grid" data-reveal="left">
+            <div class="case-concept__grid">
               {section.callout && (
-                <div class="case-callout">
+                <div class="case-callout" data-reveal="bottom">
                   <span class="case-callout__icon" aria-hidden="true"></span>
                   <p>{section.callout} {section.calloutAccent && <strong>{section.calloutAccent}</strong>}</p>
                 </div>
@@ -88,7 +88,7 @@ const toolIcons: Record<string, string> = {
             </div>
             {section.image && <ProjectMedia class="case-concept__image" data-reveal="bottom" src={section.image.src} alt={section.image.alt} ratio="16 / 5.7" />}
             {section.attributes && (
-              <div class="case-attributes" data-reveal="bottom" data-reveal-delay="150">
+              <div class="case-attributes" data-reveal="left" data-reveal-delay="150">
                 <h3>{section.attributes.title}</h3>
                 <p>{section.attributes.text}</p>
               </div>
@@ -205,7 +205,7 @@ const toolIcons: Record<string, string> = {
             </div>
             {section.followup && (
               <>
-                <div class="case-story__intro case-story__intro--followup" data-reveal="left">
+                <div class="case-story__intro case-story__intro--followup" data-reveal="bottom">
                   <h2>{section.followup.title}</h2>
                   <div>
                     <div class="case-copy">
@@ -254,7 +254,7 @@ const toolIcons: Record<string, string> = {
                   ))}
                 </div>
                 {section.followup.after?.map((block) => (
-                  <div class="case-story__intro case-story__intro--followup" data-reveal="left">
+                  <div class="case-story__intro case-story__intro--followup" data-reveal="bottom">
                     <h2>{block.title}</h2>
                     <div>
                       <div class="case-copy">
@@ -280,7 +280,7 @@ const toolIcons: Record<string, string> = {
                   </div>
                 ))}
                 {section.followup.afterThreeUp?.map((block) => (
-                  <div class="case-story__intro case-story__intro--followup" data-reveal="left">
+                  <div class="case-story__intro case-story__intro--followup" data-reveal="bottom">
                     <h2>{block.title}</h2>
                     <div>
                       <div class="case-copy">
@@ -306,23 +306,23 @@ const toolIcons: Record<string, string> = {
                   </div>
                 ))}
                 {section.followup.wideMedia?.map((block) => (
-                  <div class="case-wide-media" data-reveal="bottom">
+                  <div class="case-wide-media">
                     {block.image.videoSrc ? (
-                      <figure class="project-media project-video case-wide-media__image" style={`--media-ratio: ${block.image.ratio ?? "16 / 9"}`}>
+                      <figure class="project-media project-video case-wide-media__image" style={`--media-ratio: ${block.image.ratio ?? "16 / 9"}`} data-reveal="bottom">
                         <video src={block.image.videoSrc} poster={block.image.src} muted loop playsinline preload="metadata" data-hover-video aria-label={block.image.alt}></video>
                         {block.image.hasAudio !== false && (
                         <button class="project-video__sound" type="button" aria-label="Turn sound on" data-video-sound><img src="/icons/project/video-muted.svg" alt="" aria-hidden="true" data-video-sound-icon /></button>
                       )}
                       </figure>
                     ) : (
-                      <ProjectMedia class="case-wide-media__image" src={block.image.src} alt={block.image.alt} ratio={block.image.ratio} />
+                      <ProjectMedia class="case-wide-media__image" data-reveal="bottom" src={block.image.src} alt={block.image.alt} ratio={block.image.ratio} />
                     )}
-                    <div class="case-wide-media__copy">
+                    <div class="case-wide-media__copy" data-reveal="bottom">
                       <h3>{block.title}</h3>
                       <p>{block.text}</p>
                     </div>
                     {block.callout && (
-                      <div class="case-callout case-wide-media__callout">
+                      <div class="case-callout case-wide-media__callout" data-reveal="right">
                         <span class="case-callout__icon" aria-hidden="true"></span>
                         <p>{block.callout}</p>
                       </div>
@@ -330,7 +330,7 @@ const toolIcons: Record<string, string> = {
                   </div>
                 ))}
                 {section.followup.afterWideMedia?.map((block) => (
-                  <div class="case-story__intro case-story__intro--followup" data-reveal="left">
+                  <div class="case-story__intro case-story__intro--followup" data-reveal="bottom">
                     <h2>{block.title}</h2>
                     <div>
                       <div class="case-copy">

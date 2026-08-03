@@ -24,7 +24,7 @@ const {
         <ProjectMedia
           class="more-card__image"
           src={project.image}
-          alt={`${project.title} preview`}
+          alt={project.imageAlt ?? `${project.title} preview`}
           ratio="auto"
         />
         <div class="more-card__info">

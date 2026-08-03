@@ -6,35 +6,41 @@ import LogoMarquee from "../../components/LogoMarquee.astro";
 import MoreProjects from "../../components/MoreProjects.astro";
 import ImageLightbox from "../../components/ImageLightbox.astro";
 import ExploreExpertise from "../../components/ExploreExpertise.astro";
-import { moreProjects } from "../../data/site";
+import { moreProjects, projects } from "../../data/site";
 import "../../styles/global.css";
+
+const selectedProjects = [projects[0], ...moreProjects.slice(0, 2)];
 
 const visualSystemItems = [
   {
-    title: "2020 - Early Visual Direction",
-    description:
-      "The 2020 materials show an early stage of the visual language, when the brand was beginning to establish more consistent graphic principles across marketing communication. The system was still flexible and experimental, but recurring approaches to layout, typography, color, and imagery were already beginning to emerge.",
+    title: "2020 — Early Visual Direction",
+    description: [
+      "The 2020 materials show an early stage of the visual language, when the brand was beginning to establish more consistent graphic principles across marketing communication.",
+      "The system was still flexible and experimental, but recurring approaches to layout, typography, color, and imagery were already beginning to emerge.",
+    ],
     video: "/videos/expertise/branding/slot-guide-2020.mp4",
     poster: "/videos/expertise/branding/posters/slot-guide-2020.png",
   },
   {
-    title: "2022 - Developing Consistency",
-    description:
-      "By 2022, the visual language had become more structured and recognizable. Graphic elements, digital layouts, presentation materials, and campaign visuals began to follow a more unified direction, creating stronger consistency across different formats and communication channels.",
+    title: "2022 — Developing Consistency",
+    description: [
+      "By 2022, the visual language had become more structured and recognizable.",
+      "Graphic elements, digital layouts, presentation materials, and campaign visuals began to follow a more unified direction, creating stronger consistency across different formats and communication channels.",
+    ],
     video: "/videos/expertise/branding/slot-guide-2022.mp4",
     poster: "/videos/expertise/branding/posters/slot-guide-2022.png",
   },
   {
-    title: "2024 - Brand Book",
+    title: "2024 — Formalizing the System",
     description:
-      "The 2024 brand book formalized the visual system, bringing together typography, color, graphic elements, layout principles, and examples of application in one consistent reference.",
+      "The 2024 brand book formalized the visual system, bringing typography, color, graphic elements, layout principles, and examples of application into one consistent reference.",
     video: "/videos/expertise/branding/brandbook-2024.mp4",
     poster: "/videos/expertise/branding/posters/brandbook-2024.png",
   },
   {
-    title: "2026 - Brand Book",
+    title: "2026 — Evolved Brand System",
     description:
-      "The latest Slotegrator brand book presents the most developed version of the visual system, bringing together updated principles for typography, imagery, graphic elements, digital design, 3D, and campaigns.",
+      "The 2026 brand book expands this system into a more flexible and digital-first identity, with updated principles for typography, imagery, graphic elements, 3D, and campaigns.",
     video: "/videos/expertise/branding/brandbook-2026.mp4",
     poster: "/videos/expertise/branding/posters/brandbook-2026.png",
   },
@@ -49,6 +55,15 @@ const ebookImages = Array.from({ length: 5 }, (_, index) => ({
   src: `/images/expertise/branding/ebook-${index + 1}.png`,
   alt: `Slotegrator editorial and ebook design example ${index + 1}`,
 }));
+
+const editorialEditionImages = [
+  { src: "/images/projects/igb-live-2026/prediction_digital_1.png", alt: "Prediction Markets digital eBook layout 1" },
+  { src: "/images/projects/igb-live-2026/prediction_digital_2.png", alt: "Prediction Markets digital eBook layout 2" },
+  { src: "/images/projects/igb-live-2026/prediction_digital_3.png", alt: "Prediction Markets digital eBook layout 3" },
+  { src: "/images/projects/igb-live-2026/prediction_print_1.png", alt: "Prediction Markets printed eBook layout 1" },
+  { src: "/images/projects/igb-live-2026/prediction_print_2.png", alt: "Prediction Markets printed eBook layout 2" },
+  { src: "/images/projects/igb-live-2026/prediction_print_3.png", alt: "Prediction Markets printed eBook layout 3" },
+];
 
 const keyVisualVideos = [
   {
@@ -89,9 +104,8 @@ const keyVisualVideos = [
         <div class="expertise-overview__copy">
           <h2 class="section-label" id="brand-overview-title">// Overview</h2>
           <p>
-            I develop visual identities for existing brands, helping them evolve while staying recognizable and
-            consistent. <span>Individual design solutions become part of one flexible and coherent brand system.</span>
-            My work spans visual direction, key visuals, 3D, digital products, campaigns, print, events, and motion.
+            I develop visual identities for existing brands, helping them evolve while staying recognizable and consistent.
+            <span> I turn individual design solutions into flexible, coherent systems. </span>My work spans visual direction, key visuals, 3D, digital products, campaigns, print, events, and motion.
           </p>
         </div>
       </div>
@@ -103,11 +117,10 @@ const keyVisualVideos = [
       <div class="expertise-visual-language__intro">
         <div class="expertise-visual-language__spacer" aria-hidden="true"></div>
         <div class="expertise-visual-language__copy">
-          <h3>Brand Evolution &amp; Visual System</h3>
+          <h3>Brand Evolution</h3>
           <div>
-            <p>Slotegrator provides a clear example of how a brand can gradually evolve through continuous design work rather than a single isolated redesign.</p>
-            <p>Over several years, I worked alongside the marketing and design team to develop and apply the brand's visual language across websites, product pages, campaigns, 3D visuals, social media, editorial materials, and brand guidelines.</p>
-            <p>The following timeline shows how separate visual decisions gradually developed into a more coherent and adaptable brand system.</p>
+            <p>Slotegrator is a clear example of how a brand can evolve through continuous design work rather than a single isolated redesign.</p>
+            <p>Over several years, I worked alongside the marketing and design team to develop and apply its visual language across digital products, campaigns, 3D, social media, editorial materials, and brand guidelines.</p>
           </div>
         </div>
       </div>
@@ -128,7 +141,7 @@ const keyVisualVideos = [
         </button>
         <figcaption class="expertise-visual-language__caption">
           <h3>Logo Evolution</h3>
-          <p>Slotegrator's logo evolved through several stages, becoming cleaner, more confident, and better suited to a modern digital brand.</p>
+          <p>Across several iterations, the Slotegrator logo became simpler, more confident, and more adaptable, while preserving a recognizable connection to the original identity.</p>
         </figcaption>
       </figure>
 
@@ -179,14 +192,14 @@ const keyVisualVideos = [
 
         <figcaption class="expertise-visual-language__caption">
           <h3>Digital Evolution</h3>
-          <p>The evolution of Slotegrator's website and product pages reflects the broader development of the brand's digital presence. Across several iterations, the experience became clearer, more structured, and more visually distinctive - moving from information-focused layouts toward a unified system with stronger hierarchy, consistent art direction, and individual product key visuals.</p>
+          <p>The evolution of Slotegrator’s website and product pages reflects the broader development of the brand — from information-led layouts to a more structured digital system with clearer hierarchy, consistent art direction, and distinct product key visuals.</p>
         </figcaption>
       </figure>
 
       <div class="expertise-system">
         <div class="expertise-system__intro">
           <h3>Building the Visual System</h3>
-          <p>The brand's visual language evolved through typography, color, graphic elements, 3D, and motion, gradually forming a more consistent and flexible system.</p>
+          <p>The brand’s visual language evolved through typography, color, graphic elements, 3D, and motion, gradually forming a more consistent and flexible system.</p>
         </div>
 
         <div class="expertise-system__list">
@@ -206,7 +219,9 @@ const keyVisualVideos = [
               </figure>
               <div class="expertise-visual-language__caption">
                 <h3>{item.title}</h3>
-                <p>{item.description}</p>
+                {(Array.isArray(item.description) ? item.description : [item.description]).map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
               </div>
             </article>
           ))}
@@ -215,15 +230,15 @@ const keyVisualVideos = [
 
       <div class="expertise-identity-use">
         <div class="expertise-system__intro">
-          <h3>Identity in Use</h3>
-          <p>A visual identity becomes meaningful only when it works consistently across real applications. The following examples show how the Slotegrator visual language was adapted to different types of communication while maintaining a recognizable overall character.</p>
+          <h3>Selected Applications</h3>
+          <p>A visual identity becomes meaningful through consistent real-world application. These selected examples show how the Slotegrator visual language adapts to different formats while retaining a recognizable overall character.</p>
         </div>
 
         <div class="expertise-identity-use__list">
           <article class="expertise-identity-use__item">
             <div class="expertise-identity-use__copy">
               <h3>Social Media</h3>
-              <p>Social media required a flexible system capable of supporting many topics, formats, and campaigns. Layouts, typography, graphic elements, and imagery were adapted for regular content while preserving consistency across individual posts and larger communication series.</p>
+              <p>A flexible visual system keeps diverse topics, formats, and campaigns consistent across social media.</p>
             </div>
             <div class="expertise-identity-use__gallery">
               {socialMediaImages.map((image) => (
@@ -242,10 +257,22 @@ const keyVisualVideos = [
           <article class="expertise-identity-use__item">
             <div class="expertise-identity-use__copy">
               <h3>Editorial &amp; eBooks</h3>
-              <p>Editorial materials and eBooks allowed the brand system to work across longer, more structured formats. Typography, infographics, illustrations, 3D elements, and page layouts were combined to make complex information clear while maintaining a strong visual identity.</p>
+              <p>Typography, illustration, infographics, and 3D bring clarity and a consistent identity to complex editorial content.</p>
             </div>
             <div class="expertise-identity-use__gallery">
               {ebookImages.map((image) => (
+                <button
+                  class="expertise-lightbox-media"
+                  type="button"
+                  aria-label={`Open ${image.alt}`}
+                  data-lightbox-image
+                >
+                  <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+                </button>
+              ))}
+            </div>
+            <div class="expertise-editorial-editions">
+              {editorialEditionImages.map((image) => (
                 <button
                   class="expertise-lightbox-media"
                   type="button"
@@ -261,7 +288,7 @@ const keyVisualVideos = [
           <article class="expertise-identity-use__item">
             <div class="expertise-identity-use__copy">
               <h3>3D Key Visuals</h3>
-              <p>3D key visuals became an important part of the brand's product communication. Each visual was designed around an individual product idea, but shared materials, lighting, composition, and visual principles helped connect the full series to the broader Slotegrator identity.</p>
+              <p>Individual product ideas are united through shared materials, lighting, composition, and visual direction.</p>
             </div>
             <div class="expertise-identity-use__gallery expertise-identity-use__gallery--video">
               {keyVisualVideos.map((item) => (
@@ -284,14 +311,14 @@ const keyVisualVideos = [
       </div>
     </section>
 
-    <ExploreExpertise currentSlug="brand-identity" />
-
     <MoreProjects
-      projects={moreProjects.slice(0, 3)}
+      projects={selectedProjects}
       title="// Selected Projects"
       singleColumnBreakpoint
       selected
     />
+
+    <ExploreExpertise currentSlug="brand-identity" />
 
     <LogoMarquee />
   </main>
