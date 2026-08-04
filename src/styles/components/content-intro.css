@@ -1,0 +1,37 @@
+/* Shared heading + description treatment for subsection introductions. */
+.content-intro > :is(h2, h3) {
+  margin: 0;
+  color: var(--content-intro-title, currentColor);
+  font-size: var(--type-h3-v1-size);
+  font-weight: 700;
+  line-height: var(--type-h3-v1-line);
+  letter-spacing: var(--type-h3-v1-track);
+}
+
+.content-intro > p,
+.content-intro > div {
+  margin-top: 20px;
+}
+
+.content-intro > p,
+.content-intro > div > .case-copy {
+  color: var(--content-intro-text, currentColor);
+  font-size: var(--type-body-main-size);
+  font-weight: 400;
+  line-height: var(--type-body-main-line);
+  letter-spacing: var(--type-body-main-track);
+}
+
+.content-intro > p {
+  margin-bottom: 0;
+}
+
+.project-page .content-intro {
+  --content-intro-title: var(--project-text);
+  --content-intro-text: var(--project-muted);
+}
+
+.expertise-page .content-intro {
+  --content-intro-title: var(--black);
+  --content-intro-text: var(--gray-31);
+}

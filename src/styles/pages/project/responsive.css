@@ -233,9 +233,7 @@
     line-height: 1.35;
   }
 
-  .case-copy,
-  .case-story-card p,
-  .case-gallery__heading p {
+  .case-copy {
     margin-top: 20px;
     font-size: 16px;
   }
@@ -314,10 +312,7 @@
     line-height: 1.35;
   }
 
-  .case-feature__top h2,
-  .case-feature__intro h2,
-  .case-story__intro h2,
-  .case-gallery__heading h2 {
+  .case-feature__top h2 {
     margin-top: 32px;
   }
 
@@ -404,11 +399,6 @@
     text-align: left;
   }
 
-  .case-three-up__copy h3 {
-    margin-bottom: 20px;
-    font-size: 24px;
-  }
-
   .case-three-up__grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -427,11 +417,6 @@
     order: -1;
     max-width: none;
     text-align: left;
-  }
-
-  .case-wide-media__copy h3 {
-    margin-bottom: 20px;
-    font-size: 24px;
   }
 
   .case-wide-media__callout {

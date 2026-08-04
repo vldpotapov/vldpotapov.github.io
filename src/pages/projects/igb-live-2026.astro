@@ -132,7 +132,7 @@ const toolIcons: Record<string, string> = {
               </div>
             )}
             {!section.callout && !section.image && (
-              <div class="case-feature__intro">
+              <div class="case-feature__intro content-intro">
                 <h2>{section.title}</h2>
                 <div>
                   <div class="case-copy">
@@ -155,7 +155,7 @@ const toolIcons: Record<string, string> = {
         return (
           <section class="case-story case-section">
             <h2 class="section-label">// {section.eyebrow}</h2>
-            <div class="case-story__intro" data-reveal="left">
+            <div class="case-story__intro content-intro" data-reveal="left">
               <h2>{section.title}</h2>
               <div>
                 <div class="case-copy">
@@ -171,7 +171,7 @@ const toolIcons: Record<string, string> = {
             <div class="case-story__items">
               {section.items.map((item, index) => (
                 <article class:list={["case-story-card", `case-story-card--${item.align ?? (index % 2 === 0 ? "right" : "left")}`, { "case-story-card--wide": item.layout === "wide" }]} data-reveal={item.align === "left" ? "right" : "left"} data-reveal-delay={index * 150}>
-                  <div class="case-story-card__copy">
+                  <div class="case-story-card__copy media-caption">
                     {item.title && <h3>{item.title}</h3>}
                     {item.text && <p>{item.text}</p>}
                     {item.callout && (
@@ -205,7 +205,7 @@ const toolIcons: Record<string, string> = {
             </div>
             {section.followup && (
               <>
-                <div class="case-story__intro case-story__intro--followup" data-reveal="bottom">
+                <div class="case-story__intro case-story__intro--followup content-intro" data-reveal="bottom">
                   <h2>{section.followup.title}</h2>
                   <div>
                     <div class="case-copy">
@@ -221,7 +221,7 @@ const toolIcons: Record<string, string> = {
                 <div class="case-story__items">
                   {section.followup.items.map((item, index) => (
                     <article class:list={["case-story-card", `case-story-card--${item.align ?? (index % 2 === 0 ? "right" : "left")}`, { "case-story-card--wide": item.layout === "wide" }]} data-reveal={item.align === "left" ? "right" : "left"} data-reveal-delay={index * 150}>
-                      <div class="case-story-card__copy">
+                      <div class="case-story-card__copy media-caption">
                         {item.title && <h3>{item.title}</h3>}
                         {item.text && <p>{item.text}</p>}
                         {item.callout && (
@@ -254,7 +254,7 @@ const toolIcons: Record<string, string> = {
                   ))}
                 </div>
                 {section.followup.after?.map((block) => (
-                  <div class="case-story__intro case-story__intro--followup" data-reveal="bottom">
+                  <div class="case-story__intro case-story__intro--followup content-intro" data-reveal="bottom">
                     <h2>{block.title}</h2>
                     <div>
                       <div class="case-copy">
@@ -273,14 +273,14 @@ const toolIcons: Record<string, string> = {
                     <div class="case-three-up__grid">
                       {block.items.map((item) => <ProjectMedia class="case-three-up__media" src={item.src} alt={item.alt} ratio={item.ratio} />)}
                     </div>
-                    <div class="case-three-up__copy">
+                    <div class="case-three-up__copy media-caption">
                       <h3>{block.title}</h3>
                       <p>{block.text}</p>
                     </div>
                   </div>
                 ))}
                 {section.followup.afterThreeUp?.map((block) => (
-                  <div class="case-story__intro case-story__intro--followup" data-reveal="bottom">
+                  <div class="case-story__intro case-story__intro--followup content-intro" data-reveal="bottom">
                     <h2>{block.title}</h2>
                     <div>
                       <div class="case-copy">
@@ -299,7 +299,7 @@ const toolIcons: Record<string, string> = {
                     <div class="case-three-up__grid">
                       {block.items.map((item) => <ProjectMedia class="case-three-up__media" src={item.src} alt={item.alt} ratio={item.ratio} />)}
                     </div>
-                    <div class="case-three-up__copy">
+                    <div class="case-three-up__copy media-caption">
                       <h3>{block.title}</h3>
                       <p>{block.text}</p>
                     </div>
@@ -317,7 +317,7 @@ const toolIcons: Record<string, string> = {
                     ) : (
                       <ProjectMedia class="case-wide-media__image" data-reveal="bottom" src={block.image.src} alt={block.image.alt} ratio={block.image.ratio} />
                     )}
-                    <div class="case-wide-media__copy" data-reveal="bottom">
+                    <div class="case-wide-media__copy media-caption" data-reveal="bottom">
                       <h3>{block.title}</h3>
                       <p>{block.text}</p>
                     </div>
@@ -330,7 +330,7 @@ const toolIcons: Record<string, string> = {
                   </div>
                 ))}
                 {section.followup.afterWideMedia?.map((block) => (
-                  <div class="case-story__intro case-story__intro--followup" data-reveal="bottom">
+                  <div class="case-story__intro case-story__intro--followup content-intro" data-reveal="bottom">
                     <h2>{block.title}</h2>
                     <div>
                       <div class="case-copy">
@@ -346,7 +346,7 @@ const toolIcons: Record<string, string> = {
                 ))}
                 {section.followup.afterWideMediaItems?.map((item, index) => (
                   <article class:list={["case-story-card", `case-story-card--${item.align ?? (index % 2 === 0 ? "right" : "left")}`]} data-reveal={item.align === "left" ? "right" : "left"} data-reveal-delay={index * 150}>
-                    <div class="case-story-card__copy">
+                    <div class="case-story-card__copy media-caption">
                       {item.title && <h3>{item.title}</h3>}
                       {item.text && <p>{item.text}</p>}
                     </div>
@@ -372,7 +372,7 @@ const toolIcons: Record<string, string> = {
         return (
           <section class="case-gallery case-section">
             <h2 class="section-label">// {section.eyebrow}</h2>
-            <div class="case-gallery__heading" data-reveal="left">
+            <div class="case-gallery__heading content-intro" data-reveal="left">
               <h2>{section.title}</h2>
               {section.text && <p>{section.text}</p>}
             </div>

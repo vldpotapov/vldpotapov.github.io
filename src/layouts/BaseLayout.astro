@@ -348,7 +348,7 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
         });
       }
 
-      const projectLinks = document.querySelectorAll(".project-card, .more-card");
+      const projectLinks = document.querySelectorAll(".project-card, .more-card, [data-view-cursor]");
 
       if (pointerFine.matches && motionSafe.matches && projectLinks.length) {
         const viewCursor = document.createElement("div");
@@ -378,6 +378,7 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
         projectLinks.forEach((card) => {
           card.addEventListener("pointerenter", (event) => {
             requestViewCursor(event);
+            viewCursor.textContent = card.dataset.viewCursor || "View";
             viewCursor.classList.add("is-visible");
           });
           card.addEventListener("pointermove", requestViewCursor);

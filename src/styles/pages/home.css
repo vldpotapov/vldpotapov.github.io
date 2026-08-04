@@ -174,6 +174,7 @@
 }
 
 .service__body {
+  display: block;
   margin: 0;
   min-width: 320px;
   font-size: var(--type-body-main-size);
@@ -253,7 +254,7 @@
 @media (hover: hover) and (pointer: fine) {
   .project-card,
   .more-card {
-    cursor: none;
+    cursor: pointer;
   }
 }
 
@@ -331,9 +332,11 @@
   pointer-events: none;
   transform: translate3d(-50%, -50%, 0) scale(0.82);
   transition:
+    left 50ms ease-out,
+    top 50ms ease-out,
     opacity 160ms ease,
     transform 160ms ease;
-  will-change: transform;
+  will-change: left, top, transform;
 }
 
 .project-view-cursor.is-visible {
@@ -345,7 +348,7 @@
 /* Zoom / Close cursor for project media images */
 @media (hover: hover) and (pointer: fine) {
   .project-media:not(.project-video):not([data-project-slide]):not(.more-card__image) {
-    cursor: none;
+    cursor: pointer;
   }
 }
 
@@ -369,9 +372,11 @@
   pointer-events: none;
   transform: translate3d(-50%, -50%, 0) scale(0.82);
   transition:
+    left 70ms ease-out,
+    top 70ms ease-out,
     opacity 160ms ease,
     transform 160ms ease;
-  will-change: transform;
+  will-change: left, top, transform;
 }
 
 .project-zoom-cursor.is-visible {

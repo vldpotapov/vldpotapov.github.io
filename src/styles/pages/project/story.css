@@ -31,10 +31,7 @@
 }
 
 .case-feature__top h2,
-.case-feature__split h2,
-.case-feature__intro h2,
-.case-story__intro h2,
-.case-gallery__heading h2 {
+.case-feature__split h2 {
   margin: 0;
   color: var(--project-text);
   font-size: var(--type-h3-v1-size);
@@ -66,7 +63,8 @@
 .case-gallery__heading {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 32px;
+  column-gap: 32px;
+  row-gap: 0;
   align-items: start;
   width: min(1400px, calc(100% - var(--page-pad) * 2));
   margin: 96px auto 0;
@@ -75,18 +73,6 @@
 .case-story__intro > h2,
 .case-story__intro > div {
   grid-column: 1;
-}
-
-.case-story__intro {
-  gap: 0;
-}
-
-.case-story__intro > div {
-  margin-top: 20px;
-}
-
-.case-story__intro--followup > div {
-  margin-top: 20px;
 }
 
 .case-story__intro--followup .case-copy {
@@ -108,10 +94,6 @@
 .case-feature__intro > h2,
 .case-feature__intro > div {
   grid-column: 1;
-}
-
-.case-feature__intro > div {
-  margin-top: 20px;
 }
 
 .case-feature__intro .case-copy {
@@ -264,21 +246,6 @@
   text-align: right;
 }
 
-.case-three-up__copy h3 {
-  margin: 0 0 20px;
-  color: var(--project-text);
-  font-size: 30px;
-  font-weight: 500;
-  line-height: 1.2;
-}
-
-.case-three-up__copy p {
-  margin: 0;
-  color: var(--project-muted);
-  font-size: 16px;
-  line-height: 1.5;
-}
-
 .case-wide-media {
   display: grid;
   gap: 32px;
@@ -313,21 +280,6 @@
   justify-self: end;
   max-width: 400px;
   text-align: right;
-}
-
-.case-wide-media__copy h3 {
-  margin: 0 0 20px;
-  color: var(--project-text);
-  font-size: 30px;
-  font-weight: 500;
-  line-height: 1.2;
-}
-
-.case-wide-media__copy p {
-  margin: 0;
-  color: var(--project-muted);
-  font-size: 16px;
-  line-height: 1.5;
 }
 
 .case-wide-media__callout {
@@ -367,22 +319,5 @@
 
 .case-story-card--right .case-story-card__callout p {
   text-align: right;
-}
-
-.case-story-card h3 {
-  margin: 0 0 22px;
-  color: var(--project-text);
-  font-size: var(--type-h4-v2-size);
-  font-weight: 700;
-  line-height: var(--type-h4-v2-line);
-  letter-spacing: var(--type-h4-v2-track);
-}
-
-.case-story-card p,
-.case-gallery__heading p {
-  margin: 0;
-  color: var(--project-muted);
-  font-size: 16px;
-  line-height: 1.45;
 }
 

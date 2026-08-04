@@ -256,8 +256,8 @@ export const motorSkinProject = {
             title: "Social Media Assets",
             text: "A collection of campaign visuals created for both corporate and employee social media channels, maintaining a unified visual identity throughout the campaign.",
             items: [
-              { src: "/images/projects/igb-live-2026/people_smm__1.png", alt: "IGB Live social media asset 1", ratio: "453 / 567" },
-              { src: "/images/projects/igb-live-2026/people_smm__2.png", alt: "IGB Live social media asset 2", ratio: "453 / 567" },
+              { src: "/images/projects/igb-live-2026/people_smm__2.png", alt: "IGB Live social media asset 1", ratio: "453 / 567" },
+              { src: "/images/projects/igb-live-2026/people_smm__1.png", alt: "IGB Live social media asset 2", ratio: "453 / 567" },
               { src: "/images/projects/igb-live-2026/people_smm__3.png", alt: "IGB Live social media asset 3", ratio: "453 / 567" },
             ],
           },

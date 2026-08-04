@@ -74,12 +74,15 @@ import "../styles/global.css";
               const number = String(index + 1).padStart(2, "0");
 
               return (
-                <a
+                <article
                   class="service"
-                  href="/expertise/brand-identity/"
                   data-service-number={number}
                 >
-                  <div class="service__body">
+                  <a
+                    class="service__body"
+                    href="/expertise/brand-identity/"
+                    data-view-cursor="Explore"
+                  >
                     <h2>{service.title}</h2>
                     <p>{service.intro}</p>
                     <ul>
@@ -90,8 +93,8 @@ import "../styles/global.css";
                         </li>
                       ))}
                     </ul>
-                  </div>
-                </a>
+                  </a>
+                </article>
               );
             })
           }

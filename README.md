@@ -62,7 +62,7 @@ The row hover state is handled in `src/styles/pages/projects.css` by the `old-pr
 The `My Expertise` button on `/projects` links back to the home page section `/#expertise`.
 The `/projects` page ends with the standard logo marquee and footer.
 
-Button hover fill animation is controlled by `.button` styles in `src/styles/shared.css`. Project cards use a desktop-only `View` cursor styled in `src/styles/pages/home.css` and initialized in `src/layouts/BaseLayout.astro`.
+Button hover fill animation is controlled by `.button` styles in `src/styles/shared.css`. Project cards use a desktop-only `View` cursor, while home-page Expertise cards pass the label `Explore` through `data-view-cursor`. The shared cursor is styled in `src/styles/pages/home.css` and initialized in `src/layouts/BaseLayout.astro`. Custom cursor circles never replace the system pointer: the regular pointer remains visible above the circle across cards, media, and lightboxes. Their slight trailing motion is controlled by the `left` and `top` transitions on `.project-view-cursor` (`50ms`) and `.project-zoom-cursor` (`70ms`).
 
 Internal page transitions are handled globally in `src/layouts/BaseLayout.astro` and styled in `src/styles/foundation.css` and `src/styles/motion.css`. The transition uses stacked black and accent layers (`.page-transition__layer`) together with `.site-shell`, `is-page-leaving`, and `is-page-entering`.
 Hash links such as the footer back-to-top button (`href="#"`) are excluded from this transition and should scroll within the current page without the orange overlay.
@@ -290,6 +290,8 @@ src/components/ProjectSlider.astro
 src/styles/global.css                         порядок подключения файлов
 src/styles/foundation.css                     переменные, reset, базовая разметка и page transition
 src/styles/shared.css                         кнопки, ссылки, header, hero, footer и бегущие строки
+src/styles/components/media-caption.css       общая типографика подписей к изображениям и видео
+src/styles/components/content-intro.css        общая типографика вступлений внутренних подразделов
 src/styles/motion.css                         общие keyframes и prefers-reduced-motion
 src/styles/effects.css                        scroll reveal и image lightbox
 
@@ -312,6 +314,10 @@ src/styles/responsive/not-found.css           адаптив 404
 ```
 
 Правило редактирования: сначала ищи файл нужной страницы. Общие элементы меняй в `shared.css`, а глобальные переменные и `--page-pad` - в `foundation.css`. Порядок `@import` в `global.css` менять без необходимости не стоит: он сохраняет правильный CSS-каскад.
+
+Подписи к изображениям и видео на страницах проекта и Expertise используют общий класс `media-caption`. Размер заголовка и описания, насыщенность, интерлиньяж и расстояние между ними редактируются в `src/styles/components/media-caption.css`; в CSS конкретной страницы остаются только цвет, ширина и выравнивание блока.
+
+Вступительные блоки внутренних подразделов, например `Selected Applications`, используют общий класс `content-intro`. Их заголовок, описание и расстояние между ними редактируются в `src/styles/components/content-intro.css` сразу для страниц проекта и Expertise.
 
 ## Где редактировать контент
 
@@ -410,6 +416,8 @@ public/videos/expertise/branding
 ```
 
 The `Building the Visual System` videos and the `Identity in Use` media are configured in the data arrays at the top of `src/pages/expertise/brand-identity.astro`. Posters are stored in `public/videos/expertise/branding/posters`; these videos are intentionally muted and do not show a sound control. Social and ebook images are read in order from `smm-1.png` through `smm-8.png` and `ebook-1.png` through `ebook-5.png`.
+
+Scroll reveal animations between `Overview` and `Selected Projects` are configured directly in `src/pages/expertise/brand-identity.astro` with `data-reveal="left|right|bottom"`. Optional `data-reveal-delay` is measured in milliseconds. In multi-image galleries, every image has its own reveal with a `100ms` stagger, while the caption is revealed separately; the six `editorialEditionImages` enter from the right and the other galleries enter from below.
 
 В `visualSystemItems` поле `description` может быть обычной строкой или массивом строк. Каждая строка массива выводится отдельным абзацем.
 

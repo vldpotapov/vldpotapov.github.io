@@ -1,0 +1,40 @@
+/* Shared title + description treatment for media captions. */
+.media-caption {
+  display: grid;
+  gap: 20px;
+}
+
+.media-caption > h3 {
+  margin: 0;
+  color: var(--media-caption-title, currentColor);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.media-caption > p {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: var(--media-caption-text, currentColor);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+.project-page .media-caption {
+  --media-caption-title: var(--project-text);
+  --media-caption-text: var(--project-muted);
+}
+
+.expertise-page .media-caption {
+  --media-caption-title: var(--black);
+  --media-caption-text: var(--gray-31);
+}
+
+@media (max-width: 760px) {
+  .media-caption > h3 {
+    font-size: 24px;
+  }
+}
