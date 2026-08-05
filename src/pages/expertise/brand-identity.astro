@@ -108,7 +108,7 @@ const keyVisualVideos = [
             <div class="expertise-overview__spacer" aria-hidden="true"></div>
             <div class="expertise-overview__copy">
               <h2 class="section-label" id="brand-overview-title">// Overview</h2>
-              <p class="intro-reveal" data-intro-reveal>
+              <p class="overview-reveal-text intro-reveal" data-intro-reveal>
                 I develop visual identities for existing brands, helping them evolve while staying recognizable and consistent.
                 <span> I turn individual design solutions into flexible, coherent systems. </span>My work spans visual direction, key visuals, 3D, digital products, campaigns, print, events, and motion.
               </p>
@@ -362,6 +362,7 @@ const keyVisualVideos = [
     let holdDistance = 0;
     let isMobile = false;
     let frame = 0;
+    let measuredViewportWidth = window.innerWidth;
 
     const measure = () => {
       let offset = 0;
@@ -378,8 +379,8 @@ const keyVisualVideos = [
       root.style.setProperty("--expertise-image-stick-top", `${stickyTop}px`);
       isMobile = window.matchMedia("(max-width: 760px)").matches;
       whiteningDistance = isMobile
-        ? Math.max(1, Math.min(stage.offsetHeight * 1, window.innerHeight * 1.6))
-        : Math.max(1, Math.min(stage.offsetHeight * 0.3, window.innerHeight * 0.25));
+        ? Math.max(1, Math.min(stage.offsetHeight * 0.9, window.innerHeight * 1.1))
+        : Math.max(1, Math.min(stage.offsetHeight * 0.5, window.innerHeight * 0.25));
       holdDistance = Math.max(
         0,
         (window.innerHeight - stickyTop + whiteningDistance - stage.offsetHeight) * 0.5,
@@ -405,11 +406,25 @@ const keyVisualVideos = [
 
     const refresh = () => {
       measure();
+      measuredViewportWidth = window.innerWidth;
       render();
     };
 
+    const handleResize = () => {
+      const widthChanged = Math.abs(window.innerWidth - measuredViewportWidth) > 1;
+
+      // Mobile browser chrome changes the viewport height while scrolling.
+      // Re-measuring the sticky scene here would make the whitening progress jump.
+      if (isMobile && !widthChanged) {
+        requestRender();
+        return;
+      }
+
+      refresh();
+    };
+
     window.addEventListener("scroll", requestRender, { passive: true });
-    window.addEventListener("resize", refresh);
+    window.addEventListener("resize", handleResize);
     window.addEventListener("pageshow", refresh);
 
     const image = stage.querySelector("img");

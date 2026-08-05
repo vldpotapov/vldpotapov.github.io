@@ -1,5 +1,11 @@
 # Portfolio
 
+Для передачи проекта другому AI-ассистенту или разработчику сначала используйте [`PROJECT_CONTEXT.md`](./PROJECT_CONTEXT.md). В нём собраны архитектура, страницы, дизайн-правила, интерактивность, деплой и обязательный рабочий процесс.
+
+Базовые требования к поисковой оптимизации, метаданным, изображениям и социальным превью находятся в [`SEO_RULES.md`](./SEO_RULES.md). При создании или изменении страницы этот файл нужно проверять вместе с `README.md` и `PROJECT_CONTEXT.md`.
+
+Построчный scroll-reveal текста используется в Intro главной страницы и Overview страниц экспертизы и проекта. Общий механизм находится в `BaseLayout.astro`, базовые стили эффекта — в `src/styles/pages/home.css`, а единая проектная типографика Overview — в `.overview-reveal-text` внутри `src/styles/components/content-intro.css`. Цвета конкретного контекста задаются через CSS-переменные `--intro-reveal-base`, `--intro-reveal-color` и `--intro-reveal-accent`.
+
 Static portfolio site built with Astro. The main GitHub repository is `vldpotapov.github.io`, and Cloudflare Pages is connected to this repository.
 
 Live Cloudflare Pages URL:
@@ -67,6 +73,8 @@ Button hover fill animation is controlled by `.button` styles in `src/styles/sha
 Internal page transitions are handled globally in `src/layouts/BaseLayout.astro` and styled in `src/styles/foundation.css` and `src/styles/motion.css`. The transition uses stacked black and accent layers (`.page-transition__layer`) together with `.site-shell`, `is-page-leaving`, and `is-page-entering`.
 Hash links such as the footer back-to-top button (`href="#"`) are excluded from this transition and should scroll within the current page without the orange overlay.
 
+Desktop wheel and trackpad scrolling is softened globally with `lenis`, initialized in `src/layouts/BaseLayout.astro`. The current `lerp: 0.12` and `wheelMultiplier: 0.9` keep the effect subtle. Lower `lerp` values create more inertia; values closer to `1` feel more native. Touch devices and users with reduced-motion enabled keep native scrolling.
+
 Scroll-reveal header behavior is handled in `src/components/Header.astro` and styled in `src/styles/shared.css` with `.site-header.is-floating` and `.site-header.is-visible`. It starts only after the first screen section and shows the header while scrolling up.
 
 Active header navigation is also handled in `src/components/Header.astro`. The current page item is rendered as `.nav-link.is-active` instead of a clickable link only when the URL matches exactly. Deeper pages keep the parent item clickable, so `/projects/igb-live-2026/` still has a working `Projects` link back to `/projects`.
@@ -80,6 +88,8 @@ public/videos/projects/igb-live-2026/Igb_london_26_short.mp4
 ## Рабочее правило
 
 После заметных изменений в структуре сайта, страницах, данных, ассетах, деплое или командах нужно проверять этот README и сразу обновлять инструкцию, если она устарела.
+
+Документация поддерживается парой: при изменении архитектуры, поведения, контента, команд, ассетов или деплоя нужно в рамках той же задачи проверить и при необходимости обновить одновременно `README.md` и `PROJECT_CONTEXT.md`.
 
 Общее правило отступов: внешний горизонтальный отступ контентных блоков должен быть 20px на desktop и 16px на mobile. Это задается через `--page-pad` в `src/styles/foundation.css`. Внутренние отступы внутри кнопок, инпутов, тегов и карточек могут отличаться, если это часть компонента.
 
@@ -418,6 +428,8 @@ public/videos/expertise/branding
 The `Building the Visual System` videos and the `Identity in Use` media are configured in the data arrays at the top of `src/pages/expertise/brand-identity.astro`. Posters are stored in `public/videos/expertise/branding/posters`; these videos are intentionally muted and do not show a sound control. Social and ebook images are read in order from `smm-1.png` through `smm-8.png` and `ebook-1.png` through `ebook-5.png`.
 
 Scroll reveal animations between `Overview` and `Selected Projects` are configured directly in `src/pages/expertise/brand-identity.astro` with `data-reveal="left|right|bottom"`. Optional `data-reveal-delay` is measured in milliseconds. In multi-image galleries, every image has its own reveal with a `100ms` stagger, while the caption is revealed separately; the six `editorialEditionImages` enter from the right and the other galleries enter from below.
+
+The Brand Identity hero whitening scene is also controlled in `src/pages/expertise/brand-identity.astro`. On mobile, height-only `resize` events from the Android browser toolbar intentionally do not re-measure the sticky scene; only a real width change or orientation change triggers a full recalculation.
 
 В `visualSystemItems` поле `description` может быть обычной строкой или массивом строк. Каждая строка массива выводится отдельным абзацем.
 

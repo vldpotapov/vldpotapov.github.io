@@ -35,3 +35,20 @@
   --content-intro-title: var(--black);
   --content-intro-text: var(--gray-31);
 }
+
+/* Shared Overview reveal typography. Colors remain page-specific. */
+.overview-reveal-text {
+  margin: 0;
+  font-size: var(--type-body-v2-size);
+  font-weight: 500;
+  line-height: var(--type-body-v2-line);
+  letter-spacing: var(--type-body-v2-track);
+}
+
+@media (max-width: 760px) {
+  .overview-reveal-text {
+    font-size: 26px;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+}

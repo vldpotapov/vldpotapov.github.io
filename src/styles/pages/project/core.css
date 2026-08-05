@@ -87,12 +87,10 @@
 }
 
 .case-overview__body {
-  margin: 0;
-  color: var(--project-text);
-  font-size: var(--type-body-v2-size);
-  font-weight: 500;
-  line-height: var(--type-body-v2-line);
-  letter-spacing: var(--type-body-v2-track);
+  --intro-reveal-base: var(--gray-31);
+  --intro-reveal-color: var(--project-text);
+  --intro-reveal-accent: var(--project-accent);
+  color: var(--intro-reveal-base);
 }
 
 .case-overview__body span {

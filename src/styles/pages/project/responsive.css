@@ -169,12 +169,6 @@
     margin-bottom: 32px;
   }
 
-  .case-overview__body {
-    font-size: var(--type-body-v2-size);
-    line-height: var(--type-body-v2-line);
-    letter-spacing: var(--type-body-v2-track);
-  }
-
   .case-glance {
     padding-bottom: 72px;
   }

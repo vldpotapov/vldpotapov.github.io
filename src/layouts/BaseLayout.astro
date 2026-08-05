@@ -1,5 +1,6 @@
 ---
 import LogoMark from "../components/LogoMark.astro";
+import "lenis/dist/lenis.css";
 
 const {
   title = "Potapov Visual Designer",
@@ -65,6 +66,29 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
       </a>
       <slot />
     </div>
+    <script>
+      import Lenis from "lenis";
+
+      const smoothScrollAllowed =
+        window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+        window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
+
+      if (smoothScrollAllowed) {
+        const lenis = new Lenis({
+          autoRaf: true,
+          autoToggle: true,
+          smoothWheel: true,
+          syncTouch: false,
+          lerp: 0.12,
+          wheelMultiplier: 0.9,
+          anchors: true,
+          allowNestedScroll: true,
+          stopInertiaOnNavigate: true,
+        });
+
+        window.addEventListener("pagehide", () => lenis.destroy(), { once: true });
+      }
+    </script>
     <script>
       // @ts-nocheck
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
